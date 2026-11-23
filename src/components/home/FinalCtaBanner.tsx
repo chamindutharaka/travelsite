@@ -13,7 +13,7 @@ import {
 export function FinalCtaBanner() {
   return (
     <section
-      className="relative py-20 sm:py-28 lg:py-36 bg-[#141414] text-white overflow-hidden"
+      className="relative py-20 sm:py-28 lg:py-36 bg-[#0B1724] text-white overflow-hidden"
       aria-labelledby="final-cta-heading"
     >
       <Image
@@ -23,12 +23,12 @@ export function FinalCtaBanner() {
         sizes="100vw"
         className="object-cover opacity-35"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#141414] via-[#141414]/65 to-[#141414]/75" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724] via-[#0B1724]/65 to-[#0B1724]/75" />
 
       <Container size="default" className="relative z-10 text-center">
         <div className="max-w-2xl mx-auto space-y-5 sm:space-y-6">
           <EditorialReveal>
-            <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#EF6427] block mb-3.5">
+            <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#E5A952] block mb-3.5">
               Start Here
             </span>
 
@@ -38,7 +38,7 @@ export function FinalCtaBanner() {
             >
               <LineRise>Your Sri Lanka story</LineRise>
               <LineRise delay={0.08}>
-                <span className="italic font-light text-[#F5F2ED]">
+                <span className="italic font-light text-[#F6E3C5]">
                   starts here.
                 </span>
               </LineRise>
@@ -57,7 +57,7 @@ export function FinalCtaBanner() {
           >
             <Link
               href="/plan-your-trip"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-medium text-[#1A1A1A] bg-[#FBFAF8] hover:bg-[#EF6427] transition-colors duration-300"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-medium text-[#122334] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors duration-300"
             >
               Plan My Trip
             </Link>

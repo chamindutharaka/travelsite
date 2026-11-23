@@ -23,16 +23,16 @@ export function VideoShowcase() {
 
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#1A1A1A] text-white relative overflow-hidden border-t border-white/10"
+      className="py-16 sm:py-24 lg:py-28 bg-[#122334] text-white relative overflow-hidden border-t border-white/10"
       aria-labelledby="video-showcase-heading"
     >
       <Container size="wide" className="relative z-10">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
           <EditorialReveal className="max-w-2xl">
             <div className="flex items-center gap-3 mb-3.5">
-              <span className="w-7 h-[1px] bg-[#EF6427]" />
+              <span className="w-7 h-[1px] bg-[#E5A952]" />
               <span className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">
-                <Film className="w-3.5 h-3.5 text-[#EF6427]" />
+                <Film className="w-3.5 h-3.5 text-[#E5A952]" />
                 Sri Lanka in Motion
               </span>
             </div>
@@ -51,7 +51,7 @@ export function VideoShowcase() {
           <EditorialReveal delay={0.12}>
             <Link
               href="/gallery#videos"
-              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 hover:text-[#EF6427] transition-colors hover-underline shrink-0"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 hover:text-[#E5A952] transition-colors hover-underline shrink-0"
             >
               <span>All photos &amp; 4K films</span>
               <span>→</span>
@@ -76,7 +76,7 @@ export function VideoShowcase() {
                 <button
                   type="button"
                   onClick={() => setIsPlaying(true)}
-                  className="group relative w-full h-full text-left focus:outline-none focus:ring-2 focus:ring-[#EF6427]"
+                  className="group relative w-full h-full text-left focus:outline-none focus:ring-2 focus:ring-[#D4622A]"
                   aria-label={`Play video: ${activeVideo.title}`}
                 >
                   <Image
@@ -86,17 +86,17 @@ export function VideoShowcase() {
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/90 via-[#141414]/30 to-[#141414]/15" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724]/90 via-[#0B1724]/30 to-[#0B1724]/15" />
 
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FBFAF8] group-hover:bg-[#EF6427] text-[#1A1A1A] flex items-center justify-center shadow-2xl group-hover:scale-105 transition-all duration-300">
+                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FDFBF7] group-hover:bg-[#E5A952] text-[#122334] flex items-center justify-center shadow-2xl group-hover:scale-105 transition-all duration-300">
                       <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
                     </span>
                   </div>
 
                   <div className="absolute bottom-0 inset-x-0 p-4 sm:p-7 flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
                     <div>
-                      <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-[#EF6427] font-medium">
+                      <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-[#E5A952] font-medium">
                         <MapPin className="w-3 h-3" />
                         {activeVideo.location}
                       </span>
@@ -104,8 +104,8 @@ export function VideoShowcase() {
                         {activeVideo.title}
                       </h3>
                     </div>
-                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141414]/80 border border-white/15 text-xs font-mono text-white/90 shrink-0 w-fit">
-                      <Clock className="w-3.5 h-3.5 text-[#EF6427]" />
+                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B1724]/80 border border-white/15 text-xs font-mono text-white/90 shrink-0 w-fit">
+                      <Clock className="w-3.5 h-3.5 text-[#E5A952]" />
                       {activeVideo.duration}
                     </span>
                   </div>
@@ -121,7 +121,7 @@ export function VideoShowcase() {
                 href={activeVideo.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-mono text-white/50 hover:text-[#EF6427] transition-colors shrink-0"
+                className="text-xs font-mono text-white/50 hover:text-[#E5A952] transition-colors shrink-0"
               >
                 Film by {activeVideo.creator} ↗
               </a>
@@ -143,8 +143,8 @@ export function VideoShowcase() {
                   onClick={() => handleSelectVideo(video)}
                   className={`w-full text-left p-2.5 sm:p-3 rounded-xl border transition-colors duration-300 flex items-center gap-3.5 group ${
                     isSelected
-                      ? "bg-[#242424] border-[#EF6427]/80"
-                      : "bg-[#141414]/70 border-white/10 hover:border-white/30 hover:bg-[#222222]"
+                      ? "bg-[#193047] border-[#E5A952]/80"
+                      : "bg-[#0B1724]/70 border-white/10 hover:border-white/30 hover:bg-[#162A3E]"
                   }`}
                 >
                   <div className="relative w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden shrink-0 bg-black">
@@ -159,8 +159,8 @@ export function VideoShowcase() {
                       <span
                         className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-colors ${
                           isSelected
-                            ? "bg-[#EF6427] text-[#1A1A1A]"
-                            : "bg-black/70 text-white group-hover:bg-[#EF6427] group-hover:text-[#1A1A1A]"
+                            ? "bg-[#E5A952] text-[#122334]"
+                            : "bg-black/70 text-white group-hover:bg-[#E5A952] group-hover:text-[#122334]"
                         }`}
                       >
                         <Play className="w-3 h-3 fill-current ml-0.5" />
@@ -170,7 +170,7 @@ export function VideoShowcase() {
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#EF6427] truncate">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#E5A952] truncate">
                         0{idx + 1} · {video.location}
                       </span>
                       <span className="text-[10px] font-mono text-white/45 shrink-0">

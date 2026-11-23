@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function PlanYourTripPage() {
   return (
-    <div className="bg-[#FBFAF8] text-[#1A1A1A]">
+    <div className="bg-[#FDFBF7] text-[#122334]">
       <PageHero
         image="/images/tours/serendipity-honeymoon.jpg"
         imageAlt="Golden sunset over palm-lined southern coastline in Sri Lanka"
