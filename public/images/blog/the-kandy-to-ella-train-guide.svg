@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#12212E" />
+      <stop offset="65%" stop-color="#12212E" />
+      <stop offset="100%" stop-color="#6CA3A2" />
+    </linearGradient>
+    <radialGradient id="sun" cx="75%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#6CA3A2" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#12212E" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Clean Architectural Fill -->
+  <rect width="1200" height="800" fill="url(#grad)" />
+  <rect width="1200" height="800" fill="url(#sun)" />
+
+  <!-- Natural Topographic Lines -->
+  <path d="M 0 660 Q 350 540, 700 630 T 1200 600 L 1200 800 L 0 800 Z" fill="rgba(11,19,26,0.4)" />
+  <path d="M 0 720 Q 450 650, 850 710 T 1200 680 L 1200 800 L 0 800 Z" fill="rgba(11,19,26,0.6)" />
+
+  <!-- Clean Editorial Label -->
+  <text x="600" y="325" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="5" fill="#EA9527" text-anchor="middle">CEYLON HOLIDAYS • GALLE</text>
+
+  <!-- Title -->
+  <text x="600" y="405" font-family="'Cormorant Garamond', Georgia, serif" font-size="46" font-weight="600" fill="#FFFFFF" text-anchor="middle">Kandy to Ella Train Guide</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="455" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="17" font-weight="400" fill="#ECE7DC" text-anchor="middle">Carriages, Booking & Scenic Views</text>
+
+  <!-- Minimal Hairline Accent -->
+  <line x1="560" y1="485" x2="640" y2="485" stroke="#EA9527" stroke-width="1.5" />
+</svg>
