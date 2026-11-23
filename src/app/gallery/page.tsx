@@ -58,7 +58,7 @@ export default function GalleryPage() {
   }, [activeItem, activeVideo]);
 
   return (
-    <div className="bg-[#FDFBF7] text-[#122334]">
+    <div className="bg-[#FDFBF7] text-[#153250]">
       <PageHero
         image="/images/hero/hero-galle-coast.jpg"
         imageAlt="Galle Fort ramparts and ocean swells in Sri Lanka"
@@ -78,8 +78,8 @@ export default function GalleryPage() {
                 onClick={() => setSelectedCategory(cat)}
                 className={`shrink-0 px-4 py-2 rounded-full text-xs sm:text-[13px] font-medium transition-colors duration-300 ${
                   selectedCategory === cat
-                    ? "bg-[#122334] text-[#FDFBF7]"
-                    : "bg-white text-[#4E5A65] border border-[#122334]/12 hover:border-[#122334] hover:text-[#122334]"
+                    ? "bg-[#153250] text-[#FDFBF7]"
+                    : "bg-white text-[#4E5A65] border border-[#153250]/12 hover:border-[#153250] hover:text-[#153250]"
                 }`}
               >
                 {cat}
@@ -102,7 +102,7 @@ export default function GalleryPage() {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.45, ease: EDITORIAL_EASE }}
                   onClick={() => setActiveItem(item)}
-                  className="group text-left relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#122334]"
+                  className="group text-left relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#153250]"
                 >
                   <Image
                     src={item.image}
@@ -111,7 +111,7 @@ export default function GalleryPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724]/85 via-[#0B1724]/15 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33]/85 via-[#0C1F33]/15 to-transparent opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-5">
                     <span className="text-[10px] uppercase font-mono tracking-wider text-[#D4622A]">
                       {item.category} · {item.location}
                     </span>
@@ -129,7 +129,7 @@ export default function GalleryPage() {
       {/* Real 4K Travel Videos Section */}
       <section
         id="videos"
-        className="py-16 sm:py-24 bg-[#F5EFE6] border-t border-[#122334]/10 scroll-mt-20"
+        className="py-16 sm:py-24 bg-[#F5EFE6] border-t border-[#153250]/10 scroll-mt-20"
       >
         <Container size="wide">
           <EditorialReveal className="max-w-2xl space-y-3 mb-10">
@@ -137,7 +137,7 @@ export default function GalleryPage() {
               <Film className="w-3.5 h-3.5" />
               Real 4K Travel &amp; Drone Footage
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#122334]">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#153250]">
               Sri Lanka in Motion
             </h2>
             <p className="text-[15px] text-[#4E5A65] leading-[1.7]">
@@ -151,9 +151,9 @@ export default function GalleryPage() {
                 key={video.id}
                 type="button"
                 onClick={() => setActiveVideo(video)}
-                className="group text-left rounded-2xl overflow-hidden bg-white border border-[#122334]/10 hover:shadow-[0_16px_40px_rgba(18,35,52,0.08)] transition-shadow duration-500 flex flex-col"
+                className="group text-left rounded-2xl overflow-hidden bg-white border border-[#153250]/10 hover:shadow-[0_16px_40px_rgba(21,50,80,0.08)] transition-shadow duration-500 flex flex-col"
               >
-                <div className="relative aspect-video w-full bg-[#0B1724] overflow-hidden">
+                <div className="relative aspect-video w-full bg-[#0C1F33] overflow-hidden">
                   <Image
                     src={video.posterImage}
                     alt={video.title}
@@ -161,12 +161,12 @@ export default function GalleryPage() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   />
-                  <div className="absolute inset-0 bg-[#0B1724]/35 group-hover:bg-[#0B1724]/20 transition-colors flex items-center justify-center">
-                    <span className="w-14 h-14 rounded-full bg-[#FDFBF7] group-hover:bg-[#D4622A] text-[#122334] group-hover:text-white flex items-center justify-center shadow-xl transition-colors duration-300">
+                  <div className="absolute inset-0 bg-[#0C1F33]/35 group-hover:bg-[#0C1F33]/20 transition-colors flex items-center justify-center">
+                    <span className="w-14 h-14 rounded-full bg-[#FDFBF7] group-hover:bg-[#D4622A] text-[#153250] group-hover:text-white flex items-center justify-center shadow-xl transition-colors duration-300">
                       <Play className="w-5 h-5 fill-current ml-0.5" />
                     </span>
                   </div>
-                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0B1724]/80 text-white text-[11px] font-mono">
+                  <span className="absolute bottom-3 right-3 inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#0C1F33]/80 text-white text-[11px] font-mono">
                     <Clock className="w-3 h-3 text-[#D4622A]" />
                     {video.duration}
                   </span>
@@ -177,7 +177,7 @@ export default function GalleryPage() {
                     <span className="text-[10px] font-mono uppercase tracking-wider text-[#D4622A]">
                       {video.category} · {video.location}
                     </span>
-                    <h3 className="font-serif text-xl font-normal text-[#122334] mt-1 group-hover:text-[#D4622A] transition-colors">
+                    <h3 className="font-serif text-xl font-normal text-[#153250] mt-1 group-hover:text-[#D4622A] transition-colors">
                       {video.title}
                     </h3>
                     <p className="text-[14px] text-[#4E5A65] mt-2 line-clamp-2 leading-relaxed">
@@ -211,7 +211,7 @@ export default function GalleryPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.35, ease: EDITORIAL_EASE }}
-              className="relative max-w-4xl w-full bg-[#0B1724] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
+              className="relative max-w-4xl w-full bg-[#0C1F33] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -233,7 +233,7 @@ export default function GalleryPage() {
                 />
               </div>
 
-              <div className="p-5 sm:p-6 bg-[#0B1724] text-white flex items-center justify-between border-t border-white/10">
+              <div className="p-5 sm:p-6 bg-[#0C1F33] text-white flex items-center justify-between border-t border-white/10">
                 <div>
                   <span className="text-xs font-mono uppercase tracking-wider text-[#D4622A]">
                     {activeItem.category} · {activeItem.location}
@@ -272,7 +272,7 @@ export default function GalleryPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.35, ease: EDITORIAL_EASE }}
-              className="relative max-w-5xl w-full bg-[#0B1724] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
+              className="relative max-w-5xl w-full bg-[#0C1F33] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -294,7 +294,7 @@ export default function GalleryPage() {
                 />
               </div>
 
-              <div className="p-5 sm:p-6 bg-[#0B1724] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-white/10">
+              <div className="p-5 sm:p-6 bg-[#0C1F33] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-white/10">
                 <div>
                   <span className="text-xs font-mono uppercase tracking-wider text-[#D4622A]">
                     {activeVideo.category} · {activeVideo.location} · {activeVideo.duration}

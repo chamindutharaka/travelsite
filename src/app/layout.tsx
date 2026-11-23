@@ -90,7 +90,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#122334",
+  themeColor: "#153250",
 };
 
 export default function RootLayout({
@@ -110,7 +110,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#FDFBF7] text-[#122334] selection:bg-[#122334] selection:text-[#FDFBF7] font-sans antialiased">
+      <body className="min-h-screen flex flex-col bg-[#FDFBF7] text-[#153250] selection:bg-[#153250] selection:text-[#FDFBF7] font-sans antialiased">
         <SkipLink />
         <Header />
         <main id="main-content" className="flex-grow">

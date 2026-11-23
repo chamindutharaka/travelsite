@@ -131,7 +131,7 @@ export function HeroSlider() {
 
   return (
     <section
-      className="relative min-h-[100svh] flex flex-col justify-between bg-[#0B1724] text-white overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col justify-between bg-[#0C1F33] text-white overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       aria-label="Hero Video Carousel"
@@ -162,8 +162,8 @@ export function HeroSlider() {
                 isActive ? "scale-100" : "scale-105"
               }`}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0B1724]/82 via-[#0B1724]/45 to-[#0B1724]/20" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724]/85 via-transparent to-[#0B1724]/45" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0C1F33]/82 via-[#0C1F33]/45 to-[#0C1F33]/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33]/85 via-transparent to-[#0C1F33]/45" />
           </div>
         );
       })}
@@ -239,7 +239,7 @@ export function HeroSlider() {
               >
                 <Link
                   href={slide.primaryCtaLink}
-                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-sm font-medium text-[#122334] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors duration-300"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-full text-sm font-medium text-[#153250] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors duration-300"
                 >
                   {slide.primaryCtaText}
                 </Link>
@@ -256,7 +256,7 @@ export function HeroSlider() {
                   onClick={() => setIsVideoOpen(true)}
                   className="group inline-flex items-center justify-center sm:justify-start gap-2.5 px-3 py-2 text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-colors"
                 >
-                  <span className="w-9 h-9 rounded-full border border-white/35 group-hover:border-[#E5A952] group-hover:bg-[#E5A952] group-hover:text-[#122334] flex items-center justify-center transition-all duration-300">
+                  <span className="w-9 h-9 rounded-full border border-white/35 group-hover:border-[#E5A952] group-hover:bg-[#E5A952] group-hover:text-[#153250] flex items-center justify-center transition-all duration-300">
                     <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
                   </span>
                   <span className="hover-underline">Watch Full 4K Film</span>
@@ -268,7 +268,7 @@ export function HeroSlider() {
       </Container>
 
       {/* Bottom Control Bar */}
-      <div className="relative z-20 border-t border-white/15 bg-[#0B1724]/35 backdrop-blur-[2px]">
+      <div className="relative z-20 border-t border-white/15 bg-[#0C1F33]/35 backdrop-blur-[2px]">
         <Container size="wide" className="py-4 sm:py-5">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4 sm:gap-5">
@@ -359,7 +359,7 @@ export function HeroSlider() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 16 }}
               transition={{ duration: 0.45, ease: EDITORIAL_EASE }}
-              className="relative max-w-5xl w-full bg-[#0B1724] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
+              className="relative max-w-5xl w-full bg-[#0C1F33] rounded-2xl overflow-hidden border border-white/15 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -381,7 +381,7 @@ export function HeroSlider() {
                 />
               </div>
 
-              <div className="p-4 sm:p-6 bg-[#0B1724] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-white/10">
+              <div className="p-4 sm:p-6 bg-[#0C1F33] text-white flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-t border-white/10">
                 <div>
                   <span className="text-[11px] font-mono uppercase tracking-wider text-[#E5A952]">
                     {featuredFilm.location} · {featuredFilm.duration}

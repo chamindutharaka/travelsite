@@ -24,7 +24,7 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] flex items-end bg-[#0B1724] text-white overflow-hidden">
+    <section className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] flex items-end bg-[#0C1F33] text-white overflow-hidden">
       {/* Real Photograph Background with Smooth Settle Zoom */}
       <motion.div
         initial={{ scale: 1.07, opacity: 0.6 }}
@@ -41,9 +41,9 @@ export function PageHero({
           className="object-cover"
         />
         {/* Uniform dark transparency tint + directional scrim for crisp navbar & title visibility */}
-        <div className="absolute inset-0 bg-[#0B1724]/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1724]/88 via-[#0B1724]/55 to-[#0B1724]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724]/92 via-[#0B1724]/30 to-[#0B1724]/65" />
+        <div className="absolute inset-0 bg-[#0C1F33]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1F33]/88 via-[#0C1F33]/55 to-[#0C1F33]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33]/92 via-[#0C1F33]/30 to-[#0C1F33]/65" />
       </motion.div>
 
       {/* Editorial Content */}

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="bg-[#FDFBF7] text-[#122334]">
+    <div className="bg-[#FDFBF7] text-[#153250]">
       <PageHero
         image="/images/blog/the-kandy-to-ella-train-guide.jpg"
         imageAlt="Sri Lankan highland train winding through green tea hills"
@@ -33,11 +33,11 @@ export default function BlogPage() {
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {blogPosts.map((post) => (
               <StaggerItem key={post.slug}>
-                <article className="group h-full flex flex-col justify-between bg-white rounded-2xl border border-[#122334]/10 overflow-hidden hover:shadow-[0_16px_40px_rgba(18,35,52,0.08)] transition-shadow duration-500">
+                <article className="group h-full flex flex-col justify-between bg-white rounded-2xl border border-[#153250]/10 overflow-hidden hover:shadow-[0_16px_40px_rgba(21,50,80,0.08)] transition-shadow duration-500">
                   <div>
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="block relative aspect-[16/10] overflow-hidden bg-[#122334]"
+                      className="block relative aspect-[16/10] overflow-hidden bg-[#153250]"
                     >
                       <Image
                         src={post.heroImage}
@@ -46,7 +46,7 @@ export default function BlogPage() {
                         sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                       />
-                      <span className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-[#0B1724]/80 text-[#FDFBF7] backdrop-blur-sm">
+                      <span className="absolute top-3.5 left-3.5 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider bg-[#0C1F33]/80 text-[#FDFBF7] backdrop-blur-sm">
                         {post.category}
                       </span>
                     </Link>
@@ -60,7 +60,7 @@ export default function BlogPage() {
                         </span>
                       </div>
 
-                      <h2 className="font-serif text-2xl font-normal text-[#122334] group-hover:text-[#D4622A] transition-colors leading-snug">
+                      <h2 className="font-serif text-2xl font-normal text-[#153250] group-hover:text-[#D4622A] transition-colors leading-snug">
                         <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                       </h2>
 
@@ -70,14 +70,14 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  <div className="px-5 sm:px-6 py-4 border-t border-[#122334]/8 bg-[#FDFBF7]/60 flex items-center justify-between text-xs">
+                  <div className="px-5 sm:px-6 py-4 border-t border-[#153250]/8 bg-[#FDFBF7]/60 flex items-center justify-between text-xs">
                     <span className="text-[#4E5A65] font-mono">
                       By {post.author.name}
                     </span>
 
                     <Link
                       href={`/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1.5 font-semibold uppercase tracking-wider text-[#122334] group-hover:text-[#D4622A] transition-colors"
+                      className="inline-flex items-center gap-1.5 font-semibold uppercase tracking-wider text-[#153250] group-hover:text-[#D4622A] transition-colors"
                     >
                       <span>Read</span>
                       <span className="group-hover:translate-x-1 transition-transform duration-300">

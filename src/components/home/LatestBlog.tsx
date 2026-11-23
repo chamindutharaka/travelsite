@@ -15,7 +15,7 @@ import {
 export function LatestBlog() {
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#FDFBF7] text-[#122334]"
+      className="py-16 sm:py-24 lg:py-28 bg-[#FDFBF7] text-[#153250]"
       aria-labelledby="blog-heading"
     >
       <Container size="wide">
@@ -29,7 +29,7 @@ export function LatestBlog() {
             </div>
             <h2
               id="blog-heading"
-              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#122334] leading-[1.12] tracking-[-0.02em]"
+              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#153250] leading-[1.12] tracking-[-0.02em]"
             >
               <LineRise>Stories from Sri Lanka.</LineRise>
             </h2>
@@ -41,7 +41,7 @@ export function LatestBlog() {
           <EditorialReveal delay={0.1}>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#122334] hover:text-[#D4622A] transition-colors hover-underline"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#153250] hover:text-[#D4622A] transition-colors hover-underline"
             >
               <span>All stories</span>
               <span>→</span>
@@ -56,7 +56,7 @@ export function LatestBlog() {
                 <div>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="block relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#122334] mb-4 sm:mb-5"
+                    className="block relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#153250] mb-4 sm:mb-5"
                   >
                     <Image
                       src={post.heroImage}
@@ -75,7 +75,7 @@ export function LatestBlog() {
                     <span>{post.readTime}</span>
                   </div>
 
-                  <h3 className="font-serif text-xl sm:text-[1.45rem] font-normal text-[#122334] group-hover:text-[#D4622A] transition-colors duration-300 leading-snug">
+                  <h3 className="font-serif text-xl sm:text-[1.45rem] font-normal text-[#153250] group-hover:text-[#D4622A] transition-colors duration-300 leading-snug">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
 
@@ -84,11 +84,11 @@ export function LatestBlog() {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-[#122334]/10 flex items-center justify-between text-xs text-[#4E5A65]">
+                <div className="mt-5 pt-4 border-t border-[#153250]/10 flex items-center justify-between text-xs text-[#4E5A65]">
                   <span>{post.publishedAt}</span>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="font-medium text-[#122334] group-hover:text-[#D4622A] transition-colors"
+                    className="font-medium text-[#153250] group-hover:text-[#D4622A] transition-colors"
                   >
                     Read guide →
                   </Link>

@@ -23,7 +23,7 @@ export function VideoShowcase() {
 
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#122334] text-white relative overflow-hidden border-t border-white/10"
+      className="py-16 sm:py-24 lg:py-28 bg-[#153250] text-white relative overflow-hidden border-t border-white/10"
       aria-labelledby="video-showcase-heading"
     >
       <Container size="wide" className="relative z-10">
@@ -86,10 +86,10 @@ export function VideoShowcase() {
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724]/90 via-[#0B1724]/30 to-[#0B1724]/15" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33]/90 via-[#0C1F33]/30 to-[#0C1F33]/15" />
 
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FDFBF7] group-hover:bg-[#E5A952] text-[#122334] flex items-center justify-center shadow-2xl group-hover:scale-105 transition-all duration-300">
+                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FDFBF7] group-hover:bg-[#E5A952] text-[#153250] flex items-center justify-center shadow-2xl group-hover:scale-105 transition-all duration-300">
                       <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export function VideoShowcase() {
                         {activeVideo.title}
                       </h3>
                     </div>
-                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0B1724]/80 border border-white/15 text-xs font-mono text-white/90 shrink-0 w-fit">
+                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0C1F33]/80 border border-white/15 text-xs font-mono text-white/90 shrink-0 w-fit">
                       <Clock className="w-3.5 h-3.5 text-[#E5A952]" />
                       {activeVideo.duration}
                     </span>
@@ -143,8 +143,8 @@ export function VideoShowcase() {
                   onClick={() => handleSelectVideo(video)}
                   className={`w-full text-left p-2.5 sm:p-3 rounded-xl border transition-colors duration-300 flex items-center gap-3.5 group ${
                     isSelected
-                      ? "bg-[#193047] border-[#E5A952]/80"
-                      : "bg-[#0B1724]/70 border-white/10 hover:border-white/30 hover:bg-[#162A3E]"
+                      ? "bg-[#1C3F63] border-[#E5A952]/80"
+                      : "bg-[#0C1F33]/70 border-white/10 hover:border-white/30 hover:bg-[#183757]"
                   }`}
                 >
                   <div className="relative w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden shrink-0 bg-black">
@@ -159,8 +159,8 @@ export function VideoShowcase() {
                       <span
                         className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-colors ${
                           isSelected
-                            ? "bg-[#E5A952] text-[#122334]"
-                            : "bg-black/70 text-white group-hover:bg-[#E5A952] group-hover:text-[#122334]"
+                            ? "bg-[#E5A952] text-[#153250]"
+                            : "bg-black/70 text-white group-hover:bg-[#E5A952] group-hover:text-[#153250]"
                         }`}
                       >
                         <Play className="w-3 h-3 fill-current ml-0.5" />

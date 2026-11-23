@@ -54,8 +54,8 @@ export function Header() {
           hasFullBleedHero ? "fixed" : "sticky"
         } top-0 left-0 right-0 z-40 w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           useLightBar
-            ? "bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#122334]/10 py-3 sm:py-3.5 text-[#122334]"
-            : "bg-gradient-to-b from-[#0B1724]/65 via-[#0B1724]/25 to-transparent py-4 sm:py-5 text-white"
+            ? "bg-[#FDFBF7]/95 backdrop-blur-md border-b border-[#153250]/10 py-3 sm:py-3.5 text-[#153250]"
+            : "bg-gradient-to-b from-[#0C1F33]/65 via-[#0C1F33]/25 to-transparent py-4 sm:py-5 text-white"
         }`}
       >
         <Container size="wide">
@@ -68,7 +68,7 @@ export function Header() {
               <span
                 className={`font-serif text-[1.25rem] sm:text-2xl font-medium tracking-[-0.02em] leading-none transition-colors duration-300 ${
                   useLightBar
-                    ? "text-[#122334] group-hover:text-[#D4622A]"
+                    ? "text-[#153250] group-hover:text-[#D4622A]"
                     : "text-white group-hover:text-white/85"
                 }`}
               >
@@ -101,7 +101,7 @@ export function Header() {
                       useLightBar
                         ? isActive
                           ? "text-[#D4622A]"
-                          : "text-[#122334]/80 hover:text-[#122334]"
+                          : "text-[#153250]/80 hover:text-[#153250]"
                         : isActive
                         ? "text-[#D4622A]"
                         : "text-white/90 hover:text-white"
@@ -119,8 +119,8 @@ export function Header() {
                 href="/plan-your-trip"
                 className={`inline-flex items-center justify-center px-5 py-2.5 rounded-full text-[13px] font-medium tracking-wide transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                   useLightBar
-                    ? "bg-[#122334] text-[#FDFBF7] hover:bg-[#D4622A]"
-                    : "bg-[#FDFBF7] text-[#122334] hover:bg-[#D4622A] hover:text-white"
+                    ? "bg-[#153250] text-[#FDFBF7] hover:bg-[#D4622A]"
+                    : "bg-[#FDFBF7] text-[#153250] hover:bg-[#D4622A] hover:text-white"
                 }`}
               >
                 Plan Your Trip
@@ -133,8 +133,8 @@ export function Header() {
                 href="/plan-your-trip"
                 className={`px-3.5 py-2 text-xs font-medium rounded-full transition-colors ${
                   useLightBar
-                    ? "bg-[#122334] text-[#FDFBF7]"
-                    : "bg-[#FDFBF7] text-[#122334]"
+                    ? "bg-[#153250] text-[#FDFBF7]"
+                    : "bg-[#FDFBF7] text-[#153250]"
                 }`}
               >
                 Plan Trip
@@ -145,7 +145,7 @@ export function Header() {
                 onClick={() => setIsMobileNavOpen(true)}
                 className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
                   useLightBar
-                    ? "text-[#122334] hover:bg-[#122334]/5"
+                    ? "text-[#153250] hover:bg-[#153250]/5"
                     : "text-white hover:bg-white/10"
                 }`}
                 aria-label="Open navigation menu"

@@ -8,13 +8,13 @@
     --background: #FDFBF7;
     --surface: #F5EFE6;
     --surface-card: #FFFFFF;
-    --foreground: #122334;
+    --foreground: #153250;
     --muted: #4E5A65;
-    --forest: #122334;
-    --forest-deep: #0B1724;
+    --forest: #153250;
+    --forest-deep: #0C1F33;
     --brass: #D4622A;
     --brass-hover: #B84F1D;
-    --border-hairline: rgba(18, 35, 52, 0.11);
+    --border-hairline: rgba(21, 50, 80, 0.11);
     --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-wipe: cubic-bezier(0.65, 0, 0.35, 1);
   }
@@ -47,7 +47,7 @@
   }
 
   ::selection {
-    background-color: #122334;
+    background-color: #153250;
     color: #FDFBF7;
   }
 

@@ -28,7 +28,7 @@ export function IncludedStandard() {
 
   return (
     <section
-      className="py-14 sm:py-20 bg-[#122334] text-[#FDFBF7]"
+      className="py-14 sm:py-20 bg-[#153250] text-[#FDFBF7]"
       aria-labelledby="included-heading"
     >
       <Container size="wide">

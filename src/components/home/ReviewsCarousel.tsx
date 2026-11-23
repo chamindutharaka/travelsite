@@ -16,13 +16,13 @@ export function ReviewsCarousel() {
   }
 
   return (
-    <section className="py-20 lg:py-28 bg-beige-50" aria-labelledby="reviews-heading">
+    <section className="py-20 lg:py-28 bg-[#FDFBF7]" aria-labelledby="reviews-heading">
       <Container size="wide">
         <div className="max-w-3xl mx-auto text-center space-y-4 mb-12">
-          <span className="text-xs font-mono uppercase tracking-[0.22em] text-orange-500 block">
+          <span className="text-xs font-mono uppercase tracking-[0.22em] text-[#D4622A] block">
             Verified Guest Reflections
           </span>
-          <h2 id="reviews-heading" className="font-serif text-3xl sm:text-4xl font-bold text-navy-950">
+          <h2 id="reviews-heading" className="font-serif text-3xl sm:text-4xl font-bold text-[#153250]">
             What Our Travellers Say
           </h2>
         </div>
@@ -31,23 +31,23 @@ export function ReviewsCarousel() {
           {reviews.map((rev) => (
             <div
               key={rev.id}
-              className="p-8 rounded-3xl bg-white border border-beige-200 shadow-sm flex flex-col justify-between"
+              className="p-8 rounded-3xl bg-white border border-[#153250]/12 shadow-sm flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center gap-1 text-orange-500 mb-4 text-sm tracking-widest" aria-label={`${rev.rating} out of 5 stars`}>
+                <div className="flex items-center gap-1 text-[#D4622A] mb-4 text-sm tracking-widest" aria-label={`${rev.rating} out of 5 stars`}>
                   {"★".repeat(rev.rating)}
                 </div>
 
-                <p className="text-sm text-navy-700 italic leading-relaxed mb-6 font-light">
+                <p className="text-sm text-[#4E5A65] italic leading-relaxed mb-6 font-light">
                   &ldquo;{rev.quote}&rdquo;
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-beige-200">
-                <span className="font-bold text-navy-950 text-sm block">
+              <div className="pt-4 border-t border-[#153250]/12">
+                <span className="font-bold text-[#153250] text-sm block">
                   {rev.author}
                 </span>
-                <span className="text-xs font-mono text-navy-500">
+                <span className="text-xs font-mono text-[#4E5A65]">
                   {rev.country} • {rev.tourTaken}
                 </span>
               </div>

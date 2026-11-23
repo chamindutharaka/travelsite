@@ -40,7 +40,7 @@ export function Footer() {
 
   return (
     <footer
-      className="bg-[#0B1724] text-[#DCE3EA] border-t border-white/10"
+      className="bg-[#0C1F33] text-[#DCE3EA] border-t border-white/10"
       role="contentinfo"
     >
       <div className="py-14 sm:py-20 lg:py-24">
@@ -158,7 +158,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={newsletterStatus === "loading"}
-                  className="px-7 py-3 text-sm font-medium rounded-full bg-[#FDFBF7] text-[#122334] hover:bg-[#E5A952] transition-colors shrink-0 disabled:opacity-50"
+                  className="px-7 py-3 text-sm font-medium rounded-full bg-[#FDFBF7] text-[#153250] hover:bg-[#E5A952] transition-colors shrink-0 disabled:opacity-50"
                 >
                   Subscribe
                 </button>

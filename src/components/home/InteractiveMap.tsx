@@ -36,7 +36,7 @@ export function InteractiveMap() {
 
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#F5EFE6] text-[#122334] border-y border-[#122334]/10"
+      className="py-16 sm:py-24 lg:py-28 bg-[#F5EFE6] text-[#153250] border-y border-[#153250]/10"
       aria-labelledby="interactive-map-heading"
     >
       <Container size="wide">
@@ -51,7 +51,7 @@ export function InteractiveMap() {
             </div>
             <h2
               id="interactive-map-heading"
-              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#122334] leading-[1.12] tracking-[-0.02em]"
+              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#153250] leading-[1.12] tracking-[-0.02em]"
             >
               <LineRise>One island. Six climates.</LineRise>
               <LineRise delay={0.08}>
@@ -78,8 +78,8 @@ export function InteractiveMap() {
                 onClick={() => setActiveDestination(dest)}
                 className={`shrink-0 px-3.5 py-2 rounded-full text-xs font-medium transition-colors duration-200 ${
                   isSelected
-                    ? "bg-[#122334] text-[#FDFBF7]"
-                    : "bg-[#FDFBF7] text-[#4E5A65] border border-[#122334]/12 hover:border-[#122334] hover:text-[#122334]"
+                    ? "bg-[#153250] text-[#FDFBF7]"
+                    : "bg-[#FDFBF7] text-[#4E5A65] border border-[#153250]/12 hover:border-[#153250] hover:text-[#153250]"
                 }`}
               >
                 {dest.name}
@@ -90,9 +90,9 @@ export function InteractiveMap() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           {/* Bespoke Fine-Art Cartographic Map Canvas */}
-          <EditorialReveal className="lg:col-span-7 relative bg-[#F6F1E7] p-4 sm:p-7 rounded-2xl border border-[#122334]/12 shadow-[inset_0_0_60px_rgba(92,88,82,0.08)] flex items-center justify-center overflow-hidden">
+          <EditorialReveal className="lg:col-span-7 relative bg-[#F6F1E7] p-4 sm:p-7 rounded-2xl border border-[#153250]/12 shadow-[inset_0_0_60px_rgba(92,88,82,0.08)] flex items-center justify-center overflow-hidden">
             {/* Fine Framed Inner Cartographic Border */}
-            <div className="absolute inset-3 sm:inset-4 rounded-xl border border-[#122334]/10 pointer-events-none" />
+            <div className="absolute inset-3 sm:inset-4 rounded-xl border border-[#153250]/10 pointer-events-none" />
 
             <div className="relative w-full max-w-[520px] aspect-[560/780] select-none">
               <svg
@@ -119,7 +119,7 @@ export function InteractiveMap() {
 
                   {/* Soft Coastal Shadow */}
                   <filter id="islandShadow" x="-12%" y="-8%" width="124%" height="120%">
-                    <feDropShadow dx="0" dy="10" stdDeviation="12" floodColor="#122334" floodOpacity="0.14" />
+                    <feDropShadow dx="0" dy="10" stdDeviation="12" floodColor="#153250" floodOpacity="0.14" />
                   </filter>
 
                   {/* Subtle Paper Grain Pattern */}
@@ -132,7 +132,7 @@ export function InteractiveMap() {
                 <rect x="0" y="0" width="560" height="780" fill="url(#seaStipple)" />
 
                 {/* Fine Cartographic Graticule (Latitude / Longitude Hairlines) */}
-                <g stroke="#122334" strokeOpacity="0.07" strokeWidth="0.75" strokeDasharray="3 5">
+                <g stroke="#153250" strokeOpacity="0.07" strokeWidth="0.75" strokeDasharray="3 5">
                   <line x1="20" y1="145" x2="540" y2="145" />
                   <line x1="20" y1="315" x2="540" y2="315" />
                   <line x1="20" y1="485" x2="540" y2="485" />
@@ -261,16 +261,16 @@ export function InteractiveMap() {
 
                 {/* Ornate Cartographic Compass Rose */}
                 <g transform="translate(82, 110)">
-                  <circle cx="0" cy="0" r="30" fill="none" stroke="#122334" strokeOpacity="0.16" strokeWidth="0.9" />
-                  <circle cx="0" cy="0" r="24" fill="none" stroke="#122334" strokeOpacity="0.1" strokeWidth="0.7" strokeDasharray="2 3" />
+                  <circle cx="0" cy="0" r="30" fill="none" stroke="#153250" strokeOpacity="0.16" strokeWidth="0.9" />
+                  <circle cx="0" cy="0" r="24" fill="none" stroke="#153250" strokeOpacity="0.1" strokeWidth="0.7" strokeDasharray="2 3" />
                   {/* Diagonal Points */}
                   <path d="M -14 -14 L 0 -4 L 14 -14 L 4 0 L 14 14 L 0 4 L -14 14 L -4 0 Z" fill="#4E5A65" opacity="0.22" />
                   {/* Cardinal Points */}
-                  <path d="M 0 -24 L 4.5 0 L 0 24 L -4.5 0 Z" fill="#122334" opacity="0.82" />
+                  <path d="M 0 -24 L 4.5 0 L 0 24 L -4.5 0 Z" fill="#153250" opacity="0.82" />
                   <path d="M 0 -24 L 4.5 0 L 0 0 Z" fill="#D4622A" />
-                  <path d="M -24 0 L 0 -4.5 L 24 0 L 0 4.5 Z" fill="#122334" opacity="0.55" />
-                  <circle cx="0" cy="0" r="2.5" fill="#F6F1E7" stroke="#122334" strokeWidth="0.9" />
-                  <text x="0" y="-34" fontSize="9.5" fill="#122334" fontWeight="600" letterSpacing="1" textAnchor="middle">N</text>
+                  <path d="M -24 0 L 0 -4.5 L 24 0 L 0 4.5 Z" fill="#153250" opacity="0.55" />
+                  <circle cx="0" cy="0" r="2.5" fill="#F6F1E7" stroke="#153250" strokeWidth="0.9" />
+                  <text x="0" y="-34" fontSize="9.5" fill="#153250" fontWeight="600" letterSpacing="1" textAnchor="middle">N</text>
                 </g>
 
                 {/* Elegant Cartographic Typography */}
@@ -283,10 +283,10 @@ export function InteractiveMap() {
                 {/* Vintage Scale Bar & Title Cartouche */}
                 <g transform="translate(366, 722)">
                   <text x="0" y="-12" fontSize="8.5" fill="#4E5A65" letterSpacing="2.2" fontFamily="sans-serif">CEYLON · SERENDIB</text>
-                  <line x1="0" y1="0" x2="120" y2="0" stroke="#122334" strokeOpacity="0.45" strokeWidth="1" />
-                  <line x1="0" y1="-4" x2="0" y2="4" stroke="#122334" strokeOpacity="0.45" strokeWidth="1" />
-                  <line x1="60" y1="-3" x2="60" y2="3" stroke="#122334" strokeOpacity="0.45" strokeWidth="1" />
-                  <line x1="120" y1="-4" x2="120" y2="4" stroke="#122334" strokeOpacity="0.45" strokeWidth="1" />
+                  <line x1="0" y1="0" x2="120" y2="0" stroke="#153250" strokeOpacity="0.45" strokeWidth="1" />
+                  <line x1="0" y1="-4" x2="0" y2="4" stroke="#153250" strokeOpacity="0.45" strokeWidth="1" />
+                  <line x1="60" y1="-3" x2="60" y2="3" stroke="#153250" strokeOpacity="0.45" strokeWidth="1" />
+                  <line x1="120" y1="-4" x2="120" y2="4" stroke="#153250" strokeOpacity="0.45" strokeWidth="1" />
                   <text x="0" y="13" fontSize="8" fill="#4E5A65" fontFamily="monospace">0</text>
                   <text x="54" y="13" fontSize="8" fill="#4E5A65" fontFamily="monospace">50</text>
                   <text x="108" y="13" fontSize="8" fill="#4E5A65" fontFamily="monospace">100 km</text>
@@ -351,7 +351,7 @@ export function InteractiveMap() {
                         cy="0"
                         r={isSelected ? "7.5" : "4.8"}
                         fill={isSelected ? "#D4622A" : "#FDFBF7"}
-                        stroke="#122334"
+                        stroke="#153250"
                         strokeWidth={isSelected ? "2" : "1.5"}
                         className="transition-all duration-300 group-hover:fill-[#D4622A]"
                       />
@@ -365,7 +365,7 @@ export function InteractiveMap() {
                         y="4"
                         fontSize={isSelected ? "12.5" : "10.5"}
                         fontWeight={isSelected ? "700" : "500"}
-                        fill={isSelected ? "#122334" : "#3A3834"}
+                        fill={isSelected ? "#153250" : "#3A3834"}
                         stroke="#F6F1E7"
                         strokeWidth="3.5"
                         paintOrder="stroke fill"

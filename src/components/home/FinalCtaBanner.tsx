@@ -13,7 +13,7 @@ import {
 export function FinalCtaBanner() {
   return (
     <section
-      className="relative py-20 sm:py-28 lg:py-36 bg-[#0B1724] text-white overflow-hidden"
+      className="relative py-20 sm:py-28 lg:py-36 bg-[#0C1F33] text-white overflow-hidden"
       aria-labelledby="final-cta-heading"
     >
       <Image
@@ -23,7 +23,7 @@ export function FinalCtaBanner() {
         sizes="100vw"
         className="object-cover opacity-35"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0B1724] via-[#0B1724]/65 to-[#0B1724]/75" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33] via-[#0C1F33]/65 to-[#0C1F33]/75" />
 
       <Container size="default" className="relative z-10 text-center">
         <div className="max-w-2xl mx-auto space-y-5 sm:space-y-6">
@@ -57,7 +57,7 @@ export function FinalCtaBanner() {
           >
             <Link
               href="/plan-your-trip"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-medium text-[#122334] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors duration-300"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-medium text-[#153250] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors duration-300"
             >
               Plan My Trip
             </Link>

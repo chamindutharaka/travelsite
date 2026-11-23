@@ -50,7 +50,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: EDITORIAL_EASE }}
-          className="fixed inset-0 z-50 lg:hidden bg-[#0B1724] text-[#FDFBF7] flex flex-col justify-between px-6 py-6 pb-safe overflow-y-auto"
+          className="fixed inset-0 z-50 lg:hidden bg-[#0C1F33] text-[#FDFBF7] flex flex-col justify-between px-6 py-6 pb-safe overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation Menu"
@@ -119,7 +119,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
               <Link
                 href="/plan-your-trip"
                 onClick={onClose}
-                className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-full font-medium text-sm text-[#122334] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors"
+                className="w-full inline-flex items-center justify-center px-6 py-3.5 rounded-full font-medium text-sm text-[#153250] bg-[#FDFBF7] hover:bg-[#E5A952] transition-colors"
               >
                 Plan Your Trip
               </Link>

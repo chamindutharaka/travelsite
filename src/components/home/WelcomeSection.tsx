@@ -22,7 +22,7 @@ export function WelcomeSection() {
   return (
     <section
       id="welcome"
-      className="py-16 sm:py-24 lg:py-28 bg-[#FDFBF7] text-[#122334] scroll-mt-16"
+      className="py-16 sm:py-24 lg:py-28 bg-[#FDFBF7] text-[#153250] scroll-mt-16"
       aria-labelledby="welcome-heading"
     >
       <Container size="wide">
@@ -39,7 +39,7 @@ export function WelcomeSection() {
 
               <h2
                 id="welcome-heading"
-                className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#122334] leading-[1.12] tracking-[-0.02em]"
+                className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#153250] leading-[1.12] tracking-[-0.02em]"
               >
                 <LineRise>Your journey through</LineRise>
                 <LineRise delay={0.08}>Sri Lanka begins here.</LineRise>
@@ -50,7 +50,7 @@ export function WelcomeSection() {
               delay={0.1}
               className="space-y-4 text-[#4E5A65] text-[15px] sm:text-base leading-[1.72] max-w-[58ch]"
             >
-              <p className="text-[17px] sm:text-lg text-[#122334] leading-[1.6]">
+              <p className="text-[17px] sm:text-lg text-[#153250] leading-[1.6]">
                 A Sri Lankan destination management company based in Galle, run by people who live on the island and travel it constantly.
               </p>
 
@@ -65,13 +65,13 @@ export function WelcomeSection() {
 
             {/* 4 Hairline Facts */}
             <EditorialReveal delay={0.16}>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 pt-6 border-t border-[#122334]/12">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 pt-6 border-t border-[#153250]/12">
                 {foundationFacts.map((fact) => (
                   <div key={fact.label}>
                     <span className="block text-[10px] uppercase tracking-[0.18em] text-[#4E5A65] mb-1">
                       {fact.label}
                     </span>
-                    <span className="font-serif text-[15px] sm:text-base font-medium text-[#122334]">
+                    <span className="font-serif text-[15px] sm:text-base font-medium text-[#153250]">
                       {fact.value}
                     </span>
                   </div>
@@ -86,13 +86,13 @@ export function WelcomeSection() {
             >
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-medium bg-[#122334] text-[#FDFBF7] hover:bg-[#D4622A] transition-colors duration-300"
+                className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-medium bg-[#153250] text-[#FDFBF7] hover:bg-[#D4622A] transition-colors duration-300"
               >
                 Discover Ceylon Holidays
               </Link>
               <Link
                 href="#trip-planner"
-                className="text-sm font-medium text-[#122334] hover:text-[#D4622A] transition-colors hover-underline"
+                className="text-sm font-medium text-[#153250] hover:text-[#D4622A] transition-colors hover-underline"
               >
                 Start planning →
               </Link>
@@ -102,7 +102,7 @@ export function WelcomeSection() {
           {/* Staggered Photo Pair */}
           <div className="lg:col-span-6 space-y-4">
             <div className="grid grid-cols-12 gap-3.5 sm:gap-5 items-end">
-              <ImageWipeReveal className="col-span-7 relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#122334]">
+              <ImageWipeReveal className="col-span-7 relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#153250]">
                 <Image
                   src="/images/destinations/galle.jpg"
                   alt="Galle Fort lighthouse and coral ramparts overlooking the Indian Ocean"
@@ -114,7 +114,7 @@ export function WelcomeSection() {
 
               <ImageWipeReveal
                 delay={0.12}
-                className="col-span-5 relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#122334] mb-6 sm:mb-10"
+                className="col-span-5 relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#153250] mb-6 sm:mb-10"
               >
                 <Image
                   src="/images/experiences/scenic-blue-train.jpg"

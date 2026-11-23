@@ -14,7 +14,7 @@ import {
 export function SeasonalJourneys() {
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#F5EFE6] text-[#122334] border-y border-[#122334]/10"
+      className="py-16 sm:py-24 lg:py-28 bg-[#F5EFE6] text-[#153250] border-y border-[#153250]/10"
       aria-labelledby="seasons-heading"
     >
       <Container size="wide">
@@ -28,7 +28,7 @@ export function SeasonalJourneys() {
             </div>
             <h2
               id="seasons-heading"
-              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#122334] leading-[1.12] tracking-[-0.02em]"
+              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#153250] leading-[1.12] tracking-[-0.02em]"
             >
               <LineRise>Travelling at a particular time,</LineRise>
               <LineRise delay={0.08}>
@@ -43,7 +43,7 @@ export function SeasonalJourneys() {
           <EditorialReveal delay={0.1}>
             <Link
               href="/tours"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#122334] hover:text-[#D4622A] transition-colors hover-underline"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#153250] hover:text-[#D4622A] transition-colors hover-underline"
             >
               <span>All journeys</span>
               <span>→</span>
@@ -55,14 +55,14 @@ export function SeasonalJourneys() {
           {seasons.map((season) => (
             <StaggerItem
               key={season.id}
-              className="group p-6 sm:p-8 rounded-2xl bg-[#FDFBF7] border border-[#122334]/10 hover:border-[#D4622A]/60 transition-colors duration-500 flex flex-col justify-between"
+              className="group p-6 sm:p-8 rounded-2xl bg-[#FDFBF7] border border-[#153250]/10 hover:border-[#D4622A]/60 transition-colors duration-500 flex flex-col justify-between"
             >
               <div>
                 <span className="inline-block text-[11px] font-mono uppercase tracking-[0.18em] text-[#D4622A] mb-2.5">
                   {season.months}
                 </span>
 
-                <h3 className="font-serif text-2xl sm:text-[1.65rem] font-normal text-[#122334] mb-1.5 leading-snug">
+                <h3 className="font-serif text-2xl sm:text-[1.65rem] font-normal text-[#153250] mb-1.5 leading-snug">
                   {season.name}
                 </h3>
 
@@ -74,7 +74,7 @@ export function SeasonalJourneys() {
                   {season.weatherHighlights}
                 </p>
 
-                <div className="pt-4 border-t border-[#122334]/10 space-y-2.5 mb-5">
+                <div className="pt-4 border-t border-[#153250]/10 space-y-2.5 mb-5">
                   <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] block">
                     Prime Regions
                   </span>
@@ -82,7 +82,7 @@ export function SeasonalJourneys() {
                     {season.keyRegions.map((region) => (
                       <span
                         key={region}
-                        className="px-2.5 py-1 rounded-full bg-white border border-[#122334]/10 text-[11px] text-[#122334] font-medium"
+                        className="px-2.5 py-1 rounded-full bg-white border border-[#153250]/10 text-[11px] text-[#153250] font-medium"
                       >
                         {region}
                       </span>
@@ -90,7 +90,7 @@ export function SeasonalJourneys() {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#F5EFE6] text-xs text-[#122334] leading-relaxed">
+                <div className="p-4 rounded-xl bg-[#F5EFE6] text-xs text-[#153250] leading-relaxed">
                   <span className="text-[10px] uppercase tracking-[0.16em] font-semibold text-[#D4622A] block mb-1">
                     Wildlife Highlight
                   </span>
@@ -98,10 +98,10 @@ export function SeasonalJourneys() {
                 </div>
               </div>
 
-              <div className="mt-7 pt-4 border-t border-[#122334]/10">
+              <div className="mt-7 pt-4 border-t border-[#153250]/10">
                 <Link
                   href="/plan-your-trip"
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#122334] group-hover:text-[#D4622A] transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#153250] group-hover:text-[#D4622A] transition-colors"
                 >
                   <span>Plan for {season.months.split(" ")[0]}</span>
                   <span className="group-hover:translate-x-1 transition-transform duration-300">
