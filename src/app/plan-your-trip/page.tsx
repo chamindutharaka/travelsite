@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/Container";
+import { PageHero } from "@/components/layout/PageHero";
 import { MultiStepPlanner } from "@/components/planner/MultiStepPlanner";
 import { company } from "@/content/company";
 
@@ -15,20 +15,16 @@ export const metadata: Metadata = {
 
 export default function PlanYourTripPage() {
   return (
-    <div className="py-12 sm:py-20 bg-beige-50">
-      <Container size="default" className="text-center mb-8">
-        <span className="text-xs font-mono uppercase tracking-[0.22em] text-orange-500 block mb-2">
-          Start Your Custom Route
-        </span>
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-950">
-          Design Your Sri Lanka Holiday
-        </h1>
-        <p className="mt-4 text-base sm:text-lg text-navy-700 max-w-xl mx-auto font-light leading-relaxed">
-          Complete these 7 intuitive steps to share your travel style and preferences. Our team in Galle will formulate a personal itinerary for you.
-        </p>
-      </Container>
+    <div className="bg-[#FBFAF8] text-[#1A1A1A]">
+      <PageHero
+        image="/images/tours/serendipity-honeymoon.jpg"
+        imageAlt="Golden sunset over palm-lined southern coastline in Sri Lanka"
+        eyebrow="Start Your Custom Route"
+        title="Design Your Sri Lanka Holiday"
+        subtitle="Seven short steps, no payment, and nothing binding. Share your travel style and our team in Galle will craft a personal itinerary for you."
+      />
 
-      <MultiStepPlanner />
+      <MultiStepPlanner hideHeader compact />
     </div>
   );
 }

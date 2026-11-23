@@ -7,7 +7,15 @@ import { experiences } from "@/content/experiences";
 import { generateWhatsAppLink } from "@/lib/utils";
 import { EditorialReveal, LineRise } from "@/components/motion/MotionPrimitives";
 
-export function MultiStepPlanner() {
+interface MultiStepPlannerProps {
+  hideHeader?: boolean;
+  compact?: boolean;
+}
+
+export function MultiStepPlanner({
+  hideHeader = false,
+  compact = false,
+}: MultiStepPlannerProps = {}) {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -113,25 +121,29 @@ Let's discuss my tailor-made route!`;
   return (
     <section
       id="trip-planner"
-      className="py-16 sm:py-24 lg:py-28 bg-[#FBFAF8] text-[#1A1A1A] scroll-mt-16"
-      aria-labelledby="planner-heading"
+      className={`${
+        compact ? "py-8 sm:py-16 lg:py-20" : "py-14 sm:py-24 lg:py-28"
+      } bg-[#FBFAF8] text-[#1A1A1A] scroll-mt-16`}
+      aria-labelledby={hideHeader ? undefined : "planner-heading"}
     >
       <Container size="default">
-        {/* Header */}
-        <EditorialReveal className="max-w-2xl mx-auto text-center space-y-3.5 mb-10 sm:mb-12">
-          <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block">
-            Create Your Own Sri Lanka
-          </span>
-          <h2
-            id="planner-heading"
-            className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-[-0.02em]"
-          >
-            <LineRise>Tell us how you want to travel.</LineRise>
-          </h2>
-          <p className="text-[15px] sm:text-base text-[#5C5852] leading-[1.7] max-w-[50ch] mx-auto">
-            Seven short steps, no payment, and nothing binding. Even a rough sketch is enough for our team in Galle to reply with a real itinerary.
-          </p>
-        </EditorialReveal>
+        {/* Header (hidden on /plan-your-trip where PageHero displays the title) */}
+        {!hideHeader && (
+          <EditorialReveal className="max-w-2xl mx-auto text-center space-y-3.5 mb-8 sm:mb-12">
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block">
+              Create Your Own Sri Lanka
+            </span>
+            <h2
+              id="planner-heading"
+              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-[-0.02em]"
+            >
+              <LineRise>Tell us how you want to travel.</LineRise>
+            </h2>
+            <p className="text-[15px] sm:text-base text-[#5C5852] leading-[1.7] max-w-[50ch] mx-auto">
+              Seven short steps, no payment, and nothing binding. Even a rough sketch is enough for our team in Galle to reply with a real itinerary.
+            </p>
+          </EditorialReveal>
+        )}
 
         {/* Planner Card */}
         <div className="max-w-3xl mx-auto rounded-2xl bg-white border border-[#1A1A1A]/10 shadow-[0_12px_36px_rgba(26,26,26,0.05)] overflow-hidden">

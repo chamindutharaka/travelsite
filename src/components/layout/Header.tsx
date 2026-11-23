@@ -16,6 +16,7 @@ const HERO_ROUTES = new Set([
   "/gallery",
   "/blog",
   "/contact",
+  "/plan-your-trip",
 ]);
 
 export function Header() {

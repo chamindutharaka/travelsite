@@ -24,7 +24,7 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[46vh] sm:min-h-[54vh] lg:min-h-[58vh] flex items-end bg-[#141414] text-white overflow-hidden">
+    <section className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] flex items-end bg-[#141414] text-white overflow-hidden">
       {/* Real Photograph Background with Smooth Settle Zoom */}
       <motion.div
         initial={{ scale: 1.07, opacity: 0.6 }}
@@ -49,9 +49,9 @@ export function PageHero({
       {/* Editorial Content */}
       <Container
         size="wide"
-        className="relative z-10 pt-28 pb-12 sm:pt-36 sm:pb-16 lg:pb-20"
+        className="relative z-10 pt-24 pb-10 sm:pt-36 sm:pb-16 lg:pb-20"
       >
-        <div className="max-w-3xl space-y-4">
+        <div className="max-w-3xl space-y-3.5 sm:space-y-4">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ export function PageHero({
               initial={{ y: "105%", opacity: 0 }}
               animate={{ y: "0%", opacity: 1 }}
               transition={{ duration: 0.85, delay: 0.12, ease: EDITORIAL_EASE }}
-              className="font-serif text-[2.3rem] sm:text-5xl lg:text-[3.75rem] font-normal tracking-[-0.025em] text-white leading-[1.08] drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]"
+              className="font-serif text-[2.15rem] sm:text-5xl lg:text-[3.75rem] font-normal tracking-[-0.025em] text-white leading-[1.08] drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]"
             >
               {title}
             </motion.h1>
@@ -79,7 +79,7 @@ export function PageHero({
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.22, ease: EDITORIAL_EASE }}
-            className="text-[15px] sm:text-lg text-white/90 leading-[1.68] max-w-[56ch] drop-shadow-[0_1px_10px_rgba(0,0,0,0.45)]"
+            className="text-[14.5px] sm:text-lg text-white/90 leading-[1.65] max-w-[56ch] drop-shadow-[0_1px_10px_rgba(0,0,0,0.45)]"
           >
             {subtitle}
           </motion.p>
