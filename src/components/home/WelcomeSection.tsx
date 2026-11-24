@@ -1,136 +1,95 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/layout/Container";
-import { company } from "@/content/company";
-import {
-  EditorialReveal,
-  ImageWipeReveal,
-  LineRise,
-} from "@/components/motion/MotionPrimitives";
+import { site } from "@/lib/site";
 
 export function WelcomeSection() {
-  const foundationFacts = [
-    { label: "Based in", value: "Galle, Sri Lanka" },
-    { label: "Registered", value: company.sltdaRegistration },
-    { label: "Planning", value: "No obligation" },
-    { label: "Travel style", value: "100% Private" },
+  const highlights = [
+    "Ready-made routes that you can freely change before booking.",
+    "One private vehicle and local driver for your whole trip.",
+    "Clear advice on which coast has the best weather for your dates.",
+    "Direct WhatsApp support from our team in Galle while you travel.",
   ];
 
   return (
     <section
       id="welcome"
-      className="py-16 sm:py-24 lg:py-28 bg-[#FBFAF8] text-[#1A1A1A] scroll-mt-16"
+      className="py-16 sm:py-24 bg-[var(--sand)] text-[var(--ink)] scroll-mt-20"
       aria-labelledby="welcome-heading"
     >
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Narrative */}
-          <div className="lg:col-span-6 space-y-6">
-            <EditorialReveal>
-              <div className="flex items-center gap-3 mb-3.5">
-                <span className="w-7 h-[1px] bg-[#EF6427]" />
-                <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#5C5852]">
-                  Welcome to Ceylon Holidays
-                </span>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-6 space-y-5">
+            <p className="text-[14px] font-semibold text-[var(--ocean)]">
+              About {site.brandName}
+            </p>
 
-              <h2
-                id="welcome-heading"
-                className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-[-0.02em]"
+            <h2 id="welcome-heading" className="font-serif text-[var(--ink)]">
+              Easy, personal Sri Lanka trips planned on the island.
+            </h2>
+
+            <p className="text-[var(--ink-muted)]">
+              We are a small local team based in Galle. We plan private multi-day tours across Sri Lanka as well as half-day and full-day experiences from the south coast.
+            </p>
+
+            <p className="text-[var(--ink-muted)]">
+              Start with one of our ready-made itineraries, or tell us your dates and interests. We adjust hotels, driving times, and stops until the route feels right for you.
+            </p>
+
+            <ul className="space-y-2.5 pt-2">
+              {highlights.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-2.5 text-[16px] text-[var(--ink)]"
+                >
+                  <span
+                    className="text-[var(--leaf)] font-bold shrink-0"
+                    aria-hidden="true"
+                  >
+                    ✓
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="pt-3 flex flex-wrap items-center gap-4">
+              <Link
+                href="/plan-your-trip"
+                className="inline-flex items-center justify-center min-h-[48px] px-7 py-3 rounded-full text-[16px] font-semibold bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] text-white transition-colors"
               >
-                <LineRise>Your journey through</LineRise>
-                <LineRise delay={0.08}>Sri Lanka begins here.</LineRise>
-              </h2>
-            </EditorialReveal>
-
-            <EditorialReveal
-              delay={0.1}
-              className="space-y-4 text-[#5C5852] text-[15px] sm:text-base leading-[1.72] max-w-[58ch]"
-            >
-              <p className="text-[17px] sm:text-lg text-[#1A1A1A] leading-[1.6]">
-                A Sri Lankan destination management company based in Galle, run by people who live on the island and travel it constantly.
-              </p>
-
-              <p>
-                Every route, boutique bungalow, and chauffeur-guide we put in front of you is one that our team knows personally. That is the whole basis of Ceylon Holidays—and why we will gladly tell you when a famous stop is not worth your morning.
-              </p>
-
-              <p>
-                We do not sell fixed packages. Each itinerary is drafted from an open conversation about how you actually like to travel—how early you want to start, how far you want to drive, and whether you would rather see three regions properly or eight briefly—and revised until it is genuinely yours.
-              </p>
-            </EditorialReveal>
-
-            {/* 4 Hairline Facts */}
-            <EditorialReveal delay={0.16}>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-5 gap-y-5 pt-6 border-t border-[#1A1A1A]/12">
-                {foundationFacts.map((fact) => (
-                  <div key={fact.label}>
-                    <span className="block text-[10px] uppercase tracking-[0.18em] text-[#5C5852] mb-1">
-                      {fact.label}
-                    </span>
-                    <span className="font-serif text-[15px] sm:text-base font-medium text-[#1A1A1A]">
-                      {fact.value}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </EditorialReveal>
-
-            {/* Actions */}
-            <EditorialReveal
-              delay={0.22}
-              className="pt-2 flex flex-wrap items-center gap-5"
-            >
+                Start planning
+              </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-medium bg-[#1A1A1A] text-[#FBFAF8] hover:bg-[#EF6427] transition-colors duration-300"
+                className="inline-flex items-center min-h-[44px] px-2 text-[16px] font-semibold text-[var(--ocean)] hover:underline"
               >
-                Discover Ceylon Holidays
+                Meet our Galle team →
               </Link>
-              <Link
-                href="#trip-planner"
-                className="text-sm font-medium text-[#1A1A1A] hover:text-[#EF6427] transition-colors hover-underline"
-              >
-                Start planning →
-              </Link>
-            </EditorialReveal>
+            </div>
           </div>
 
-          {/* Staggered Photo Pair */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="grid grid-cols-12 gap-3.5 sm:gap-5 items-end">
-              <ImageWipeReveal className="col-span-7 relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#1A1A1A]">
-                <Image
-                  src="/images/destinations/galle.jpg"
-                  alt="Galle Fort lighthouse and coral ramparts overlooking the Indian Ocean"
-                  fill
-                  sizes="(max-width: 1024px) 60vw, 30vw"
-                  className="object-cover hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                />
-              </ImageWipeReveal>
-
-              <ImageWipeReveal
-                delay={0.12}
-                className="col-span-5 relative aspect-[3/4] rounded-2xl overflow-hidden bg-[#1A1A1A] mb-6 sm:mb-10"
-              >
-                <Image
-                  src="/images/experiences/scenic-blue-train.jpg"
-                  alt="The blue hill country train crossing the Nine Arches Bridge in Ella"
-                  fill
-                  sizes="(max-width: 1024px) 40vw, 22vw"
-                  className="object-cover hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                />
-              </ImageWipeReveal>
+          <div className="lg:col-span-6 grid grid-cols-12 gap-4 items-end">
+            <div className="col-span-7 relative aspect-[4/5] rounded-2xl overflow-hidden bg-[var(--sand-deep)] border border-[var(--line)]">
+              <Image
+                src="/images/destinations/galle.jpg"
+                alt="Historic Galle Fort lighthouse and stone ramparts along the southern coast of Sri Lanka"
+                fill
+                sizes="(max-width: 1024px) 58vw, 28vw"
+                className="object-cover"
+              />
             </div>
 
-            <EditorialReveal delay={0.18}>
-              <p className="text-xs sm:text-[13px] text-[#5C5852] leading-relaxed border-l-2 border-[#EF6427] pl-3.5 max-w-[56ch]">
-                Our home base along the 17th-century ramparts of Galle Fort, and the iconic hill-country rail line winding through Ella&apos;s cloud forests.
-              </p>
-            </EditorialReveal>
+            <div className="col-span-5 relative aspect-[3/4] rounded-2xl overflow-hidden bg-[var(--sand-deep)] border border-[var(--line)] mb-6">
+              <Image
+                src="/images/experiences/scenic-blue-train.jpg"
+                alt="Blue highland train crossing the Nine Arches stone railway bridge in Ella"
+                fill
+                sizes="(max-width: 1024px) 42vw, 22vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </Container>

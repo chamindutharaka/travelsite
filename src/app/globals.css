@@ -4,17 +4,18 @@
 
 @layer base {
   :root {
-    /* Ceylon Hospitality Palette */
-    --background: #FBFAF8;
-    --surface: #F4F2EE;
-    --surface-card: #FFFFFF;
-    --foreground: #1A1A1A;
-    --muted: #5C5852;
-    --forest: #1A1A1A;
-    --forest-deep: #141414;
-    --brass: #EF6427;
-    --brass-hover: #D9531A;
-    --border-hairline: rgba(26, 26, 26, 0.11);
+    --ink: #1F2A2E;
+    --ink-muted: #465359;
+    --ocean: #0E5A63;
+    --ocean-dark: #0A3F46;
+    --cinnamon: #B84A12;
+    --cinnamon-dark: #973B0D;
+    --sand: #FAF6EE;
+    --sand-deep: #F0E7D6;
+    --leaf: #3F6B4F;
+    --gold: #E3B04B;
+    --line: #E4DAC6;
+    --surface: #FFFFFF;
     --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-wipe: cubic-bezier(0.65, 0, 0.35, 1);
   }
@@ -24,35 +25,61 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
   }
 
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+    background-color: var(--sand);
+    color: var(--ink);
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    font-size: 17px;
+    font-weight: 400;
     line-height: 1.65;
-    letter-spacing: -0.005em;
     overflow-x: hidden;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 18px;
+    }
   }
 
   h1, h2, h3 {
     font-family: var(--font-fraunces), Georgia, serif;
+    color: inherit;
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1.18;
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1.28;
+    font-weight: 600;
+  }
+
   p {
+    max-width: 65ch;
     text-wrap: pretty;
   }
 
   ::selection {
-    background-color: #1A1A1A;
-    color: #FBFAF8;
+    background-color: var(--ocean);
+    color: var(--sand);
   }
 
   :focus-visible {
-    outline: 2px solid #EF6427;
+    outline: 2px solid var(--cinnamon);
     outline-offset: 2px;
   }
 
@@ -66,7 +93,7 @@
     font-family: var(--font-fraunces), Georgia, serif;
   }
   .font-sans {
-    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
   }
 }
 
@@ -85,20 +112,11 @@
 @keyframes fade-up {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 
@@ -125,33 +143,10 @@
   }
 }
 
-@keyframes hero-progress {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-.animate-line-rise {
-  animation: line-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
 .animate-scroll-cue {
   animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 }
 
-.animate-hero-progress {
-  transform-origin: left;
-  animation: hero-progress 8.5s linear forwards;
-}
-
-/* Editorial hairline underline reveal */
 .hover-underline {
   position: relative;
   display: inline-block;
@@ -160,20 +155,19 @@
   content: "";
   position: absolute;
   width: 100%;
-  height: 1px;
+  height: 1.5px;
   bottom: -2px;
   left: 0;
   background-color: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hover-underline:hover::after {
   transform: scaleX(1);
   transform-origin: left;
 }
 
-/* Hide scrollbars on horizontal rails */
 .scrollbar-none {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -182,7 +176,6 @@
   display: none;
 }
 
-/* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,

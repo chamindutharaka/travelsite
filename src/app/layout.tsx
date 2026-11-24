@@ -1,77 +1,77 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, DM_Sans } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
-import { company } from "@/content/company";
+import { site } from "@/lib/site";
 import { getTravelAgencySchema } from "@/lib/seo";
 import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { CurrencyProvider } from "@/components/providers/CurrencyProvider";
+import { Analytics } from "@/components/analytics/Analytics";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  weight: ["300", "400", "500", "600"],
+  weight: ["500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(company.canonicalUrl),
+  metadataBase: new URL(site.siteUrl),
   title: {
-    default: `${company.name} | Private, Tailor-Made Journeys Across Sri Lanka`,
-    template: `%s | ${company.name}`,
+    default: `${site.brandName} | ${site.tagline}`,
+    template: `%s | ${site.brandName}`,
   },
-  description:
-    "Private, tailor-made luxury and boutique tours across Sri Lanka crafted by local travel designers in Galle. Dedicated chauffeur-guides, no fixed packages, obligation-free planning.",
+  description: site.description,
   keywords: [
     "Sri Lanka private tours",
-    "Tailor-made Sri Lanka holiday",
-    "Sri Lanka luxury travel",
-    "Galle tour company",
+    "Custom Sri Lanka holiday",
+    "Galle tour operator",
     "Private driver Sri Lanka",
     "Sri Lanka wildlife safari",
-    "Ceylon tea country tours",
-    "Bespoke Sri Lanka itineraries",
+    "Sri Lanka hill country train tour",
+    "Sri Lanka day trips from Galle",
   ],
-  authors: [{ name: company.name, url: company.canonicalUrl }],
-  creator: company.name,
-  publisher: company.name,
+  authors: [{ name: site.brandName, url: site.siteUrl }],
+  creator: site.brandName,
+  publisher: site.brandName,
   formatDetection: {
     telephone: true,
     address: true,
     email: true,
   },
   alternates: {
-    canonical: company.canonicalUrl,
+    canonical: site.siteUrl,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: company.canonicalUrl,
-    title: `${company.name} | Private, Tailor-Made Journeys Across Sri Lanka`,
-    description: company.shortDescription,
-    siteName: company.name,
+    url: site.siteUrl,
+    title: `${site.brandName} | ${site.tagline}`,
+    description: site.description,
+    siteName: site.brandName,
     images: [
       {
         url: "/images/hero/hero-sigiriya.jpg",
         width: 1200,
         height: 630,
-        alt: "Ceylon Holidays — Tailor-made luxury journeys in Sri Lanka",
+        alt: "Sigiriya rock fortress surrounded by green forest in Sri Lanka",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${company.name} | Private Journeys Across Sri Lanka`,
-    description: company.shortDescription,
+    title: `${site.brandName} | ${site.tagline}`,
+    description: site.description,
     images: ["/images/hero/hero-sigiriya.jpg"],
   },
   robots: {
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#1A1A1A",
+  themeColor: "#0E5A63",
 };
 
 export default function RootLayout({
@@ -101,7 +101,7 @@ export default function RootLayout({
   const travelAgencyJsonLd = getTravelAgencySchema();
 
   return (
-    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -110,14 +110,17 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#FBFAF8] text-[#1A1A1A] selection:bg-[#1A1A1A] selection:text-[#FBFAF8] font-sans antialiased">
-        <SkipLink />
-        <Header />
-        <main id="main-content" className="flex-grow">
-          {children}
-        </main>
-        <Footer />
-        <FloatingWhatsApp />
+      <body className="min-h-screen flex flex-col bg-[var(--sand)] text-[var(--ink)] font-sans antialiased">
+        <CurrencyProvider>
+          <SkipLink />
+          <Header />
+          <main id="main-content" className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+          <FloatingWhatsApp />
+        </CurrencyProvider>
+        <Analytics />
       </body>
     </html>
   );

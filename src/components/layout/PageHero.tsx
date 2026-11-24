@@ -24,12 +24,11 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] flex items-end bg-[#141414] text-white overflow-hidden">
-      {/* Real Photograph Background with Smooth Settle Zoom */}
+    <section className="relative min-h-[340px] sm:min-h-[440px] lg:min-h-[500px] flex items-end bg-[var(--ocean-dark)] text-white overflow-hidden">
       <motion.div
-        initial={{ scale: 1.07, opacity: 0.6 }}
+        initial={{ scale: 1.05, opacity: 0.7 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.2, ease: EDITORIAL_EASE }}
+        transition={{ duration: 0.9, ease: EDITORIAL_EASE }}
         className="absolute inset-0 z-0"
       >
         <Image
@@ -40,60 +39,27 @@ export function PageHero({
           sizes="100vw"
           className="object-cover"
         />
-        {/* Uniform dark transparency tint + directional scrim for crisp navbar & title visibility */}
-        <div className="absolute inset-0 bg-[#141414]/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#141414]/88 via-[#141414]/55 to-[#141414]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/92 via-[#141414]/30 to-[#141414]/65" />
+        {/* High-contrast dark ocean overlay for WCAG AA text legibility */}
+        <div className="absolute inset-0 bg-[var(--ocean-dark)]/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ocean-dark)]/95 via-[var(--ocean-dark)]/45 to-[var(--ocean-dark)]/70" />
       </motion.div>
 
-      {/* Editorial Content */}
       <Container
         size="wide"
-        className="relative z-10 pt-24 pb-10 sm:pt-36 sm:pb-16 lg:pb-20"
+        className="relative z-10 pt-28 pb-10 sm:pt-36 sm:pb-14 lg:pb-16"
       >
-        <div className="max-w-3xl space-y-3.5 sm:space-y-4">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.06, ease: EDITORIAL_EASE }}
-            className="flex items-center gap-3"
-          >
-            <span className="w-7 h-[1px] bg-[#EF6427]" />
-            <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
-              {eyebrow}
-            </span>
-          </motion.div>
+        <div className="max-w-3xl space-y-3.5">
+          <p className="text-[14px] font-semibold text-[var(--gold)]">
+            {eyebrow}
+          </p>
 
-          <div className="overflow-hidden">
-            <motion.h1
-              initial={{ y: "105%", opacity: 0 }}
-              animate={{ y: "0%", opacity: 1 }}
-              transition={{ duration: 0.85, delay: 0.12, ease: EDITORIAL_EASE }}
-              className="font-serif text-[2.15rem] sm:text-5xl lg:text-[3.75rem] font-normal tracking-[-0.025em] text-white leading-[1.08] drop-shadow-[0_2px_14px_rgba(0,0,0,0.45)]"
-            >
-              {title}
-            </motion.h1>
-          </div>
+          <h1 className="font-serif text-white font-semibold">{title}</h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.22, ease: EDITORIAL_EASE }}
-            className="text-[14.5px] sm:text-lg text-white/90 leading-[1.65] max-w-[56ch] drop-shadow-[0_1px_10px_rgba(0,0,0,0.45)]"
-          >
+          <p className="text-[17px] sm:text-[18px] text-white/90 leading-relaxed max-w-[60ch]">
             {subtitle}
-          </motion.p>
+          </p>
 
-          {children && (
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: EDITORIAL_EASE }}
-              className="pt-2"
-            >
-              {children}
-            </motion.div>
-          )}
+          {children && <div className="pt-2">{children}</div>}
         </div>
       </Container>
     </section>

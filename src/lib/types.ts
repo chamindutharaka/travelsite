@@ -1,11 +1,14 @@
 export type TourCategory =
-  | 'Culture'
-  | 'Beach'
-  | 'Adventure'
-  | 'Honeymoon'
-  | 'Wildlife'
-  | 'Family'
-  | 'Luxury';
+  | "Culture"
+  | "Beach"
+  | "Adventure"
+  | "Honeymoon"
+  | "Wildlife"
+  | "Family"
+  | "Luxury"
+  | "Wellness";
+
+export type ComfortLevel = "Budget" | "Comfortable" | "Luxury";
 
 export interface DayPlan {
   day: number;
@@ -22,15 +25,23 @@ export interface Tour {
   title: string;
   tagline: string;
   category: TourCategory;
+  categories?: TourCategory[];
+  comfortLevel?: ComfortLevel;
   durationDays: number;
   durationNights: number;
-  fromPriceUsd: number; // Indicative "From $X per person"
+  durationLabel?: string;
+  isDayExperience?: boolean;
+  fromPriceUsd: number;
   heroImage: string;
+  gallery?: string[];
   overview: string;
   highlights: string[];
   routeSummary: string[];
   bestSeasons: string;
-  fitnessLevel: 'Easy' | 'Moderate' | 'Active';
+  bestMonths?: string[];
+  suitableFor?: string[];
+  popularRank?: number;
+  fitnessLevel: "Easy" | "Moderate" | "Active";
   included: string[];
   excluded: string[];
   itinerary: DayPlan[];
@@ -40,8 +51,14 @@ export interface Destination {
   slug: string;
   name: string;
   sinhalaName?: string;
-  region: 'Cultural Triangle' | 'Hill Country' | 'Southern Coast' | 'East Coast' | 'Northern Peninsula' | 'Western Province';
-  coordinates: { x: number; y: number }; // Relative percentage on SVG map
+  region:
+    | "Cultural Triangle"
+    | "Hill Country"
+    | "Southern Coast"
+    | "East Coast"
+    | "Northern Peninsula"
+    | "Western Province";
+  coordinates: { x: number; y: number };
   tagline: string;
   shortDescription: string;
   overview: string;
@@ -56,7 +73,13 @@ export interface Destination {
 export interface Experience {
   slug: string;
   title: string;
-  category: 'Wildlife' | 'Heritage' | 'Scenic' | 'Coastal' | 'Culinary' | 'Wellness';
+  category:
+    | "Wildlife"
+    | "Heritage"
+    | "Scenic"
+    | "Coastal"
+    | "Culinary"
+    | "Wellness";
   duration: string;
   location: string;
   bestSeason: string;
@@ -78,7 +101,7 @@ export interface BlogPost {
     role: string;
   };
   heroImage: string;
-  content: string; // Markdown formatted rich article
+  content: string;
 }
 
 export interface Review {
@@ -95,5 +118,5 @@ export interface Review {
 export interface FAQ {
   question: string;
   answer: string;
-  category: 'Planning' | 'Private Guides' | 'Money & Visas' | 'Health & Safety';
+  category: "Planning" | "Private Guides" | "Money & Visas" | "Health & Safety";
 }

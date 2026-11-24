@@ -1,3 +1,5 @@
+import { site } from "@/lib/site";
+
 export interface CompanyInfo {
   name: string;
   tagline: string;
@@ -17,26 +19,27 @@ export interface CompanyInfo {
   instagramUrl: string;
   productionDomain: string;
   canonicalUrl: string;
+  responseTime: string;
 }
 
 export const company: CompanyInfo = {
-  name: "Ceylon Holidays",
-  tagline: "Private, Tailor-Made Journeys Across Sri Lanka",
-  shortDescription:
-    "Handcrafted Sri Lankan journeys shaped around you. No rigid groups, no cookie-cutter packages—just deep local insight, private chauffeur-guides, and unhurried luxury from our base in Galle.",
-  baseCity: "Galle",
-  region: "Southern Province",
-  country: "Sri Lanka",
-  phone: "+94702156828",
-  phoneDisplay: "+94 70 215 6828",
-  whatsappUrl: "https://wa.me/94702156828",
-  email: "hello@ceylonholidays.com",
-  address: "Light House Street, Galle Fort, Galle 80000, Sri Lanka [Replace with exact address]",
-  foundedYear: "2018",
-  sltdaRegistration: "SLTDA/SQA/TA/XXXXX [Replace with official SLTDA Registration Number]",
-  hours: "Mon–Sat, 8.30am–6.00pm (GMT+5:30)",
-  facebookUrl: "https://facebook.com/ceylonholidays",
-  instagramUrl: "https://instagram.com/ceylonholidays",
-  productionDomain: "ceylonholidays.com",
-  canonicalUrl: "https://ceylonholidays.com",
+  name: site.brandName,
+  tagline: site.tagline,
+  shortDescription: site.description,
+  baseCity: site.city,
+  region: site.region,
+  country: site.country,
+  phone: site.phone,
+  phoneDisplay: site.phoneDisplay,
+  whatsappUrl: site.whatsappUrl,
+  email: site.email,
+  address: site.streetAddress || `${site.city}, ${site.region}, ${site.country}`,
+  foundedYear: site.foundedYear,
+  sltdaRegistration: site.sltdaNumber,
+  hours: site.hours,
+  facebookUrl: site.facebookUrl,
+  instagramUrl: site.instagramUrl,
+  productionDomain: site.domain,
+  canonicalUrl: site.siteUrl,
+  responseTime: site.responseTime,
 };

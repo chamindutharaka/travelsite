@@ -1,62 +1,62 @@
 import React from "react";
 import { HeroSlider } from "@/components/home/HeroSlider";
+import { TrustBar } from "@/components/home/TrustBar";
 import { WelcomeSection } from "@/components/home/WelcomeSection";
 import { WhyUsSection } from "@/components/home/WhyUsSection";
-import { IncludedStandard } from "@/components/home/IncludedStandard";
-import { MultiStepPlanner } from "@/components/planner/MultiStepPlanner";
+import { HomePlannerTeaser } from "@/components/planner/HomePlannerTeaser";
 import { InteractiveMap } from "@/components/home/InteractiveMap";
 import { FeaturedTours } from "@/components/home/FeaturedTours";
-import { EditorialInterlude } from "@/components/home/EditorialInterlude";
-import { SignatureMoments } from "@/components/home/SignatureMoments";
-import { VideoShowcase } from "@/components/home/VideoShowcase";
+import { IncludedStandard } from "@/components/home/IncludedStandard";
 import { SeasonalJourneys } from "@/components/home/SeasonalJourneys";
+import { VideoShowcase } from "@/components/home/VideoShowcase";
 import { LatestBlog } from "@/components/home/LatestBlog";
+import { FaqSection } from "@/components/home/FaqSection";
 import { ReviewsCarousel } from "@/components/home/ReviewsCarousel";
 import { FinalCtaBanner } from "@/components/home/FinalCtaBanner";
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. Full-Viewport Editorial Hero Slider with 4K Film Trigger */}
+      {/* Hero with single performance-aware video (poster on mobile/reduced-motion/save-data) */}
       <HeroSlider />
 
-      {/* 2. Welcome Story & Staggered Dual Photography */}
+      {/* Truthful Trust Bar */}
+      <TrustBar />
+
+      {/* Welcome (sand) */}
       <WelcomeSection />
 
-      {/* 3. Why Ceylon Holidays: 6 Hairline Principles & Island Facts */}
+      {/* How We Work (sand-deep) */}
       <WhyUsSection />
 
-      {/* 4. Included as Standard Dark Strip */}
-      <IncludedStandard />
+      {/* Compact Trip Planner Teaser (sand) */}
+      <HomePlannerTeaser />
 
-      {/* 5. Multi-Step Trip Planner (7 Steps + WhatsApp Instant Link) */}
-      <MultiStepPlanner />
-
-      {/* 6. Interactive Sri Lanka SVG Map with 13 Pins & Info Drawer */}
+      {/* Interactive Sri Lanka Map (sand-deep) */}
       <InteractiveMap />
 
-      {/* 7. Featured Sample Journeys with Animated Category Filters */}
+      {/* Popular Ready-Made & Customisable Tours (sand) */}
       <FeaturedTours />
 
-      {/* 8. Full-Bleed Editorial Interlude ("Sri Lanka Through Our Eyes") */}
-      <EditorialInterlude />
+      {/* Included as Standard — single dark ocean contrast section */}
+      <IncludedStandard />
 
-      {/* 9. Signature Moments Numbered Horizontal Rail */}
-      <SignatureMoments />
-
-      {/* 10. Real 4K Sri Lanka Video Showcase */}
-      <VideoShowcase />
-
-      {/* 11. Seasonal Journeys Matrix */}
+      {/* Seasonal Journeys (sand-deep) */}
       <SeasonalJourneys />
 
-      {/* 12. Stories from Sri Lanka (Blog) */}
+      {/* Real 4K Sri Lanka Video Showcase (sand) */}
+      <VideoShowcase />
+
+      {/* Travel Guide / Blog (sand-deep) */}
       <LatestBlog />
 
-      {/* 13. Guest Reviews (Hidden when reviews.ts is empty) */}
+      {/* FAQ + FAQPage JSON-LD (sand) */}
+      <FaqSection />
+
+      {/* Guest Reviews (hidden automatically when /src/data/reviews.ts is empty) */}
       <ReviewsCarousel />
 
-      {/* 14. Full-Bleed Final Call to Action Banner */}
+      {/* Final Call to Action Banner */}
       <FinalCtaBanner />
     </>
   );

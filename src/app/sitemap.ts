@@ -1,63 +1,53 @@
 import { MetadataRoute } from "next";
-import { company } from "@/content/company";
-import { tours } from "@/content/tours";
+import { site } from "@/lib/site";
+import { tours } from "@/data/tours";
 import { destinations } from "@/content/destinations";
 import { experiences } from "@/content/experiences";
 import { blogPosts } from "@/content/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = company.canonicalUrl;
+  const baseUrl = site.siteUrl;
   const now = new Date();
 
-  // Static Pages
-  const staticRoutes = [
-    "",
-    "/about",
-    "/destinations",
-    "/tours",
-    "/experiences",
-    "/gallery",
-    "/blog",
-    "/contact",
-    "/plan-your-trip",
-    "/privacy-policy",
-    "/terms",
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: route === "" ? 1.0 : 0.8,
-  }));
+  const staticRoutes: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${baseUrl}/tours`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/plan-your-trip`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/destinations`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${baseUrl}/experiences`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/gallery`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/privacy-policy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+  ];
 
-  // Dynamic Tours
-  const tourRoutes = tours.map((tour) => ({
+  const tourRoutes: MetadataRoute.Sitemap = tours.map((tour) => ({
     url: `${baseUrl}/tours/${tour.slug}`,
     lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: 0.9,
-  }));
-
-  // Dynamic Destinations
-  const destinationRoutes = destinations.map((dest) => ({
-    url: `${baseUrl}/destinations/${dest.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly" as const,
+    changeFrequency: "weekly",
     priority: 0.85,
   }));
 
-  // Dynamic Experiences
-  const experienceRoutes = experiences.map((exp) => ({
-    url: `${baseUrl}/experiences/${exp.slug}`,
+  const destinationRoutes: MetadataRoute.Sitemap = destinations.map((dest) => ({
+    url: `${baseUrl}/destinations/${dest.slug}`,
     lastModified: now,
-    changeFrequency: "monthly" as const,
+    changeFrequency: "monthly",
     priority: 0.8,
   }));
 
-  // Dynamic Blog Posts
-  const blogRoutes = blogPosts.map((post) => ({
+  const experienceRoutes: MetadataRoute.Sitemap = experiences.map((exp) => ({
+    url: `${baseUrl}/experiences/${exp.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.75,
+  }));
+
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
-    changeFrequency: "monthly" as const,
+    lastModified: now,
+    changeFrequency: "monthly",
     priority: 0.7,
   }));
 

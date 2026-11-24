@@ -1,72 +1,53 @@
-"use client";
-
 import React from "react";
 import { Container } from "@/components/layout/Container";
-import { StaggerGrid, StaggerItem } from "@/components/motion/MotionPrimitives";
+import { site } from "@/lib/site";
 
 export function IncludedStandard() {
   const inclusions = [
     {
-      index: "01",
-      title: "Airport pickup & drop-off",
+      title: "Airport pickup and drop-off",
       description:
-        "Included both ways at Bandaranaike International (CMB), whatever hour you land—with chilled towels and king coconut welcome.",
+        "We meet you at Colombo Bandaranaike Airport (CMB) at any hour and drive you back in good time for your flight home.",
     },
     {
-      index: "02",
-      title: "Private vehicle & chauffeur-guide",
+      title: "Private vehicle and driver",
       description:
-        "Your own air-conditioned vehicle and licensed English-fluent chauffeur-guide for the entire trip, with fuel, tolls, and driver lodging covered.",
+        "Your own air-conditioned car or van for the full trip, including fuel, highway tolls, parking fees, and driver accommodation.",
     },
     {
-      index: "03",
-      title: "24/7 support in Sri Lanka",
-      description:
-        "One named coordinator at our Galle desk on WhatsApp throughout your journey for seamless timing, dining tables, or spontaneous changes.",
+      title: "Support from our Galle desk",
+      description: `One local contact on WhatsApp before and during your holiday. We usually reply ${site.responseTime}.`,
     },
   ];
 
   return (
     <section
-      className="py-14 sm:py-20 bg-[#1A1A1A] text-[#FBFAF8]"
+      className="py-16 sm:py-20 bg-[var(--ocean)] text-white"
       aria-labelledby="included-heading"
     >
       <Container size="wide">
-        <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
-            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block mb-2">
-              Included as Standard
-            </span>
-            <h2
-              id="included-heading"
-              className="font-serif text-2xl sm:text-3xl font-normal text-white leading-snug"
-            >
-              Quietly handled from arrival to departure.
-            </h2>
-          </div>
-          <p className="text-sm text-white/65 max-w-[40ch] leading-relaxed">
-            No surprise fuel surcharges, no taxi haggling, and no handoffs to call centres.
+        <div className="max-w-2xl space-y-2.5 mb-10">
+          <p className="text-[14px] font-semibold text-[var(--gold)]">
+            Included as standard
           </p>
+          <h2 id="included-heading" className="font-serif text-white">
+            What comes with every multi-day trip.
+          </h2>
         </div>
 
-        <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {inclusions.map((item) => (
-            <StaggerItem
+            <li
               key={item.title}
-              className="pt-5 border-t border-white/15 space-y-2"
+              className="pt-5 border-t border-white/25 space-y-2"
             >
-              <div className="flex items-baseline gap-3">
-                <span className="font-mono text-xs text-[#EF6427]">{item.index}</span>
-                <h3 className="font-serif text-xl sm:text-[1.35rem] font-normal text-white">
-                  {item.title}
-                </h3>
-              </div>
-              <p className="text-[14.5px] text-white/70 leading-[1.7] max-w-[42ch]">
+              <h3 className="font-serif text-white">{item.title}</h3>
+              <p className="text-[16px] text-white/85 leading-relaxed">
                 {item.description}
               </p>
-            </StaggerItem>
+            </li>
           ))}
-        </StaggerGrid>
+        </ul>
       </Container>
     </section>
   );

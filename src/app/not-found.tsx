@@ -4,39 +4,33 @@ import { Container } from "@/components/layout/Container";
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-beige-50 py-20">
-      <Container size="default" className="text-center space-y-6">
-        <span className="font-mono text-6xl sm:text-7xl font-light text-teal-700 tracking-tight block mb-2">
-          404
-        </span>
-
-        <span className="text-xs font-mono uppercase tracking-[0.22em] text-orange-500 block">
-          Path Not Found — Sri Lanka Archipelago
-        </span>
-
-        <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-navy-950">
-          This Path Seems Uncharted
-        </h1>
-
-        <p className="text-sm sm:text-base text-navy-700 max-w-md mx-auto leading-relaxed font-light">
-          The page or itinerary you are seeking might have been moved or updated. Let us guide you back to our curated journeys.
+    <div className="min-h-[70vh] flex items-center justify-center bg-[var(--sand)] text-[var(--ink)] py-20">
+      <Container size="narrow" className="text-center space-y-5">
+        <p className="text-[14px] font-semibold text-[var(--ocean)]">
+          Error 404
         </p>
 
-        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <h1 className="font-serif text-[var(--ink)]">
+          We could not find that page.
+        </h1>
+
+        <p className="text-[var(--ink-muted)] mx-auto">
+          The page you are looking for may have moved. You can head back to the home page, browse our Sri Lanka tours, or start planning a custom route.
+        </p>
+
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3.5">
           <Link
             href="/"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-navy-950 hover:bg-navy-900 transition-colors shadow-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] px-7 py-3 rounded-full text-[16px] font-semibold bg-[var(--ocean)] hover:bg-[var(--ocean-dark)] text-white transition-colors"
           >
-            <span>Return to Homepage</span>
-            <span>→</span>
+            Back to Home
           </Link>
 
           <Link
             href="/tours"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-orange-500 hover:bg-orange-600 transition-colors shadow-sm"
+            className="w-full sm:w-auto inline-flex items-center justify-center min-h-[48px] px-7 py-3 rounded-full text-[16px] font-semibold bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] text-white transition-colors"
           >
-            <span>Explore Tours</span>
-            <span>→</span>
+            Browse Tours
           </Link>
         </div>
       </Container>

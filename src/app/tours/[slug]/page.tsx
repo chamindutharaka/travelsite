@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/layout/Container";
-import { tours } from "@/content/tours";
+import { TourPriceBox } from "@/components/tours/TourPriceBox";
+import { tours } from "@/data/tours";
 import { faqs } from "@/content/faqs";
-import { company } from "@/content/company";
+import { site } from "@/lib/site";
 import { getTouristTripSchema, getBreadcrumbSchema } from "@/lib/seo";
-import { generateWhatsAppLink } from "@/lib/utils";
 
 interface TourPageProps {
   params: Promise<{ slug: string }>;
@@ -20,19 +20,23 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: TourPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: TourPageProps): Promise<Metadata> {
   const { slug } = await params;
   const tour = tours.find((t) => t.slug === slug);
   if (!tour) return { title: "Tour Not Found" };
 
+  const durationText = tour.durationLabel || `${tour.durationDays} Days`;
+
   return {
-    title: `${tour.title} (${tour.durationDays} Days)`,
+    title: `${tour.title} (${durationText})`,
     description: tour.overview,
     alternates: {
-      canonical: `${company.canonicalUrl}/tours/${tour.slug}`,
+      canonical: `${site.siteUrl}/tours/${tour.slug}`,
     },
     openGraph: {
-      title: `${tour.title} | Ceylon Holidays`,
+      title: `${tour.title} | ${site.brandName}`,
       description: tour.tagline,
       images: [tour.heroImage],
     },
@@ -47,6 +51,10 @@ export default async function TourDetailPage({ params }: TourPageProps) {
     notFound();
   }
 
+  const durationLabel =
+    tour.durationLabel ||
+    `${tour.durationDays} days / ${tour.durationNights} nights`;
+
   const touristTripJsonLd = getTouristTripSchema(tour);
   const breadcrumbJsonLd = getBreadcrumbSchema([
     { name: "Home", url: "/" },
@@ -54,10 +62,16 @@ export default async function TourDetailPage({ params }: TourPageProps) {
     { name: tour.title, url: `/tours/${tour.slug}` },
   ]);
 
-  const relatedTours = tours.filter((t) => t.slug !== tour.slug).slice(0, 2);
+  const relatedTours = tours
+    .filter((t) => t.slug !== tour.slug)
+    .sort((a, b) => {
+      const aMatch = a.category === tour.category ? 0 : 1;
+      const bMatch = b.category === tour.category ? 0 : 1;
+      return aMatch - bMatch;
+    })
+    .slice(0, 3);
 
-  const whatsappMessage = `Hello Ceylon Holidays! I am interested in customising the "${tour.title}" (${tour.durationDays} Days, from $${tour.fromPriceUsd}/person). Could we discuss tailoring this for my travel dates?`;
-  const whatsappUrl = generateWhatsAppLink(whatsappMessage);
+  const displayCats = tour.categories ?? [tour.category];
 
   return (
     <>
@@ -70,85 +84,119 @@ export default async function TourDetailPage({ params }: TourPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
 
-      <div className="bg-beige-50 pb-24">
+      <div className="bg-[var(--sand)] text-[var(--ink)] pb-24 lg:pb-16">
         {/* Tour Hero */}
-        <div className="relative min-h-[60vh] lg:min-h-[70vh] flex items-end bg-navy-950 text-white overflow-hidden py-16">
+        <div className="relative min-h-[420px] sm:min-h-[500px] flex items-end bg-[var(--ocean-dark)] text-white overflow-hidden">
           <Image
             src={tour.heroImage}
             alt={tour.title}
             fill
             priority
             sizes="100vw"
-            className="object-cover opacity-50"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/60 to-transparent" />
+          <div className="absolute inset-0 bg-[var(--ocean-dark)]/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--ocean-dark)]/95 via-[var(--ocean-dark)]/45 to-[var(--ocean-dark)]/65" />
 
-          <Container size="wide" className="relative z-10">
-            {/* Breadcrumb */}
-            <nav className="flex items-center space-x-2 text-xs text-beige-200 mb-4" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-white">Home</Link>
-              <span>/</span>
-              <Link href="/tours" className="hover:text-white">Tours</Link>
-              <span>/</span>
-              <span className="text-orange-400 font-medium truncate">{tour.title}</span>
+          <Container size="wide" className="relative z-10 pt-28 pb-10 sm:pb-14">
+            <nav
+              className="flex flex-wrap items-center gap-2 text-[14px] text-white/80 mb-4"
+              aria-label="Breadcrumb"
+            >
+              <Link href="/" className="hover:text-white hover:underline">
+                Home
+              </Link>
+              <span aria-hidden="true">/</span>
+              <Link href="/tours" className="hover:text-white hover:underline">
+                Tours
+              </Link>
+              <span aria-hidden="true">/</span>
+              <span className="text-[var(--gold)] font-medium">{tour.title}</span>
             </nav>
 
-            <div className="max-w-3xl space-y-4">
-              <div className="inline-block px-3 py-1 rounded-full bg-navy-900/90 border border-teal-700/60 text-[11px] font-bold tracking-wider uppercase text-orange-400 backdrop-blur-sm">
-                {tour.category} Private Journey
+            <div className="max-w-3xl space-y-3.5">
+              <div className="flex flex-wrap gap-2">
+                {displayCats.map((cat) => (
+                  <span
+                    key={cat}
+                    className="px-3 py-1 rounded-full bg-white/15 border border-white/25 text-[13px] font-semibold text-white"
+                  >
+                    {cat}
+                  </span>
+                ))}
+                {tour.comfortLevel && (
+                  <span className="px-3 py-1 rounded-full bg-[var(--gold)] text-[var(--ocean-dark)] text-[13px] font-semibold">
+                    {tour.comfortLevel}
+                  </span>
+                )}
               </div>
 
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight">
+              <h1 className="font-serif text-white font-semibold">
                 {tour.title}
               </h1>
 
-              <p className="text-sm sm:text-lg text-beige-100 leading-relaxed font-light">
+              <p className="text-[17px] sm:text-[18px] text-white/90 leading-relaxed">
                 {tour.tagline}
               </p>
 
-              {/* Quick Meta Pills */}
-              <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-semibold text-beige-100">
-                <span className="px-3 py-1.5 rounded-full bg-navy-900/80 border border-navy-700">
-                  {tour.durationDays} Days / {tour.durationNights} Nights
+              <div className="pt-2 flex flex-wrap gap-2.5 text-[14px] font-medium text-white">
+                <span className="px-3.5 py-1.5 rounded-full bg-[var(--ocean-dark)]/80 border border-white/25">
+                  {durationLabel}
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-navy-900/80 border border-navy-700">
-                  Fitness: {tour.fitnessLevel}
+                <span className="px-3.5 py-1.5 rounded-full bg-[var(--ocean-dark)]/80 border border-white/25">
+                  Activity level: {tour.fitnessLevel}
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-navy-900/80 border border-navy-700">
-                  Best Seasons: {tour.bestSeasons}
+                <span className="px-3.5 py-1.5 rounded-full bg-[var(--ocean-dark)]/80 border border-white/25">
+                  Best time: {tour.bestSeasons}
                 </span>
               </div>
             </div>
           </Container>
         </div>
 
-        {/* Main Content & Sticky Inquiry Box */}
-        <Container size="wide" className="mt-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Content (Col 1-8) */}
-            <div className="lg:col-span-8 space-y-12">
-              {/* Overview */}
-              <section className="bg-white p-8 rounded-3xl border border-beige-200 shadow-sm space-y-4">
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-900">
-                  Journey Overview
-                </h2>
-                <p className="text-sm sm:text-base text-navy-950/70 leading-relaxed font-light">
-                  {tour.overview}
+        {/* Best-Time Strip */}
+        <div className="bg-[var(--sand-deep)] border-b border-[var(--line)] py-4">
+          <Container size="wide">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-[15px]">
+              <p className="font-semibold text-[var(--ink)]">
+                Best months:{" "}
+                <span className="font-normal text-[var(--ink-muted)]">
+                  {(tour.bestMonths ?? []).join(", ") || tour.bestSeasons}
+                </span>
+              </p>
+              {tour.suitableFor && tour.suitableFor.length > 0 && (
+                <p className="text-[14px] text-[var(--ink-muted)]">
+                  Great for: <strong className="text-[var(--ink)]">{tour.suitableFor.join(" · ")}</strong>
                 </p>
+              )}
+            </div>
+          </Container>
+        </div>
 
-                {/* Route Overview */}
-                <div className="pt-4 border-t border-beige-100">
-                  <span className="text-xs font-bold uppercase tracking-wider text-navy-950/60 block mb-2">
-                    Private Route Summary:
-                  </span>
-                  <div className="flex flex-wrap items-center gap-2 text-xs font-semibold text-navy-900">
+        {/* Main Content + Sticky Enquiry Box */}
+        <Container size="wide" className="mt-10 sm:mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            {/* Left Main Content */}
+            <div className="lg:col-span-8 space-y-10">
+              {/* Overview */}
+              <section className="bg-[var(--surface)] p-6 sm:p-8 rounded-2xl border border-[var(--line)] space-y-4">
+                <h2 className="font-serif text-[var(--ink)]">Overview</h2>
+                <p className="text-[var(--ink-muted)]">{tour.overview}</p>
+
+                <div className="pt-4 border-t border-[var(--line)]">
+                  <p className="text-[14px] font-semibold text-[var(--ink)] mb-2.5">
+                    Route
+                  </p>
+                  <div className="flex flex-wrap items-center gap-2 text-[14px] font-medium text-[var(--ink)]">
                     {tour.routeSummary.map((stop, i) => (
-                      <React.Fragment key={stop}>
-                        <span className="px-3 py-1.5 rounded-lg bg-beige-100 border border-beige-200">
+                      <React.Fragment key={`${stop}-${i}`}>
+                        <span className="px-3 py-1 rounded-lg bg-[var(--sand-deep)] border border-[var(--line)]">
                           {stop}
                         </span>
                         {i < tour.routeSummary.length - 1 && (
-                          <span className="text-teal-700">→</span>
+                          <span className="text-[var(--ocean)]" aria-hidden="true">
+                            →
+                          </span>
                         )}
                       </React.Fragment>
                     ))}
@@ -157,74 +205,84 @@ export default async function TourDetailPage({ params }: TourPageProps) {
               </section>
 
               {/* Highlights */}
-              <section className="bg-white p-8 rounded-3xl border border-beige-200 shadow-sm space-y-4">
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-900">
-                  Signature Highlights
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <section className="bg-[var(--surface)] p-6 sm:p-8 rounded-2xl border border-[var(--line)] space-y-4">
+                <h2 className="font-serif text-[var(--ink)]">Highlights</h2>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {tour.highlights.map((h, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3.5 rounded-xl bg-beige-50 border border-beige-100 text-xs sm:text-sm text-navy-900 font-light">
-                      <span className="text-orange-500 font-bold shrink-0">—</span>
+                    <li
+                      key={i}
+                      className="flex items-start gap-2.5 p-3.5 rounded-xl bg-[var(--sand)] border border-[var(--line)] text-[15px] text-[var(--ink)]"
+                    >
+                      <span className="text-[var(--leaf)] font-bold shrink-0" aria-hidden="true">
+                        ✓
+                      </span>
                       <span>{h}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </section>
 
-              {/* Day-by-Day Itinerary Accordion */}
-              <section className="bg-white p-8 rounded-3xl border border-beige-200 shadow-sm space-y-6">
-                <div className="border-b border-beige-200 pb-4">
-                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-navy-900">
-                    Day-by-Day Itinerary
+              {/* Day-by-Day Accordion */}
+              <section className="bg-[var(--surface)] p-6 sm:p-8 rounded-2xl border border-[var(--line)] space-y-5">
+                <div className="border-b border-[var(--line)] pb-4">
+                  <h2 className="font-serif text-[var(--ink)]">
+                    Day-by-day plan
                   </h2>
-                  <p className="text-xs text-navy-950/60 mt-1 font-light">
-                    Fully flexible: timings, meals, and accommodations can be modified for you.
+                  <p className="text-[15px] text-[var(--ink-muted)] mt-1">
+                    Every stop, hotel, and timing can be adjusted before you book.
                   </p>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {tour.itinerary.map((day) => (
                     <details
                       key={day.day}
-                      className="group rounded-2xl border border-beige-200 bg-beige-50/50 open:bg-white open:shadow-sm transition-all duration-300"
+                      className="group rounded-xl border border-[var(--line)] bg-[var(--sand)] open:bg-[var(--surface)] transition-colors"
                       open={day.day === 1}
                     >
-                      <summary className="flex items-center justify-between p-5 cursor-pointer list-none select-none">
-                        <div className="flex items-center gap-3">
-                          <span className="w-8 h-8 rounded-full bg-navy-900 text-orange-400 font-bold text-xs flex items-center justify-center shrink-0">
+                      <summary className="flex items-center justify-between gap-3 p-4 sm:p-5 cursor-pointer list-none min-h-[56px]">
+                        <div className="flex items-center gap-3.5">
+                          <span className="w-9 h-9 rounded-full bg-[var(--ocean)] text-white font-semibold text-[14px] flex items-center justify-center shrink-0">
                             D{day.day}
                           </span>
                           <div>
-                            <span className="text-xs font-bold text-teal-700 uppercase tracking-wider block">
+                            <span className="text-[13px] font-semibold text-[var(--ocean)] block">
                               {day.location}
                             </span>
-                            <span className="font-serif text-lg font-bold text-navy-900">
+                            <span className="font-serif text-lg font-semibold text-[var(--ink)]">
                               {day.title}
                             </span>
                           </div>
                         </div>
-                        <span className="text-lg font-bold text-navy-900 group-open:rotate-45 transition-transform duration-300">
+                        <span
+                          className="text-xl font-semibold text-[var(--ink)] group-open:rotate-45 transition-transform shrink-0"
+                          aria-hidden="true"
+                        >
                           +
                         </span>
                       </summary>
 
-                      <div className="px-5 pb-5 pt-2 text-xs sm:text-sm text-navy-950/70 space-y-4 border-t border-beige-100 font-light">
-                        <p className="leading-relaxed">{day.description}</p>
+                      <div className="px-4 sm:px-5 pb-5 pt-3 border-t border-[var(--line)] space-y-3 text-[16px] text-[var(--ink-muted)]">
+                        <p>{day.description}</p>
 
-                        <div className="flex flex-wrap gap-2 pt-2">
+                        <ul className="flex flex-wrap gap-2">
                           {day.highlights.map((item, idx) => (
-                            <span
+                            <li
                               key={idx}
-                              className="px-2.5 py-1 rounded-md bg-beige-100 text-[11px] font-medium text-navy-900"
+                              className="px-3 py-1 rounded-full bg-[var(--sand-deep)] text-[13px] font-medium text-[var(--ink)]"
                             >
-                              • {item}
-                            </span>
+                              {item}
+                            </li>
                           ))}
-                        </div>
+                        </ul>
 
-                        <div className="pt-2 flex items-center justify-between text-xs text-navy-950/60 border-t border-beige-100">
-                          <span>Meals: <strong className="text-navy-900 font-medium">{day.meals}</strong></span>
-                          <span>Stay: <strong className="text-navy-900 font-medium">{day.accommodationType}</strong></span>
+                        <div className="pt-2 flex flex-wrap gap-x-6 gap-y-1 text-[14px] border-t border-[var(--line)]">
+                          <span>
+                            Meals: <strong className="text-[var(--ink)]">{day.meals}</strong>
+                          </span>
+                          <span>
+                            Stay: <strong className="text-[var(--ink)]">{day.accommodationType}</strong>
+                          </span>
                         </div>
                       </div>
                     </details>
@@ -232,30 +290,34 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 </div>
               </section>
 
-              {/* Inclusions & Exclusions */}
+              {/* Inclusions & Exclusions (2 Columns) */}
               <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-7 rounded-3xl border border-beige-200 shadow-sm space-y-4">
-                  <h3 className="font-serif text-xl font-bold text-navy-900 border-b border-beige-100 pb-2">
-                    Included as Standard
+                <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--line)] space-y-3.5">
+                  <h3 className="font-serif text-[var(--ink)] border-b border-[var(--line)] pb-2.5">
+                    What is included
                   </h3>
-                  <ul className="space-y-2.5 text-xs sm:text-sm text-navy-950/75 font-light">
+                  <ul className="space-y-2 text-[15px] text-[var(--ink-muted)]">
                     {tour.included.map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-teal-700 font-bold shrink-0">✓</span>
+                        <span className="text-[var(--leaf)] font-bold shrink-0" aria-hidden="true">
+                          ✓
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="bg-white p-7 rounded-3xl border border-beige-200 shadow-sm space-y-4">
-                  <h3 className="font-serif text-xl font-bold text-navy-900 border-b border-beige-100 pb-2">
-                    Excluded
+                <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--line)] space-y-3.5">
+                  <h3 className="font-serif text-[var(--ink)] border-b border-[var(--line)] pb-2.5">
+                    Not included
                   </h3>
-                  <ul className="space-y-2.5 text-xs sm:text-sm text-navy-950/75 font-light">
+                  <ul className="space-y-2 text-[15px] text-[var(--ink-muted)]">
                     {tour.excluded.map((item, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <span className="text-rose-600 font-bold shrink-0">✕</span>
+                        <span className="text-[var(--cinnamon)] font-bold shrink-0" aria-hidden="true">
+                          ×
+                        </span>
                         <span>{item}</span>
                       </li>
                     ))}
@@ -263,124 +325,90 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                 </div>
               </section>
 
-              {/* Tour FAQs */}
-              <section className="bg-white p-8 rounded-3xl border border-beige-200 shadow-sm space-y-4">
-                <h2 className="font-serif text-2xl font-bold text-navy-900">
-                  Frequently Asked Questions About This Tour
-                </h2>
+              {/* FAQ */}
+              <section className="bg-[var(--surface)] p-6 sm:p-8 rounded-2xl border border-[var(--line)] space-y-4">
+                <h2 className="font-serif text-[var(--ink)]">Common questions</h2>
                 <div className="space-y-3">
-                  {faqs.slice(0, 3).map((f, i) => (
-                    <div key={i} className="p-4 rounded-xl bg-beige-50 border border-beige-100">
-                      <h4 className="font-bold text-sm text-navy-900 mb-1.5">{f.question}</h4>
-                      <p className="text-xs text-navy-950/70 leading-relaxed font-light">{f.answer}</p>
-                    </div>
+                  {faqs.slice(0, 4).map((f, i) => (
+                    <details
+                      key={i}
+                      className="rounded-xl bg-[var(--sand)] border border-[var(--line)] p-4"
+                    >
+                      <summary className="font-semibold text-[16px] text-[var(--ink)] cursor-pointer">
+                        {f.question}
+                      </summary>
+                      <p className="text-[15px] text-[var(--ink-muted)] mt-2">
+                        {f.answer}
+                      </p>
+                    </details>
                   ))}
                 </div>
               </section>
             </div>
 
-            {/* Right Sticky Inquiry Form (Col 9-12) */}
+            {/* Right Sticky Price & Enquiry Card */}
             <div className="lg:col-span-4">
-              <div className="sticky top-28 bg-white p-8 rounded-3xl border border-beige-200 shadow-xl space-y-6">
-                <div>
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-navy-950/50 block">
-                    Indicative Price
-                  </span>
-                  <div className="flex items-baseline gap-1 mt-1">
-                    <span className="text-3xl font-serif font-bold text-navy-900">
-                      From ${tour.fromPriceUsd.toLocaleString()}
-                    </span>
-                    <span className="text-xs text-navy-950/50">/ person</span>
-                  </div>
-                  <p className="text-[11px] text-navy-950/60 mt-1 font-light">
-                    Based on 2 guests in boutique accommodations. All private transport included.
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-beige-200 space-y-3">
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold text-white bg-teal-700 hover:bg-teal-800 shadow-sm transition-all duration-300 text-sm"
-                  >
-                    <span>Discuss on WhatsApp →</span>
-                  </a>
-
-                  <Link
-                    href={`/plan-your-trip?tour=${tour.slug}`}
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold text-navy-950 bg-orange-500 hover:bg-orange-400 shadow-sm transition-all duration-300 text-sm"
-                  >
-                    <span>Customise This Journey →</span>
-                  </Link>
-                </div>
-
-                <div className="pt-4 border-t border-beige-100 space-y-2.5 text-xs text-navy-950/70 font-light">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                    <span>No deposit required to explore ideas</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                    <span>Dedicated private chauffeur-guide</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
-                    <span>Local 24/7 concierge support in Galle</span>
-                  </div>
-                </div>
-              </div>
+              <TourPriceBox
+                tourSlug={tour.slug}
+                tourTitle={tour.title}
+                durationLabel={durationLabel}
+                fromPriceUsd={tour.fromPriceUsd}
+                isDayExperience={tour.isDayExperience}
+              />
             </div>
           </div>
 
           {/* Related Tours */}
-          <div className="mt-20 pt-12 border-t border-beige-200">
-            <h3 className="font-serif text-3xl font-bold text-navy-900 mb-8">
-              Other Journeys You May Love
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <section className="mt-16 pt-12 border-t border-[var(--line)]">
+            <h2 className="font-serif text-[var(--ink)] mb-6">
+              Similar trips you might like
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedTours.map((rel) => (
-                <div
+                <article
                   key={rel.slug}
-                  className="rounded-3xl bg-white border border-beige-200 p-6 flex flex-col sm:flex-row gap-6 shadow-sm hover:shadow-md transition-all duration-300 group"
+                  className="rounded-2xl bg-[var(--surface)] border border-[var(--line)] overflow-hidden flex flex-col justify-between"
                 >
-                  <div className="relative w-full sm:w-48 aspect-[4/3] rounded-2xl overflow-hidden bg-navy-950 shrink-0">
+                  <Link
+                    href={`/tours/${rel.slug}`}
+                    className="block relative aspect-[16/10] bg-[var(--sand-deep)]"
+                  >
                     <Image
                       src={rel.heroImage}
                       alt={rel.title}
                       fill
-                      sizes="200px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
                     />
-                  </div>
-                  <div className="flex flex-col justify-between">
-                    <div>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-teal-700">
-                        {rel.category} • {rel.durationDays} Days
-                      </span>
-                      <h4 className="font-serif text-xl font-bold text-navy-900 mt-1 group-hover:text-teal-700 transition-colors">
+                  </Link>
+                  <div className="p-5 space-y-2">
+                    <p className="text-[13px] font-semibold text-[var(--ocean)]">
+                      {rel.durationLabel || `${rel.durationDays} days`} · {rel.category}
+                    </p>
+                    <h3 className="font-serif text-[var(--ink)]">
+                      <Link href={`/tours/${rel.slug}`} className="hover:text-[var(--ocean)]">
                         {rel.title}
-                      </h4>
-                      <p className="text-xs text-navy-950/70 mt-2 line-clamp-2 font-light">
-                        {rel.tagline}
-                      </p>
-                    </div>
-                    <div className="mt-4 pt-3 border-t border-beige-100 flex items-center justify-between">
-                      <span className="font-bold text-navy-900 text-sm">
-                        From ${rel.fromPriceUsd.toLocaleString()}
+                      </Link>
+                    </h3>
+                    <p className="text-[14px] text-[var(--ink-muted)] line-clamp-2">
+                      {rel.tagline}
+                    </p>
+                    <div className="pt-3 flex items-center justify-between text-[15px]">
+                      <span className="font-semibold text-[var(--ink)]">
+                        From ${rel.fromPriceUsd.toLocaleString("en-US")}
                       </span>
                       <Link
                         href={`/tours/${rel.slug}`}
-                        className="text-xs font-semibold text-orange-600 hover:text-orange-700"
+                        className="font-semibold text-[var(--cinnamon)] hover:underline"
                       >
-                        Explore Tour →
+                        View →
                       </Link>
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
-          </div>
+          </section>
         </Container>
       </div>
     </>

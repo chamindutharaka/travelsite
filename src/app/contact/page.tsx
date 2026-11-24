@@ -2,11 +2,10 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, MessageCircle, ArrowRight, Check } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageCircle, Check } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { PageHero } from "@/components/layout/PageHero";
-import { company } from "@/content/company";
-import { EditorialReveal } from "@/components/motion/MotionPrimitives";
+import { site } from "@/lib/site";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -31,11 +30,11 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
+      const data = (await res.json()) as { error?: string };
       if (res.ok) {
         setStatus("success");
         setFeedback(
-          "Thank you — your message has been received by our Galle team. We will reply personally within 12 hours."
+          `Thank you! Our team in ${site.city} has your message and typically replies ${site.responseTime}.`
         );
         setFormData({
           fullName: "",
@@ -47,157 +46,131 @@ export default function ContactPage() {
         });
       } else {
         setStatus("error");
-        setFeedback(data.error || "Something went wrong. Please reach out via WhatsApp.");
+        setFeedback(data.error || "Something went wrong. Please message us on WhatsApp.");
       }
     } catch {
       setStatus("error");
-      setFeedback("Failed to send message. Please contact us directly on WhatsApp.");
+      setFeedback("Could not send right now. Please message us directly on WhatsApp.");
     }
   };
 
   return (
-    <div className="bg-[#FBFAF8] text-[#1A1A1A]">
+    <div className="bg-[var(--sand)] text-[var(--ink)]">
       <PageHero
         image="/images/destinations/mirissa.jpg"
         imageAlt="Palm-lined coastline of southern Sri Lanka near Galle"
-        eyebrow="Based in Galle, Sri Lanka"
-        title="Let’s Talk About Sri Lanka"
-        subtitle="Whether you have a clear route in mind or only a rough month and a few ideas, write to our team in Galle. Real people answer every enquiry."
+        eyebrow={`Based in ${site.city}, ${site.country}`}
+        title="Contact our Galle team"
+        subtitle={`Ask a quick question, request a custom quote, or chat on WhatsApp. We typically reply ${site.responseTime}.`}
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="py-14 sm:py-20">
         <Container size="wide">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Left Column: Galle Office & Direct Channels */}
-            <EditorialReveal className="lg:col-span-5 space-y-6">
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#F4F2EE] border border-[#1A1A1A]/10 space-y-6">
-                <div className="border-b border-[#1A1A1A]/10 pb-4">
-                  <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#EF6427] block mb-1">
-                    Direct Contact
-                  </span>
-                  <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#1A1A1A]">
-                    Galle Headquarters
-                  </h2>
-                </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            {/* Direct Contact Details */}
+            <div className="lg:col-span-5 space-y-5">
+              <div className="p-6 sm:p-8 rounded-2xl bg-[var(--sand-deep)] border border-[var(--line)] space-y-6">
+                <h2 className="font-serif text-[var(--ink)] border-b border-[var(--line)] pb-3">
+                  Direct contact
+                </h2>
 
-                <ul className="space-y-5 text-sm text-[#5C5852]">
-                  <li className="flex items-start gap-3.5">
-                    <MapPin className="w-4 h-4 text-[#EF6427] shrink-0 mt-1" />
+                <ul className="space-y-4 text-[15px] text-[var(--ink-muted)]">
+                  <li className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-[var(--ocean)] shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1A1A1A] mb-0.5">
-                        Office Address
+                      <strong className="block text-[var(--ink)]">Location</strong>
+                      <span>
+                        {site.streetAddress || `${site.city}, ${site.region}, ${site.country}`}
                       </span>
-                      <span className="leading-relaxed">{company.address}</span>
                     </div>
                   </li>
 
-                  <li className="flex items-start gap-3.5">
-                    <Phone className="w-4 h-4 text-[#EF6427] shrink-0 mt-1" />
+                  <li className="flex items-start gap-3">
+                    <Phone className="w-5 h-5 text-[var(--ocean)] shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1A1A1A] mb-0.5">
-                        Hotline &amp; WhatsApp
-                      </span>
+                      <strong className="block text-[var(--ink)]">Phone &amp; WhatsApp</strong>
                       <a
-                        href={`tel:${company.phone}`}
-                        className="text-[#1A1A1A] hover:text-[#EF6427] font-medium transition-colors"
+                        href={`tel:${site.phone}`}
+                        className="text-[var(--ocean)] font-semibold hover:underline"
                       >
-                        {company.phoneDisplay}
+                        {site.phoneDisplay}
                       </a>
                     </div>
                   </li>
 
-                  <li className="flex items-start gap-3.5">
-                    <Mail className="w-4 h-4 text-[#EF6427] shrink-0 mt-1" />
+                  <li className="flex items-start gap-3">
+                    <Mail className="w-5 h-5 text-[var(--ocean)] shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1A1A1A] mb-0.5">
-                        Email
-                      </span>
+                      <strong className="block text-[var(--ink)]">Email</strong>
                       <a
-                        href={`mailto:${company.email}`}
-                        className="text-[#1A1A1A] hover:text-[#EF6427] font-medium transition-colors"
+                        href={`mailto:${site.email}`}
+                        className="text-[var(--ocean)] font-semibold hover:underline"
                       >
-                        {company.email}
+                        {site.email}
                       </a>
                     </div>
                   </li>
 
-                  <li className="flex items-start gap-3.5">
-                    <Clock className="w-4 h-4 text-[#EF6427] shrink-0 mt-1" />
+                  <li className="flex items-start gap-3">
+                    <Clock className="w-5 h-5 text-[var(--ocean)] shrink-0 mt-0.5" aria-hidden="true" />
                     <div>
-                      <span className="block text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1A1A1A] mb-0.5">
-                        Operating Hours
-                      </span>
-                      <span>{company.hours}</span>
+                      <strong className="block text-[var(--ink)]">Hours</strong>
+                      <span>{site.hours}</span>
                     </div>
                   </li>
                 </ul>
 
-                {/* Primary WhatsApp Action */}
-                <div className="pt-5 border-t border-[#1A1A1A]/10 space-y-3">
+                <div className="pt-4 border-t border-[var(--line)] space-y-3">
                   <a
-                    href={company.whatsappUrl}
+                    href={site.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-full text-sm font-medium text-[#FBFAF8] bg-[#1A1A1A] hover:bg-[#EF6427] transition-colors duration-300"
+                    className="w-full inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-full text-[16px] font-semibold text-white bg-[var(--leaf)] hover:bg-[var(--ocean-dark)] transition-colors"
                   >
-                    <MessageCircle className="w-4 h-4" />
+                    <MessageCircle className="w-5 h-5" aria-hidden="true" />
                     <span>Chat on WhatsApp</span>
                   </a>
 
                   <Link
                     href="/plan-your-trip"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-medium text-[#1A1A1A] bg-[#FBFAF8] border border-[#1A1A1A]/15 hover:border-[#1A1A1A] transition-colors duration-300"
+                    className="w-full inline-flex items-center justify-center min-h-[48px] px-6 py-3 rounded-full text-[16px] font-semibold text-[var(--ocean)] bg-[var(--surface)] border-2 border-[var(--ocean)] hover:bg-[var(--ocean)] hover:text-white transition-colors"
                   >
-                    <span>Use 7-Step Trip Planner</span>
-                    <ArrowRight className="w-4 h-4" />
+                    Use 5-step trip planner
                   </Link>
                 </div>
               </div>
+            </div>
 
-              <p className="text-xs text-[#5C5852] leading-relaxed px-1">
-                SLTDA Registered Operator ({company.sltdaRegistration}). Typical response time under 12 hours, 7 days a week.
-              </p>
-            </EditorialReveal>
-
-            {/* Right Column: Clean Editorial Enquiry Form */}
-            <EditorialReveal delay={0.1} className="lg:col-span-7">
-              <div className="p-6 sm:p-10 rounded-2xl bg-white border border-[#1A1A1A]/10 shadow-[0_14px_40px_rgba(26,26,26,0.05)] space-y-6">
-                <div className="space-y-1.5 border-b border-[#1A1A1A]/10 pb-5">
-                  <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-[#EF6427] block">
-                    Write to Us
-                  </span>
-                  <h2 className="font-serif text-2xl sm:text-3xl font-normal text-[#1A1A1A]">
-                    Send an Enquiry
-                  </h2>
-                  <p className="text-sm text-[#5C5852] leading-relaxed">
-                    Share your dates, party size, or questions—no commitment required.
+            {/* Enquiry Form */}
+            <div className="lg:col-span-7">
+              <div className="p-6 sm:p-8 lg:p-10 rounded-2xl bg-[var(--surface)] border border-[var(--line)] space-y-6">
+                <div className="border-b border-[var(--line)] pb-4 space-y-1">
+                  <h2 className="font-serif text-[var(--ink)]">Send a message</h2>
+                  <p className="text-[15px] text-[var(--ink-muted)]">
+                    Tell us what you have in mind. No deposit or commitment needed.
                   </p>
                 </div>
 
                 {status === "success" ? (
-                  <div className="p-8 rounded-2xl bg-[#F4F2EE] border border-[#1A1A1A]/10 text-center space-y-4">
-                    <div className="w-12 h-12 mx-auto rounded-full bg-[#1A1A1A] text-[#FBFAF8] flex items-center justify-center">
-                      <Check className="w-5 h-5" />
+                  <div
+                    className="p-6 rounded-xl bg-[var(--sand)] border border-[var(--line)] text-center space-y-3"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <div className="w-12 h-12 mx-auto rounded-full bg-[var(--leaf)] text-white flex items-center justify-center">
+                      <Check className="w-6 h-6" />
                     </div>
-                    <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
-                      Message Received
-                    </h3>
-                    <p className="text-sm text-[#5C5852] max-w-md mx-auto leading-[1.7]">
+                    <h3 className="font-serif text-[var(--ink)]">Message sent</h3>
+                    <p className="text-[15px] text-[var(--ink-muted)] mx-auto">
                       {feedback}
                     </p>
-                    <button
-                      type="button"
-                      onClick={() => setStatus("idle")}
-                      className="inline-flex items-center justify-center px-6 py-2.5 rounded-full text-xs font-medium text-[#1A1A1A] border border-[#1A1A1A]/20 hover:border-[#1A1A1A] transition-colors"
-                    >
-                      Send Another Message
-                    </button>
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Honeypot */}
                     <div className="hidden" aria-hidden="true">
+                      <label htmlFor="contact-honeypot">Leave blank</label>
                       <input
+                        id="contact-honeypot"
                         type="text"
                         tabIndex={-1}
                         value={formData.honeypot}
@@ -208,113 +181,122 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
-                        Your Full Name *
+                      <label
+                        htmlFor="contact-name"
+                        className="block text-[15px] font-semibold text-[var(--ink)] mb-1.5"
+                      >
+                        Your full name *
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         value={formData.fullName}
                         onChange={(e) =>
                           setFormData({ ...formData, fullName: e.target.value })
                         }
-                        placeholder="e.g. Thomas Wright"
-                        className="w-full px-4 py-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm text-[#1A1A1A] placeholder-[#5C5852]/55 focus:outline-none focus:border-[#EF6427] transition-colors"
+                        className="w-full min-h-[48px] px-4 py-3 rounded-xl border border-[var(--line)] bg-[var(--sand)] text-[16px] text-[var(--ink)]"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
-                          Email Address *
+                        <label
+                          htmlFor="contact-email"
+                          className="block text-[15px] font-semibold text-[var(--ink)] mb-1.5"
+                        >
+                          Email address *
                         </label>
                         <input
+                          id="contact-email"
                           type="email"
                           required
                           value={formData.email}
                           onChange={(e) =>
                             setFormData({ ...formData, email: e.target.value })
                           }
-                          placeholder="thomas@example.com"
-                          className="w-full px-4 py-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm text-[#1A1A1A] placeholder-[#5C5852]/55 focus:outline-none focus:border-[#EF6427] transition-colors"
+                          className="w-full min-h-[48px] px-4 py-3 rounded-xl border border-[var(--line)] bg-[var(--sand)] text-[16px] text-[var(--ink)]"
                         />
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
-                          WhatsApp / Phone *
+                        <label
+                          htmlFor="contact-phone"
+                          className="block text-[15px] font-semibold text-[var(--ink)] mb-1.5"
+                        >
+                          WhatsApp / phone *
                         </label>
                         <input
+                          id="contact-phone"
                           type="tel"
                           required
                           value={formData.phone}
                           onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })
                           }
-                          placeholder="+44 7123 456789"
-                          className="w-full px-4 py-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm text-[#1A1A1A] placeholder-[#5C5852]/55 focus:outline-none focus:border-[#EF6427] transition-colors"
+                          className="w-full min-h-[48px] px-4 py-3 rounded-xl border border-[var(--line)] bg-[var(--sand)] text-[16px] text-[var(--ink)]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
-                        Approximate Travel Dates or Month
+                      <label
+                        htmlFor="contact-dates"
+                        className="block text-[15px] font-semibold text-[var(--ink)] mb-1.5"
+                      >
+                        Approximate dates or month (optional)
                       </label>
                       <input
+                        id="contact-dates"
                         type="text"
+                        placeholder="e.g. February, 10 days"
                         value={formData.travelDates}
                         onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            travelDates: e.target.value,
-                          })
+                          setFormData({ ...formData, travelDates: e.target.value })
                         }
-                        placeholder="e.g. February 2027 (12 days)"
-                        className="w-full px-4 py-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm text-[#1A1A1A] placeholder-[#5C5852]/55 focus:outline-none focus:border-[#EF6427] transition-colors"
+                        className="w-full min-h-[48px] px-4 py-3 rounded-xl border border-[var(--line)] bg-[var(--sand)] text-[16px] text-[var(--ink)]"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
+                      <label
+                        htmlFor="contact-message"
+                        className="block text-[15px] font-semibold text-[var(--ink)] mb-1.5"
+                      >
                         How can we help? *
                       </label>
                       <textarea
+                        id="contact-message"
                         required
                         rows={4}
                         value={formData.message}
                         onChange={(e) =>
                           setFormData({ ...formData, message: e.target.value })
                         }
-                        placeholder="Tell us about your group, preferred pace, wildlife or coastal interests, or any questions..."
-                        className="w-full px-4 py-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm text-[#1A1A1A] placeholder-[#5C5852]/55 focus:outline-none focus:border-[#EF6427] transition-colors"
+                        className="w-full px-4 py-3 rounded-xl border border-[var(--line)] bg-[var(--sand)] text-[16px] text-[var(--ink)]"
                       />
                     </div>
 
                     {status === "error" && (
-                      <div className="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-800 text-xs">
+                      <p
+                        role="alert"
+                        className="p-3.5 rounded-xl bg-[var(--sand-deep)] border border-[var(--cinnamon)] text-[15px] text-[var(--ink)]"
+                      >
                         {feedback}
-                      </div>
+                      </p>
                     )}
 
-                    <div className="pt-2">
-                      <button
-                        type="submit"
-                        disabled={status === "loading"}
-                        className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-medium text-[#FBFAF8] bg-[#1A1A1A] hover:bg-[#EF6427] transition-colors duration-300 disabled:opacity-50"
-                      >
-                        <span>
-                          {status === "loading"
-                            ? "Sending Message..."
-                            : "Send Message to Galle Office"}
-                        </span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
-                    </div>
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full inline-flex items-center justify-center min-h-[48px] px-8 py-3 rounded-full text-[16px] font-semibold text-white bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] transition-colors disabled:opacity-60"
+                    >
+                      {status === "loading" ? "Sending..." : "Send message"}
+                    </button>
                   </form>
                 )}
               </div>
-            </EditorialReveal>
+            </div>
           </div>
         </Container>
       </section>

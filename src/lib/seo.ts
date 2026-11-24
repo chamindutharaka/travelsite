@@ -1,42 +1,47 @@
-import { company } from "@/content/company";
+import { site } from "@/lib/site";
 import { Tour, BlogPost, FAQ } from "@/lib/types";
 
 export function getTravelAgencySchema() {
+  const sameAs = [
+    site.facebookUrl,
+    site.instagramUrl,
+    site.tripAdvisorUrl,
+    site.googleReviewsUrl,
+  ].filter(Boolean);
+
   return {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
-    "@id": `${company.canonicalUrl}/#travelagency`,
-    name: company.name,
-    legalName: company.name,
-    description: company.shortDescription,
-    url: company.canonicalUrl,
-    telephone: company.phoneDisplay,
-    email: company.email,
-    priceRange: "$$$",
-    currenciesAccepted: "USD, EUR, GBP, AUD, LKR",
-    paymentAccepted: "Credit Card, Bank Wire Transfer",
+    "@id": `${site.siteUrl}/#travelagency`,
+    name: site.brandName,
+    description: site.description,
+    url: site.siteUrl,
+    telephone: site.phoneDisplay,
+    email: site.email,
+    currenciesAccepted: "USD, EUR, GBP, LKR",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ],
         opens: "08:30",
         closes: "18:00",
       },
     ],
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Light House Street, Galle Fort",
-      addressLocality: "Galle",
-      addressRegion: "Southern Province",
-      postalCode: "80000",
+      ...(site.streetAddress ? { streetAddress: site.streetAddress } : {}),
+      addressLocality: site.city,
+      addressRegion: site.region,
       addressCountry: "LK",
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "6.0270",
-      longitude: "80.2170",
-    },
-    sameAs: [company.facebookUrl, company.instagramUrl],
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   };
 }
 
@@ -46,7 +51,7 @@ export function getTouristTripSchema(tour: Tour) {
     "@type": "TouristTrip",
     name: tour.title,
     description: tour.overview,
-    touristType: tour.category,
+    touristType: tour.categories ? tour.categories.join(", ") : tour.category,
     itinerary: {
       "@type": "ItemList",
       numberOfItems: tour.itinerary.length,
@@ -65,12 +70,11 @@ export function getTouristTripSchema(tour: Tour) {
       price: tour.fromPriceUsd,
       priceCurrency: "USD",
       availability: "https://schema.org/InStock",
-      validFrom: "2026-01-01",
     },
     provider: {
       "@type": "TravelAgency",
-      name: company.name,
-      url: company.canonicalUrl,
+      name: site.brandName,
+      url: site.siteUrl,
     },
   };
 }
@@ -83,7 +87,7 @@ export function getBreadcrumbSchema(items: { name: string; url: string }[]) {
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${company.canonicalUrl}${item.url}`,
+      item: `${site.siteUrl}${item.url}`,
     })),
   };
 }
@@ -94,7 +98,7 @@ export function getArticleSchema(post: BlogPost) {
     "@type": "Article",
     headline: post.title,
     description: post.excerpt,
-    image: `${company.canonicalUrl}${post.heroImage}`,
+    image: `${site.siteUrl}${post.heroImage}`,
     datePublished: post.publishedAt,
     dateModified: post.publishedAt,
     author: {
@@ -104,15 +108,15 @@ export function getArticleSchema(post: BlogPost) {
     },
     publisher: {
       "@type": "Organization",
-      name: company.name,
+      name: site.brandName,
       logo: {
         "@type": "ImageObject",
-        url: `${company.canonicalUrl}/images/hero/hero-sigiriya.jpg`,
+        url: `${site.siteUrl}/images/hero/hero-sigiriya.jpg`,
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${company.canonicalUrl}/blog/${post.slug}`,
+      "@id": `${site.siteUrl}/blog/${post.slug}`,
     },
   };
 }

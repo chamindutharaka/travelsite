@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { Container } from "./Container";
 import { MobileNav } from "./MobileNav";
+import { useCurrency } from "@/components/providers/CurrencyProvider";
+import { CURRENCIES, CurrencyCode, site } from "@/lib/site";
 
 const HERO_ROUTES = new Set([
   "/",
@@ -19,10 +21,13 @@ const HERO_ROUTES = new Set([
   "/plan-your-trip",
 ]);
 
+const CURRENCY_CODES: CurrencyCode[] = ["USD", "EUR", "GBP", "LKR"];
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const pathname = usePathname();
+  const { currency, setCurrency } = useCurrency();
   const hasFullBleedHero = HERO_ROUTES.has(pathname);
 
   useEffect(() => {
@@ -36,56 +41,46 @@ export function Header() {
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/destinations", label: "Destinations" },
     { href: "/tours", label: "Tours" },
+    { href: "/destinations", label: "Destinations" },
     { href: "/experiences", label: "Experiences" },
     { href: "/gallery", label: "Gallery" },
-    { href: "/blog", label: "Journal" },
+    { href: "/blog", label: "Guide" },
+    { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
   ];
 
-  const useLightBar = !hasFullBleedHero || isScrolled;
+  const isSolid = !hasFullBleedHero || isScrolled;
 
   return (
     <>
       <header
         className={`${
           hasFullBleedHero ? "fixed" : "sticky"
-        } top-0 left-0 right-0 z-40 w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          useLightBar
-            ? "bg-[#FBFAF8]/95 backdrop-blur-md border-b border-[#1A1A1A]/10 py-3 sm:py-3.5 text-[#1A1A1A]"
-            : "bg-gradient-to-b from-[#141414]/65 via-[#141414]/25 to-transparent py-4 sm:py-5 text-white"
+        } top-0 left-0 right-0 z-40 w-full transition-colors duration-300 ${
+          isSolid
+            ? "bg-[var(--ocean)] text-white border-b border-white/15 py-2.5 shadow-sm"
+            : "bg-gradient-to-b from-[var(--ocean-dark)]/85 via-[var(--ocean-dark)]/45 to-transparent text-white py-3.5"
         }`}
       >
         <Container size="wide">
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-3">
             {/* Brand Lockup */}
             <Link
               href="/"
-              className="group flex flex-col focus:outline-none focus:ring-2 focus:ring-[#EF6427] rounded-sm"
+              className="group flex flex-col py-1 rounded-sm min-h-[44px] justify-center"
             >
-              <span
-                className={`font-serif text-[1.25rem] sm:text-2xl font-medium tracking-[-0.02em] leading-none transition-colors duration-300 ${
-                  useLightBar
-                    ? "text-[#1A1A1A] group-hover:text-[#EF6427]"
-                    : "text-white group-hover:text-white/85"
-                }`}
-              >
-                Ceylon Holidays
+              <span className="font-serif text-[1.25rem] sm:text-[1.4rem] font-semibold tracking-[-0.02em] leading-none text-white">
+                {site.brandName}
               </span>
-              <span
-                className={`text-[9px] sm:text-[10px] font-medium uppercase tracking-[0.22em] mt-1 transition-colors duration-300 ${
-                  useLightBar ? "text-[#5C5852]" : "text-white/75"
-                }`}
-              >
-                Galle · Sri Lanka
+              <span className="text-[13px] font-medium text-white/85 leading-tight mt-0.5">
+                {site.city}, {site.country}
               </span>
             </Link>
 
             {/* Desktop Navigation */}
             <nav
-              className="hidden lg:flex items-center gap-1 xl:gap-2"
+              className="hidden lg:flex items-center gap-1"
               aria-label="Main Navigation"
             >
               {navLinks.map((link) => {
@@ -97,14 +92,10 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 py-1.5 text-[13.5px] font-medium tracking-[-0.005em] transition-colors duration-300 hover-underline ${
-                      useLightBar
-                        ? isActive
-                          ? "text-[#EF6427]"
-                          : "text-[#1A1A1A]/80 hover:text-[#1A1A1A]"
-                        : isActive
-                        ? "text-[#EF6427]"
-                        : "text-white/90 hover:text-white"
+                    className={`px-3 py-2.5 min-h-[44px] inline-flex items-center text-[15px] font-medium transition-colors rounded-md ${
+                      isActive
+                        ? "text-[var(--gold)]"
+                        : "text-white/90 hover:text-white hover:bg-white/10"
                     }`}
                   >
                     {link.label}
@@ -113,17 +104,34 @@ export function Header() {
               })}
             </nav>
 
-            {/* Desktop Right CTA */}
-            <div className="hidden sm:flex items-center">
+            {/* Desktop Currency + CTA */}
+            <div className="hidden lg:flex items-center gap-3">
+              <label htmlFor="desktop-currency" className="sr-only">
+                Display currency (approximate)
+              </label>
+              <select
+                id="desktop-currency"
+                value={currency}
+                onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                title="Approximate currency conversion"
+                className="min-h-[44px] px-3 py-2 rounded-lg bg-white/10 border border-white/25 text-white text-[14px] font-medium focus:bg-[var(--ocean-dark)] cursor-pointer"
+              >
+                {CURRENCY_CODES.map((code) => (
+                  <option
+                    key={code}
+                    value={code}
+                    className="bg-[var(--ocean-dark)] text-white"
+                  >
+                    {CURRENCIES[code].code}
+                  </option>
+                ))}
+              </select>
+
               <Link
                 href="/plan-your-trip"
-                className={`inline-flex items-center justify-center px-5 py-2.5 rounded-full text-[13px] font-medium tracking-wide transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  useLightBar
-                    ? "bg-[#1A1A1A] text-[#FBFAF8] hover:bg-[#EF6427]"
-                    : "bg-[#FBFAF8] text-[#1A1A1A] hover:bg-[#EF6427] hover:text-white"
-                }`}
+                className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-full text-[16px] font-semibold bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] text-white transition-colors"
               >
-                Plan Your Trip
+                Plan your trip
               </Link>
             </div>
 
@@ -131,26 +139,18 @@ export function Header() {
             <div className="flex items-center gap-2 lg:hidden">
               <Link
                 href="/plan-your-trip"
-                className={`px-3.5 py-2 text-xs font-medium rounded-full transition-colors ${
-                  useLightBar
-                    ? "bg-[#1A1A1A] text-[#FBFAF8]"
-                    : "bg-[#FBFAF8] text-[#1A1A1A]"
-                }`}
+                className="inline-flex items-center justify-center min-h-[44px] px-4 py-2 text-[15px] font-semibold rounded-full bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] text-white transition-colors"
               >
-                Plan Trip
+                Plan trip
               </Link>
 
               <button
                 type="button"
                 onClick={() => setIsMobileNavOpen(true)}
-                className={`w-10 h-10 flex items-center justify-center rounded-full transition-colors ${
-                  useLightBar
-                    ? "text-[#1A1A1A] hover:bg-[#1A1A1A]/5"
-                    : "text-white hover:bg-white/10"
-                }`}
+                className="w-11 h-11 flex items-center justify-center rounded-full text-white hover:bg-white/15 transition-colors"
                 aria-label="Open navigation menu"
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-6 h-6" />
               </button>
             </div>
           </div>

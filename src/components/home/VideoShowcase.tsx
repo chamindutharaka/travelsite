@@ -3,16 +3,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, MapPin, Clock, Film } from "lucide-react";
+import { Play, Clock } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { travelVideos, TravelVideo } from "@/content/videos";
-import {
-  EditorialReveal,
-  LineRise,
-} from "@/components/motion/MotionPrimitives";
 
 export function VideoShowcase() {
-  const featuredVideos = travelVideos.slice(0, 5);
+  const featuredVideos = travelVideos.slice(0, 4);
   const [activeVideo, setActiveVideo] = useState<TravelVideo>(featuredVideos[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -23,52 +19,41 @@ export function VideoShowcase() {
 
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#1A1A1A] text-white relative overflow-hidden border-t border-white/10"
+      className="py-16 sm:py-24 bg-[var(--sand)] text-[var(--ink)]"
       aria-labelledby="video-showcase-heading"
     >
-      <Container size="wide" className="relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
-          <EditorialReveal className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-3.5">
-              <span className="w-7 h-[1px] bg-[#EF6427]" />
-              <span className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">
-                <Film className="w-3.5 h-3.5 text-[#EF6427]" />
-                Sri Lanka in Motion
-              </span>
-            </div>
-            <h2
-              id="video-showcase-heading"
-              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-white leading-[1.12] tracking-[-0.02em]"
-            >
-              <LineRise>Experience the island</LineRise>
-              <LineRise delay={0.08}>before you arrive.</LineRise>
-            </h2>
-            <p className="mt-3.5 text-[15px] sm:text-base text-white/70 leading-[1.7] max-w-[54ch]">
-              Real 4K footage from across Sri Lanka—from sunrise over Sigiriya and the misty Ella rail viaduct to wild leopards in Yala and our home ramparts in Galle Fort.
+      <Container size="wide">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-10">
+          <div className="max-w-2xl space-y-2.5">
+            <p className="text-[14px] font-semibold text-[var(--ocean)]">
+              Real 4K Sri Lanka films
             </p>
-          </EditorialReveal>
+            <h2 id="video-showcase-heading" className="font-serif text-[var(--ink)]">
+              See Sri Lanka before you fly.
+            </h2>
+            <p className="text-[var(--ink-muted)]">
+              Videos load only when you click play, keeping this page fast on mobile.
+            </p>
+          </div>
 
-          <EditorialReveal delay={0.12}>
-            <Link
-              href="/gallery#videos"
-              className="inline-flex items-center gap-2 text-sm font-medium text-white/85 hover:text-[#EF6427] transition-colors hover-underline shrink-0"
-            >
-              <span>All photos &amp; 4K films</span>
-              <span>→</span>
-            </Link>
-          </EditorialReveal>
+          <Link
+            href="/gallery#videos"
+            className="inline-flex items-center min-h-[44px] text-[16px] font-semibold text-[var(--ocean)] hover:underline shrink-0"
+          >
+            View all photos &amp; videos →
+          </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 lg:gap-8 items-start">
-          {/* Featured 16:9 Player */}
-          <EditorialReveal className="lg:col-span-8 space-y-3.5">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black border border-white/10 shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+          {/* Lite YouTube Player */}
+          <div className="lg:col-span-8 space-y-3">
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-[var(--ocean-dark)] border border-[var(--line)]">
               {isPlaying ? (
                 <iframe
                   key={activeVideo.youtubeId}
                   src={`https://www.youtube-nocookie.com/embed/${activeVideo.youtubeId}?autoplay=1&rel=0&modestbranding=1`}
                   title={activeVideo.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                   className="absolute inset-0 w-full h-full border-0"
                 />
@@ -76,7 +61,7 @@ export function VideoShowcase() {
                 <button
                   type="button"
                   onClick={() => setIsPlaying(true)}
-                  className="group relative w-full h-full text-left focus:outline-none focus:ring-2 focus:ring-[#EF6427]"
+                  className="group relative w-full h-full text-left"
                   aria-label={`Play video: ${activeVideo.title}`}
                 >
                   <Image
@@ -84,107 +69,71 @@ export function VideoShowcase() {
                     alt={activeVideo.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/90 via-[#141414]/30 to-[#141414]/15" />
-
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--ocean-dark)]/90 via-[var(--ocean-dark)]/30 to-transparent" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FBFAF8] group-hover:bg-[#EF6427] text-[#1A1A1A] flex items-center justify-center shadow-2xl group-hover:scale-105 transition-all duration-300">
-                      <Play className="w-6 h-6 sm:w-8 sm:h-8 fill-current ml-1" />
+                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--cinnamon)] group-hover:bg-[var(--cinnamon-dark)] text-white flex items-center justify-center shadow-xl transition-colors">
+                      <Play className="w-7 h-7 fill-current ml-1" aria-hidden="true" />
                     </span>
                   </div>
-
-                  <div className="absolute bottom-0 inset-x-0 p-4 sm:p-7 flex flex-col sm:flex-row sm:items-end justify-between gap-2 sm:gap-4">
-                    <div>
-                      <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-[#EF6427] font-medium">
-                        <MapPin className="w-3 h-3" />
-                        {activeVideo.location}
-                      </span>
-                      <h3 className="font-serif text-lg sm:text-2xl lg:text-3xl font-normal text-white mt-0.5 leading-snug">
-                        {activeVideo.title}
-                      </h3>
-                    </div>
-                    <span className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141414]/80 border border-white/15 text-xs font-mono text-white/90 shrink-0 w-fit">
-                      <Clock className="w-3.5 h-3.5 text-[#EF6427]" />
-                      {activeVideo.duration}
-                    </span>
+                  <div className="absolute bottom-0 inset-x-0 p-5 sm:p-7 text-white">
+                    <p className="text-[13px] font-semibold text-[var(--gold)]">
+                      {activeVideo.location} · {activeVideo.duration}
+                    </p>
+                    <h3 className="font-serif text-xl sm:text-2xl font-semibold text-white mt-0.5">
+                      {activeVideo.title}
+                    </h3>
                   </div>
                 </button>
               )}
             </div>
 
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-0.5">
-              <p className="text-[14px] text-white/70 leading-[1.65] max-w-[60ch]">
-                {activeVideo.description}
-              </p>
-              <a
-                href={activeVideo.sourceUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-mono text-white/50 hover:text-[#EF6427] transition-colors shrink-0"
-              >
-                Film by {activeVideo.creator} ↗
-              </a>
-            </div>
-          </EditorialReveal>
+            <p className="text-[15px] text-[var(--ink-muted)]">
+              {activeVideo.description}
+            </p>
+          </div>
 
-          {/* Chapter Selector */}
-          <EditorialReveal delay={0.1} className="lg:col-span-4 space-y-2.5">
-            <div className="text-[11px] font-mono uppercase tracking-[0.2em] text-white/50 pb-1">
-              Select Chapter ({featuredVideos.length} Real Films)
-            </div>
-
-            {featuredVideos.map((video, idx) => {
-              const isSelected = video.id === activeVideo.id;
+          {/* Playlist */}
+          <div className="lg:col-span-4 space-y-3">
+            {featuredVideos.map((video) => {
+              const selected = video.id === activeVideo.id;
               return (
                 <button
                   key={video.id}
                   type="button"
                   onClick={() => handleSelectVideo(video)}
-                  className={`w-full text-left p-2.5 sm:p-3 rounded-xl border transition-colors duration-300 flex items-center gap-3.5 group ${
-                    isSelected
-                      ? "bg-[#242424] border-[#EF6427]/80"
-                      : "bg-[#141414]/70 border-white/10 hover:border-white/30 hover:bg-[#222222]"
+                  className={`w-full text-left p-3 rounded-xl border-2 flex items-center gap-3.5 transition-colors ${
+                    selected
+                      ? "bg-[var(--sand-deep)] border-[var(--ocean)]"
+                      : "bg-[var(--surface)] border-[var(--line)] hover:border-[var(--ocean)]"
                   }`}
                 >
-                  <div className="relative w-20 h-14 sm:w-24 sm:h-16 rounded-lg overflow-hidden shrink-0 bg-black">
+                  <div className="relative w-24 h-16 rounded-lg overflow-hidden shrink-0 bg-[var(--ocean-dark)]">
                     <Image
                       src={video.posterImage}
                       alt={video.title}
                       fill
                       sizes="96px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-black/35 flex items-center justify-center">
-                      <span
-                        className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center transition-colors ${
-                          isSelected
-                            ? "bg-[#EF6427] text-[#1A1A1A]"
-                            : "bg-black/70 text-white group-hover:bg-[#EF6427] group-hover:text-[#1A1A1A]"
-                        }`}
-                      >
-                        <Play className="w-3 h-3 fill-current ml-0.5" />
-                      </span>
-                    </div>
                   </div>
-
                   <div className="min-w-0 flex-1">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#EF6427] truncate">
-                        0{idx + 1} · {video.location}
-                      </span>
-                      <span className="text-[10px] font-mono text-white/45 shrink-0">
-                        {video.duration}
-                      </span>
-                    </div>
-                    <h4 className="font-serif text-[15px] sm:text-base font-normal text-white leading-snug mt-0.5 line-clamp-2">
+                    <span className="text-[13px] font-semibold text-[var(--ocean)] block truncate">
+                      {video.location}
+                    </span>
+                    <span className="font-serif text-[15px] font-semibold text-[var(--ink)] line-clamp-2 block leading-snug">
                       {video.title}
-                    </h4>
+                    </span>
+                    <span className="inline-flex items-center gap-1 text-[13px] text-[var(--ink-muted)] mt-0.5">
+                      <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+                      {video.duration}
+                    </span>
                   </div>
                 </button>
               );
             })}
-          </EditorialReveal>
+          </div>
         </div>
       </Container>
     </section>

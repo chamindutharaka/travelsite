@@ -1,84 +1,114 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 import { plannerSchema } from "@/lib/schemas";
 import { checkRateLimit } from "@/lib/rate-limit";
-import { Resend } from "resend";
+import { site } from "@/lib/site";
+
+function escapeHtml(input: string): string {
+  return input
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
 
 export async function POST(req: Request) {
   try {
-    // 1. IP Rate Limiting (5 requests per minute per IP)
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0] || "127.0.0.1";
     const { success: allowed } = checkRateLimit(ip, 5, 60 * 1000);
     if (!allowed) {
       return NextResponse.json(
-        { error: "Too many submission attempts. Please try again in a few minutes or message us on WhatsApp." },
+        {
+          error:
+            "Too many requests right now. Please wait a minute or message us on WhatsApp.",
+        },
         { status: 429 }
       );
     }
 
-    // 2. Parse & Validate Payload
-    const body = await req.json();
-    const result = plannerSchema.safeParse(body);
+    const body: unknown = await req.json();
+    const parsed = plannerSchema.safeParse(body);
 
-    if (!result.success) {
+    if (!parsed.success) {
       return NextResponse.json(
-        { error: "Please verify all required fields.", details: result.error.flatten() },
+        {
+          error: "Please check the highlighted fields and try again.",
+          details: parsed.error.flatten(),
+        },
         { status: 400 }
       );
     }
 
-    const data = result.data;
+    const data = parsed.data;
 
-    // 3. Honeypot Anti-Spam Check
+    // Silent honeypot check
     if (data.websiteField && data.websiteField.length > 0) {
-      // Silently reject bots without raising alarm
-      return NextResponse.json({ success: true, message: "Trip plan received." }, { status: 200 });
+      return NextResponse.json({
+        success: true,
+        message: `Thanks! Our Galle team will reply ${site.responseTime}.`,
+      });
     }
 
-    // 4. Send Notification Email via Resend
     const resendApiKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.CONTACT_EMAIL_TO || "hello@ceylonholidays.com";
+    const recipientEmail =
+      process.env.TO_EMAIL || process.env.CONTACT_EMAIL_TO || site.email;
 
-    if (resendApiKey && resendApiKey !== "re_development_mock_key" && !resendApiKey.startsWith("re_test")) {
+    if (
+      resendApiKey &&
+      resendApiKey !== "re_development_mock_key" &&
+      !resendApiKey.startsWith("re_test")
+    ) {
       const resend = new Resend(resendApiKey);
 
+      const whenSummary = data.isFlexible
+        ? "Flexible dates"
+        : data.months.length > 0
+        ? data.months.join(", ")
+        : data.exactStartDate || "Not specified";
+
       const htmlContent = `
-        <h2>New Ceylon Holidays Bespoke Itinerary Request</h2>
-        <p><strong>Traveller Name:</strong> ${data.fullName}</p>
-        <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Phone / WhatsApp:</strong> ${data.countryCode} ${data.whatsappPhone}</p>
-        <p><strong>Preferred Contact:</strong> ${data.preferredContact}</p>
+        <h2>New Trip Enquiry — ${escapeHtml(site.brandName)}</h2>
+        <p><strong>Name:</strong> ${escapeHtml(data.fullName)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+        <p><strong>WhatsApp / Phone:</strong> ${escapeHtml(data.countryCode)} ${escapeHtml(data.whatsappPhone)}</p>
+        <p><strong>Country:</strong> ${escapeHtml(data.country)}</p>
+        ${data.tourSlug ? `<p><strong>Starting Tour:</strong> ${escapeHtml(data.tourSlug)}</p>` : ""}
         <hr />
-        <h3>Trip Specifications</h3>
-        <p><strong>Timing:</strong> ${data.travelTiming} (${data.approximateMonth || data.startDate || "Flexible"})</p>
-        <p><strong>Duration:</strong> ${data.duration}</p>
-        <p><strong>Party:</strong> ${data.adults} Adults, ${data.children} Children (${data.partyType})</p>
-        <p><strong>Travel Style:</strong> ${data.travelStyle.join(", ")} | Pace: ${data.pace}</p>
-        <p><strong>Destinations:</strong> ${data.destinations.join(", ")}</p>
-        <p><strong>Experiences:</strong> ${data.experiences.join(", ") || "None specified"}</p>
-        <p><strong>Budget Tier:</strong> ${data.budgetTier}</p>
-        <p><strong>Special Notes:</strong> ${data.specialNotes || "None"}</p>
+        <h3>Trip Outline</h3>
+        <p><strong>When:</strong> ${escapeHtml(whenSummary)}${data.exactStartDate ? ` (Start: ${escapeHtml(data.exactStartDate)})` : ""}</p>
+        <p><strong>Trip Length:</strong> ${escapeHtml(data.tripLength)} days</p>
+        <p><strong>Travellers:</strong> ${data.adults} adults, ${data.children} children${data.childrenAges ? ` (Ages: ${escapeHtml(data.childrenAges)})` : ""} — ${escapeHtml(data.travelStyle)}</p>
+        <p><strong>Interests:</strong> ${escapeHtml(data.interests.join(", "))}</p>
+        <p><strong>Comfort Level:</strong> ${escapeHtml(data.comfortLevel)} (Approx. $${data.budgetPerPersonUsd.toLocaleString("en-US")} USD / person)</p>
+        <p><strong>Notes:</strong> ${escapeHtml(data.notes || "None")}</p>
       `;
 
       await resend.emails.send({
-        from: "Ceylon Holidays <onboarding@resend.dev>",
+        from: `${site.brandName} <onboarding@resend.dev>`,
         to: recipientEmail,
         replyTo: data.email,
-        subject: `New Trip Enquiry: ${data.fullName} (${data.duration}, ${data.partyType})`,
+        subject: `Trip Enquiry: ${data.fullName} (${data.tripLength} days, ${data.comfortLevel})`,
         html: htmlContent,
       });
     } else {
-      // Development mode log
-      console.log("Mock email sent for planner submission from:", data.email);
+      console.log("Planner submission logged (no production RESEND_API_KEY):", {
+        email: data.email,
+        tripLength: data.tripLength,
+        comfortLevel: data.comfortLevel,
+      });
     }
 
     return NextResponse.json({
       success: true,
-      message: "Your custom journey brief has been received. Our Galle team will review and reply within 12 hours.",
+      message: `Thank you! Our team in ${site.city} has your trip brief and typically replies ${site.responseTime}.`,
     });
   } catch (error) {
     console.error("Trip planner submission error:", error);
     return NextResponse.json(
-      { error: "We could not process your submission. Please message us on WhatsApp for an immediate response." },
+      {
+        error:
+          "We could not send your trip brief right now. Please use the WhatsApp button below so we can help immediately.",
+      },
       { status: 500 }
     );
   }

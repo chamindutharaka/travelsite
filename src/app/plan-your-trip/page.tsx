@@ -1,30 +1,37 @@
-import React from "react";
+import React, { Suspense } from "react";
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { MultiStepPlanner } from "@/components/planner/MultiStepPlanner";
-import { company } from "@/content/company";
+import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Plan Your Tailor-Made Sri Lanka Journey",
-  description:
-    "Design your custom Sri Lanka holiday in 7 steps. Dates, destinations, boutique stays, and wildlife safaris. Obligation-free planning with our team in Galle.",
+  title: "Plan Your Sri Lanka Trip",
+  description: `Plan a private Sri Lanka holiday in 5 short steps. Free, no-obligation route planning from our local team in ${site.city}.`,
   alternates: {
-    canonical: `${company.canonicalUrl}/plan-your-trip`,
+    canonical: `${site.siteUrl}/plan-your-trip`,
   },
 };
 
 export default function PlanYourTripPage() {
   return (
-    <div className="bg-[#FBFAF8] text-[#1A1A1A]">
+    <div className="bg-[var(--sand)] text-[var(--ink)]">
       <PageHero
         image="/images/tours/serendipity-honeymoon.jpg"
         imageAlt="Golden sunset over palm-lined southern coastline in Sri Lanka"
-        eyebrow="Start Your Custom Route"
-        title="Design Your Sri Lanka Holiday"
-        subtitle="Seven short steps, no payment, and nothing binding. Share your travel style and our team in Galle will craft a personal itinerary for you."
+        eyebrow="5-step trip planner"
+        title="Plan your Sri Lanka trip"
+        subtitle={`Share your dates, travel style, and interests. Our team in ${site.city} will reply ${site.responseTime} with a custom route and clear price guide.`}
       />
 
-      <MultiStepPlanner hideHeader compact />
+      <Suspense
+        fallback={
+          <div className="py-16 text-center text-[var(--ink-muted)]">
+            Loading trip planner...
+          </div>
+        }
+      >
+        <MultiStepPlanner />
+      </Suspense>
     </div>
   );
 }
