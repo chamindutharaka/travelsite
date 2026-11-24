@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { getTravelAgencySchema } from "@/lib/seo";
@@ -13,15 +13,15 @@ import { Analytics } from "@/components/analytics/Analytics";
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  weight: ["500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["400", "500", "600"],
+  variable: "--font-dm-sans",
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0E5A63",
+  themeColor: "#141414",
 };
 
 export default function RootLayout({
@@ -101,7 +101,7 @@ export default function RootLayout({
   const travelAgencyJsonLd = getTravelAgencySchema();
 
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
       <head>
         <script
           type="application/ld+json"

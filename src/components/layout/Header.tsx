@@ -50,17 +50,18 @@ export function Header() {
     { href: "/contact", label: "Contact" },
   ];
 
-  const isSolid = !hasFullBleedHero || isScrolled;
+  // Transparent over photo/video hero, smoothly transitioning to frosted warm ivory on scroll
+  const useLightBar = !hasFullBleedHero || isScrolled;
 
   return (
     <>
       <header
         className={`${
           hasFullBleedHero ? "fixed" : "sticky"
-        } top-0 left-0 right-0 z-40 w-full transition-colors duration-300 ${
-          isSolid
-            ? "bg-[var(--ocean)] text-white border-b border-white/15 py-2.5 shadow-sm"
-            : "bg-gradient-to-b from-[var(--ocean-dark)]/85 via-[var(--ocean-dark)]/45 to-transparent text-white py-3.5"
+        } top-0 left-0 right-0 z-40 w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          useLightBar
+            ? "bg-[#FBFAF8]/95 backdrop-blur-md border-b border-black/10 py-3 text-[#1A1A1A]"
+            : "bg-gradient-to-b from-[#141414]/65 via-[#141414]/25 to-transparent py-4 text-white"
         }`}
       >
         <Container size="wide">
@@ -68,13 +69,23 @@ export function Header() {
             {/* Brand Lockup */}
             <Link
               href="/"
-              className="group flex flex-col py-1 rounded-sm min-h-[44px] justify-center"
+              className="group flex flex-col justify-center min-h-[44px] rounded-sm"
             >
-              <span className="font-serif text-[1.25rem] sm:text-[1.4rem] font-semibold tracking-[-0.02em] leading-none text-white">
+              <span
+                className={`font-serif text-[1.25rem] sm:text-2xl font-medium tracking-[-0.02em] leading-none transition-colors duration-300 ${
+                  useLightBar
+                    ? "text-[#1A1A1A] group-hover:text-[#EF6427]"
+                    : "text-white group-hover:text-white/85"
+                }`}
+              >
                 {site.brandName}
               </span>
-              <span className="text-[13px] font-medium text-white/85 leading-tight mt-0.5">
-                {site.city}, {site.country}
+              <span
+                className={`text-[10px] font-medium uppercase tracking-[0.22em] mt-1 transition-colors duration-300 ${
+                  useLightBar ? "text-[#5C5852]" : "text-white/75"
+                }`}
+              >
+                {site.city} · {site.country}
               </span>
             </Link>
 
@@ -92,10 +103,14 @@ export function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`px-3 py-2.5 min-h-[44px] inline-flex items-center text-[15px] font-medium transition-colors rounded-md ${
-                      isActive
-                        ? "text-[var(--gold)]"
-                        : "text-white/90 hover:text-white hover:bg-white/10"
+                    className={`px-3 py-2 min-h-[44px] inline-flex items-center text-[14px] font-medium tracking-[-0.005em] transition-colors duration-300 hover-underline ${
+                      useLightBar
+                        ? isActive
+                          ? "text-[#EF6427]"
+                          : "text-[#1A1A1A]/80 hover:text-[#1A1A1A]"
+                        : isActive
+                        ? "text-[#EF6427]"
+                        : "text-white/90 hover:text-white"
                     }`}
                   >
                     {link.label}
@@ -114,13 +129,17 @@ export function Header() {
                 value={currency}
                 onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
                 title="Approximate currency conversion"
-                className="min-h-[44px] px-3 py-2 rounded-lg bg-white/10 border border-white/25 text-white text-[14px] font-medium focus:bg-[var(--ocean-dark)] cursor-pointer"
+                className={`min-h-[40px] px-2.5 py-1.5 rounded-full text-[13px] font-medium border transition-colors cursor-pointer ${
+                  useLightBar
+                    ? "bg-transparent border-black/15 text-[#1A1A1A]"
+                    : "bg-white/10 border-white/25 text-white backdrop-blur-sm"
+                }`}
               >
                 {CURRENCY_CODES.map((code) => (
                   <option
                     key={code}
                     value={code}
-                    className="bg-[var(--ocean-dark)] text-white"
+                    className="bg-[#141414] text-white"
                   >
                     {CURRENCIES[code].code}
                   </option>
@@ -129,7 +148,11 @@ export function Header() {
 
               <Link
                 href="/plan-your-trip"
-                className="inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-full text-[16px] font-semibold bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] text-white transition-colors"
+                className={`inline-flex items-center justify-center min-h-[44px] px-5 py-2.5 rounded-full text-[14px] font-medium tracking-wide transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  useLightBar
+                    ? "bg-[#1A1A1A] text-[#FBFAF8] hover:bg-[#EF6427]"
+                    : "bg-[#FBFAF8] text-[#1A1A1A] hover:bg-[#EF6427] hover:text-white"
+                }`}
               >
                 Plan your trip
               </Link>
@@ -139,7 +162,11 @@ export function Header() {
             <div className="flex items-center gap-2 lg:hidden">
               <Link
                 href="/plan-your-trip"
-                className="inline-flex items-center justify-center min-h-[44px] px-4 py-2 text-[15px] font-semibold rounded-full bg-[var(--cinnamon)] hover:bg-[var(--cinnamon-dark)] text-white transition-colors"
+                className={`inline-flex items-center justify-center min-h-[40px] px-4 py-2 text-[13px] font-medium rounded-full transition-colors ${
+                  useLightBar
+                    ? "bg-[#1A1A1A] text-[#FBFAF8]"
+                    : "bg-[#FBFAF8] text-[#1A1A1A]"
+                }`}
               >
                 Plan trip
               </Link>
@@ -147,10 +174,14 @@ export function Header() {
               <button
                 type="button"
                 onClick={() => setIsMobileNavOpen(true)}
-                className="w-11 h-11 flex items-center justify-center rounded-full text-white hover:bg-white/15 transition-colors"
+                className={`w-11 h-11 flex items-center justify-center rounded-full transition-colors ${
+                  useLightBar
+                    ? "text-[#1A1A1A] hover:bg-black/5"
+                    : "text-white hover:bg-white/10"
+                }`}
                 aria-label="Open navigation menu"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5" />
               </button>
             </div>
           </div>

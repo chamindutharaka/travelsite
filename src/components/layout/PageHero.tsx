@@ -24,11 +24,11 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[340px] sm:min-h-[440px] lg:min-h-[500px] flex items-end bg-[var(--ocean-dark)] text-white overflow-hidden">
+    <section className="relative min-h-[340px] sm:min-h-[440px] lg:min-h-[500px] flex items-end bg-[#141414] text-white overflow-hidden">
       <motion.div
-        initial={{ scale: 1.05, opacity: 0.7 }}
+        initial={{ scale: 1.06, opacity: 0.65 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.9, ease: EDITORIAL_EASE }}
+        transition={{ duration: 1.1, ease: EDITORIAL_EASE }}
         className="absolute inset-0 z-0"
       >
         <Image
@@ -39,9 +39,9 @@ export function PageHero({
           sizes="100vw"
           className="object-cover"
         />
-        {/* High-contrast dark ocean overlay for WCAG AA text legibility */}
-        <div className="absolute inset-0 bg-[var(--ocean-dark)]/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--ocean-dark)]/95 via-[var(--ocean-dark)]/45 to-[var(--ocean-dark)]/70" />
+        <div className="absolute inset-0 bg-[#141414]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#141414]/88 via-[#141414]/55 to-[#141414]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/92 via-[#141414]/30 to-[#141414]/65" />
       </motion.div>
 
       <Container
@@ -49,13 +49,16 @@ export function PageHero({
         className="relative z-10 pt-28 pb-10 sm:pt-36 sm:pb-14 lg:pb-16"
       >
         <div className="max-w-3xl space-y-3.5">
-          <p className="text-[14px] font-semibold text-[var(--gold)]">
-            {eyebrow}
-          </p>
+          <div className="flex items-center gap-3">
+            <span className="w-7 h-[1px] bg-[#EF6427]" />
+            <p className="text-[12px] font-medium uppercase tracking-[0.22em] text-white/95">
+              {eyebrow}
+            </p>
+          </div>
 
-          <h1 className="font-serif text-white font-semibold">{title}</h1>
+          <h1 className="font-serif text-white font-normal">{title}</h1>
 
-          <p className="text-[17px] sm:text-[18px] text-white/90 leading-relaxed max-w-[60ch]">
+          <p className="text-[16px] sm:text-[17px] text-white/90 leading-[1.68] max-w-[56ch]">
             {subtitle}
           </p>
 

@@ -6,6 +6,10 @@ import Link from "next/link";
 import { Play, Clock } from "lucide-react";
 import { Container } from "@/components/layout/Container";
 import { travelVideos, TravelVideo } from "@/content/videos";
+import {
+  EditorialReveal,
+  LineRise,
+} from "@/components/motion/MotionPrimitives";
 
 export function VideoShowcase() {
   const featuredVideos = travelVideos.slice(0, 4);
@@ -19,35 +23,43 @@ export function VideoShowcase() {
 
   return (
     <section
-      className="py-16 sm:py-24 bg-[var(--sand)] text-[var(--ink)]"
+      className="py-16 sm:py-24 lg:py-28 bg-[#141414] text-[#FBFAF8]"
       aria-labelledby="video-showcase-heading"
     >
       <Container size="wide">
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 mb-10">
-          <div className="max-w-2xl space-y-2.5">
-            <p className="text-[14px] font-semibold text-[var(--ocean)]">
-              Real 4K Sri Lanka films
-            </p>
-            <h2 id="video-showcase-heading" className="font-serif text-[var(--ink)]">
-              See Sri Lanka before you fly.
+        <EditorialReveal className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+          <div className="max-w-2xl space-y-3">
+            <div className="flex items-center gap-3">
+              <span className="w-7 h-[1px] bg-[#EF6427]" />
+              <p className="text-[12px] font-medium uppercase tracking-[0.22em] text-[#FBFAF8]/65">
+                Real 4K Sri Lanka films
+              </p>
+            </div>
+            <h2 id="video-showcase-heading" className="font-serif text-[#FBFAF8]">
+              <LineRise>See Sri Lanka</LineRise>
+              <LineRise delay={0.08}>
+                <span className="italic font-light text-[#FBFAF8]/85">
+                  before you fly.
+                </span>
+              </LineRise>
             </h2>
-            <p className="text-[var(--ink-muted)]">
+            <p className="text-[#FBFAF8]/75">
               Videos load only when you click play, keeping this page fast on mobile.
             </p>
           </div>
 
           <Link
             href="/gallery#videos"
-            className="inline-flex items-center min-h-[44px] text-[16px] font-semibold text-[var(--ocean)] hover:underline shrink-0"
+            className="inline-flex items-center min-h-[44px] text-[15px] font-medium text-[#FBFAF8] hover:text-[#EF6427] transition-colors shrink-0"
           >
             View all photos &amp; videos →
           </Link>
-        </div>
+        </EditorialReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Lite YouTube Player */}
-          <div className="lg:col-span-8 space-y-3">
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-[var(--ocean-dark)] border border-[var(--line)]">
+          <div className="lg:col-span-8 space-y-4">
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-black border border-white/15">
               {isPlaying ? (
                 <iframe
                   key={activeVideo.youtubeId}
@@ -69,19 +81,19 @@ export function VideoShowcase() {
                     alt={activeVideo.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--ocean-dark)]/90 via-[var(--ocean-dark)]/30 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/90 via-[#141414]/25 to-transparent" />
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[var(--cinnamon)] group-hover:bg-[var(--cinnamon-dark)] text-white flex items-center justify-center shadow-xl transition-colors">
+                    <span className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#FBFAF8]/95 group-hover:bg-[#EF6427] text-[#141414] group-hover:text-white flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:scale-105">
                       <Play className="w-7 h-7 fill-current ml-1" aria-hidden="true" />
                     </span>
                   </div>
-                  <div className="absolute bottom-0 inset-x-0 p-5 sm:p-7 text-white">
-                    <p className="text-[13px] font-semibold text-[var(--gold)]">
+                  <div className="absolute bottom-0 inset-x-0 p-6 sm:p-8 text-[#FBFAF8]">
+                    <p className="text-[12px] font-medium uppercase tracking-[0.2em] text-[#EF6427]">
                       {activeVideo.location} · {activeVideo.duration}
                     </p>
-                    <h3 className="font-serif text-xl sm:text-2xl font-semibold text-white mt-0.5">
+                    <h3 className="font-serif text-xl sm:text-2xl font-medium text-[#FBFAF8] mt-1">
                       {activeVideo.title}
                     </h3>
                   </div>
@@ -89,7 +101,7 @@ export function VideoShowcase() {
               )}
             </div>
 
-            <p className="text-[15px] text-[var(--ink-muted)]">
+            <p className="text-[15px] text-[#FBFAF8]/75">
               {activeVideo.description}
             </p>
           </div>
@@ -103,13 +115,13 @@ export function VideoShowcase() {
                   key={video.id}
                   type="button"
                   onClick={() => handleSelectVideo(video)}
-                  className={`w-full text-left p-3 rounded-xl border-2 flex items-center gap-3.5 transition-colors ${
+                  className={`w-full text-left p-3.5 rounded-xl border flex items-center gap-3.5 transition-all duration-300 ${
                     selected
-                      ? "bg-[var(--sand-deep)] border-[var(--ocean)]"
-                      : "bg-[var(--surface)] border-[var(--line)] hover:border-[var(--ocean)]"
+                      ? "bg-white/10 border-[#EF6427]"
+                      : "bg-white/[0.03] border-white/10 hover:border-white/30 hover:bg-white/[0.06]"
                   }`}
                 >
-                  <div className="relative w-24 h-16 rounded-lg overflow-hidden shrink-0 bg-[var(--ocean-dark)]">
+                  <div className="relative w-24 h-16 rounded-lg overflow-hidden shrink-0 bg-black">
                     <Image
                       src={video.posterImage}
                       alt={video.title}
@@ -119,13 +131,13 @@ export function VideoShowcase() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <span className="text-[13px] font-semibold text-[var(--ocean)] block truncate">
+                    <span className="text-[11.5px] font-medium uppercase tracking-[0.16em] text-[#EF6427] block truncate">
                       {video.location}
                     </span>
-                    <span className="font-serif text-[15px] font-semibold text-[var(--ink)] line-clamp-2 block leading-snug">
+                    <span className="font-serif text-[15px] font-medium text-[#FBFAF8] line-clamp-2 block leading-snug mt-0.5">
                       {video.title}
                     </span>
-                    <span className="inline-flex items-center gap-1 text-[13px] text-[var(--ink-muted)] mt-0.5">
+                    <span className="inline-flex items-center gap-1 text-[12.5px] text-[#FBFAF8]/60 mt-1">
                       <Clock className="w-3.5 h-3.5" aria-hidden="true" />
                       {video.duration}
                     </span>

@@ -4,17 +4,18 @@
 
 @layer base {
   :root {
-    --ink: #1F2A2E;
-    --ink-muted: #465359;
-    --ocean: #0E5A63;
-    --ocean-dark: #0A3F46;
-    --cinnamon: #B84A12;
-    --cinnamon-dark: #973B0D;
-    --sand: #FAF6EE;
-    --sand-deep: #F0E7D6;
-    --leaf: #3F6B4F;
-    --gold: #E3B04B;
-    --line: #E4DAC6;
+    /* Modern Editorial Palette (Warm Ivory, Stone, Obsidian Charcoal & Terracotta) */
+    --ink: #1A1A1A;
+    --ink-muted: #5C5852;
+    --ocean: #1A1A1A;
+    --ocean-dark: #141414;
+    --cinnamon: #EF6427;
+    --cinnamon-dark: #D9531A;
+    --sand: #FBFAF8;
+    --sand-deep: #F4F2EE;
+    --leaf: #1F6E52;
+    --gold: #EF6427;
+    --line: rgba(26, 26, 26, 0.11);
     --surface: #FFFFFF;
     --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-wipe: cubic-bezier(0.65, 0, 0.35, 1);
@@ -30,56 +31,57 @@
   body {
     background-color: var(--sand);
     color: var(--ink);
-    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
-    font-size: 17px;
+    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
+    font-size: 16px;
     font-weight: 400;
-    line-height: 1.65;
+    line-height: 1.68;
+    letter-spacing: -0.005em;
     overflow-x: hidden;
   }
 
   @media (min-width: 768px) {
     body {
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 
   h1, h2, h3 {
     font-family: var(--font-fraunces), Georgia, serif;
     color: inherit;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     text-wrap: balance;
   }
 
   h1 {
-    font-size: clamp(2.25rem, 5vw, 3.75rem);
-    line-height: 1.1;
-    font-weight: 600;
+    font-size: clamp(2.25rem, 5.2vw, 4.25rem);
+    line-height: 1.07;
+    font-weight: 400;
   }
 
   h2 {
-    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-    line-height: 1.18;
-    font-weight: 600;
+    font-size: clamp(1.85rem, 3.6vw, 3rem);
+    line-height: 1.13;
+    font-weight: 400;
   }
 
   h3 {
     font-size: clamp(1.25rem, 2vw, 1.5rem);
-    line-height: 1.28;
-    font-weight: 600;
+    line-height: 1.25;
+    font-weight: 400;
   }
 
   p {
-    max-width: 65ch;
+    max-width: 64ch;
     text-wrap: pretty;
   }
 
   ::selection {
-    background-color: var(--ocean);
-    color: var(--sand);
+    background-color: #1A1A1A;
+    color: #FBFAF8;
   }
 
   :focus-visible {
-    outline: 2px solid var(--cinnamon);
+    outline: 2px solid #EF6427;
     outline-offset: 2px;
   }
 
@@ -93,7 +95,7 @@
     font-family: var(--font-fraunces), Georgia, serif;
   }
   .font-sans {
-    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
   }
 }
 
@@ -112,7 +114,7 @@
 @keyframes fade-up {
   0% {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
@@ -155,13 +157,13 @@
   content: "";
   position: absolute;
   width: 100%;
-  height: 1.5px;
+  height: 1px;
   bottom: -2px;
   left: 0;
   background-color: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .hover-underline:hover::after {
   transform: scaleX(1);
