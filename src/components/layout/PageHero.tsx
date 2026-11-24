@@ -24,7 +24,7 @@ export function PageHero({
   children,
 }: PageHeroProps) {
   return (
-    <section className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] flex items-end bg-[#0C1F33] text-white overflow-hidden">
+    <section className="relative min-h-[340px] sm:min-h-[460px] lg:min-h-[520px] flex items-end bg-[#141414] text-white overflow-hidden">
       {/* Real Photograph Background with Smooth Settle Zoom */}
       <motion.div
         initial={{ scale: 1.07, opacity: 0.6 }}
@@ -41,9 +41,9 @@ export function PageHero({
           className="object-cover"
         />
         {/* Uniform dark transparency tint + directional scrim for crisp navbar & title visibility */}
-        <div className="absolute inset-0 bg-[#0C1F33]/45" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0C1F33]/88 via-[#0C1F33]/55 to-[#0C1F33]/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33]/92 via-[#0C1F33]/30 to-[#0C1F33]/65" />
+        <div className="absolute inset-0 bg-[#141414]/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#141414]/88 via-[#141414]/55 to-[#141414]/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/92 via-[#141414]/30 to-[#141414]/65" />
       </motion.div>
 
       {/* Editorial Content */}
@@ -58,7 +58,7 @@ export function PageHero({
             transition={{ duration: 0.6, delay: 0.06, ease: EDITORIAL_EASE }}
             className="flex items-center gap-3"
           >
-            <span className="w-7 h-[1px] bg-[#E5A952]" />
+            <span className="w-7 h-[1px] bg-[#EF6427]" />
             <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/95 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)]">
               {eyebrow}
             </span>

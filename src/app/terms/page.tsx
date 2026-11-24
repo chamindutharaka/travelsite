@@ -13,22 +13,22 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="py-16 sm:py-24 bg-[#FDFBF7]">
-      <Container size="narrow" className="bg-white p-8 sm:p-14 rounded-3xl border border-[#153250]/12 shadow-sm space-y-8 text-[#4E5A65] text-sm sm:text-base leading-relaxed font-light">
-        <header className="space-y-2 border-b border-[#153250]/12 pb-6">
-          <span className="text-xs font-mono uppercase tracking-[0.22em] text-[#D4622A] block">
+    <div className="py-16 sm:py-24 bg-beige-50">
+      <Container size="narrow" className="bg-white p-8 sm:p-14 rounded-3xl border border-beige-200 shadow-sm space-y-8 text-navy-700 text-sm sm:text-base leading-relaxed font-light">
+        <header className="space-y-2 border-b border-beige-200 pb-6">
+          <span className="text-xs font-mono uppercase tracking-[0.22em] text-orange-500 block">
             Booking Agreement
           </span>
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#153250]">
+          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-navy-950">
             Terms & Conditions
           </h1>
-          <p className="text-xs font-mono text-[#4E5A65]">
+          <p className="text-xs font-mono text-navy-500">
             Official Booking Conditions • Ceylon Holidays (SLTDA Registered)
           </p>
         </header>
 
         <section className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-[#153250]">
+          <h2 className="font-serif text-2xl font-bold text-navy-950">
             1. The Booking Contract
           </h2>
           <p>
@@ -37,33 +37,33 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-[#153250]">
+          <h2 className="font-serif text-2xl font-bold text-navy-950">
             2. Deposits & Final Payments
           </h2>
           <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
-            <li><strong className="font-semibold text-[#153250]">Deposit</strong>: A 25% deposit is required upon itinerary confirmation to secure hotel rooms and private transport allocations.</li>
-            <li><strong className="font-semibold text-[#153250]">Balance</strong>: The remaining 75% balance is payable 30 days prior to your arrival date in Sri Lanka. For bookings made within 30 days of arrival, full payment is required upon confirmation.</li>
-            <li><strong className="font-semibold text-[#153250]">Payment Methods</strong>: We accept major international credit cards and direct international bank wire transfers.</li>
+            <li><strong className="font-semibold text-navy-950">Deposit</strong>: A 25% deposit is required upon itinerary confirmation to secure hotel rooms and private transport allocations.</li>
+            <li><strong className="font-semibold text-navy-950">Balance</strong>: The remaining 75% balance is payable 30 days prior to your arrival date in Sri Lanka. For bookings made within 30 days of arrival, full payment is required upon confirmation.</li>
+            <li><strong className="font-semibold text-navy-950">Payment Methods</strong>: We accept major international credit cards and direct international bank wire transfers.</li>
           </ul>
         </section>
 
         <section className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-[#153250]">
+          <h2 className="font-serif text-2xl font-bold text-navy-950">
             3. Cancellations & Refunds
           </h2>
           <p>
             If you need to cancel your trip, notice must be received in writing via email. Cancellation fees apply as follows:
           </p>
           <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm">
-            <li><strong className="font-semibold text-[#153250]">45+ days prior to arrival</strong>: Full refund minus a $100 administrative and non-recoverable hotel deposit fee.</li>
-            <li><strong className="font-semibold text-[#153250]">30–44 days prior to arrival</strong>: 75% refund of total trip cost.</li>
-            <li><strong className="font-semibold text-[#153250]">15–29 days prior to arrival</strong>: 50% refund of total trip cost.</li>
-            <li><strong className="font-semibold text-[#153250]">Under 14 days prior to arrival</strong>: Non-refundable due to boutique hotel commitments.</li>
+            <li><strong className="font-semibold text-navy-950">45+ days prior to arrival</strong>: Full refund minus a $100 administrative and non-recoverable hotel deposit fee.</li>
+            <li><strong className="font-semibold text-navy-950">30–44 days prior to arrival</strong>: 75% refund of total trip cost.</li>
+            <li><strong className="font-semibold text-navy-950">15–29 days prior to arrival</strong>: 50% refund of total trip cost.</li>
+            <li><strong className="font-semibold text-navy-950">Under 14 days prior to arrival</strong>: Non-refundable due to boutique hotel commitments.</li>
           </ul>
         </section>
 
         <section className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-[#153250]">
+          <h2 className="font-serif text-2xl font-bold text-navy-950">
             4. Chauffeur-Guide & Vehicle Service
           </h2>
           <p>
@@ -72,7 +72,7 @@ export default function TermsPage() {
         </section>
 
         <section className="space-y-3">
-          <h2 className="font-serif text-2xl font-bold text-[#153250]">
+          <h2 className="font-serif text-2xl font-bold text-navy-950">
             5. Travel Insurance
           </h2>
           <p>

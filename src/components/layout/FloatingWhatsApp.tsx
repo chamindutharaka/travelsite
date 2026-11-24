@@ -21,7 +21,7 @@ export function FloatingWhatsApp() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat directly with Ceylon Holidays on WhatsApp"
-        className="inline-flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3 rounded-full bg-[#153250] hover:bg-[#D4622A] text-[#FDFBF7] text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_8px_24px_rgba(12,31,51,0.28)] border border-white/15 transition-colors duration-300"
+        className="inline-flex items-center gap-2.5 px-4 py-3 sm:px-5 sm:py-3 rounded-full bg-[#1A1A1A] hover:bg-[#EF6427] text-[#FBFAF8] text-xs sm:text-[13px] font-medium tracking-wide shadow-[0_8px_24px_rgba(20,20,20,0.28)] border border-white/15 transition-colors duration-300"
       >
         <MessageCircle className="w-4 h-4 shrink-0" />
         <span>Talk to Galle</span>

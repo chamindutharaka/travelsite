@@ -123,43 +123,43 @@ Let's discuss my tailor-made route!`;
       id="trip-planner"
       className={`${
         compact ? "py-8 sm:py-16 lg:py-20" : "py-14 sm:py-24 lg:py-28"
-      } bg-[#FDFBF7] text-[#153250] scroll-mt-16`}
+      } bg-[#FBFAF8] text-[#1A1A1A] scroll-mt-16`}
       aria-labelledby={hideHeader ? undefined : "planner-heading"}
     >
       <Container size="default">
         {/* Header (hidden on /plan-your-trip where PageHero displays the title) */}
         {!hideHeader && (
           <EditorialReveal className="max-w-2xl mx-auto text-center space-y-3.5 mb-8 sm:mb-12">
-            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#D4622A] block">
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block">
               Create Your Own Sri Lanka
             </span>
             <h2
               id="planner-heading"
-              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#153250] leading-[1.12] tracking-[-0.02em]"
+              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-[-0.02em]"
             >
               <LineRise>Tell us how you want to travel.</LineRise>
             </h2>
-            <p className="text-[15px] sm:text-base text-[#4E5A65] leading-[1.7] max-w-[50ch] mx-auto">
+            <p className="text-[15px] sm:text-base text-[#5C5852] leading-[1.7] max-w-[50ch] mx-auto">
               Seven short steps, no payment, and nothing binding. Even a rough sketch is enough for our team in Galle to reply with a real itinerary.
             </p>
           </EditorialReveal>
         )}
 
         {/* Planner Card */}
-        <div className="max-w-3xl mx-auto rounded-2xl bg-white border border-[#153250]/10 shadow-[0_12px_36px_rgba(21,50,80,0.05)] overflow-hidden">
+        <div className="max-w-3xl mx-auto rounded-2xl bg-white border border-[#1A1A1A]/10 shadow-[0_12px_36px_rgba(26,26,26,0.05)] overflow-hidden">
           {/* Progress Header */}
-          <div className="bg-[#F5EFE6]/70 border-b border-[#153250]/10 px-5 sm:px-8 py-4">
-            <div className="flex items-center justify-between text-xs font-medium text-[#153250] mb-2">
+          <div className="bg-[#F4F2EE]/70 border-b border-[#1A1A1A]/10 px-5 sm:px-8 py-4">
+            <div className="flex items-center justify-between text-xs font-medium text-[#1A1A1A] mb-2">
               <span className="font-mono uppercase tracking-[0.16em]">
                 0{currentStep} / 07
               </span>
-              <span className="text-[#D4622A] font-medium">
+              <span className="text-[#EF6427] font-medium">
                 {Math.round((currentStep / 7) * 100)}% complete
               </span>
             </div>
-            <div className="w-full h-1 bg-[#153250]/10 rounded-full overflow-hidden">
+            <div className="w-full h-1 bg-[#1A1A1A]/10 rounded-full overflow-hidden">
               <div
-                className="h-full bg-[#153250] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full"
+                className="h-full bg-[#1A1A1A] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full"
                 style={{ width: `${(currentStep / 7) * 100}%` }}
               />
             </div>
@@ -168,13 +168,13 @@ Let's discuss my tailor-made route!`;
           <div className="p-5 sm:p-8 lg:p-10">
             {isSuccess ? (
               <div className="text-center py-6 space-y-5">
-                <span className="font-serif text-4xl text-[#D4622A] block">✓</span>
+                <span className="font-serif text-4xl text-[#EF6427] block">✓</span>
 
-                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#153250]">
+                <h3 className="font-serif text-2xl sm:text-3xl font-normal text-[#1A1A1A]">
                   Ayubowan, {formData.fullName}. Your brief is received.
                 </h3>
 
-                <p className="text-[15px] text-[#4E5A65] max-w-[46ch] mx-auto leading-[1.7]">
+                <p className="text-[15px] text-[#5C5852] max-w-[46ch] mx-auto leading-[1.7]">
                   Our travel designers in Galle are reviewing your notes and will reply with a custom day-by-day plan within 12 hours.
                 </p>
 
@@ -183,11 +183,11 @@ Let's discuss my tailor-made route!`;
                     href={whatsappDirectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-medium text-[#FDFBF7] bg-[#153250] hover:bg-[#D4622A] transition-colors duration-300"
+                    className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-medium text-[#FBFAF8] bg-[#1A1A1A] hover:bg-[#EF6427] transition-colors duration-300"
                   >
                     <span>Continue on WhatsApp →</span>
                   </a>
-                  <p className="text-xs text-[#4E5A65] mt-2.5">
+                  <p className="text-xs text-[#5C5852] mt-2.5">
                     Prefills your selections so we can discuss ideas right away.
                   </p>
                 </div>
@@ -197,11 +197,11 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 1 */}
                 {currentStep === 1 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Timeline
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         When are you thinking of travelling?
                       </h3>
                     </div>
@@ -218,8 +218,8 @@ Let's discuss my tailor-made route!`;
                           onClick={() => updateField("travelTiming", t.id)}
                           className={`p-3.5 rounded-xl text-left border text-sm font-medium transition-colors duration-200 ${
                             formData.travelTiming === t.id
-                              ? "bg-[#153250] text-[#FDFBF7] border-[#153250]"
-                              : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                              ? "bg-[#1A1A1A] text-[#FBFAF8] border-[#1A1A1A]"
+                              : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                           }`}
                         >
                           {t.label}
@@ -229,13 +229,13 @@ Let's discuss my tailor-made route!`;
 
                     {formData.travelTiming === "month" && (
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                           Preferred Month
                         </label>
                         <select
                           value={formData.approximateMonth}
                           onChange={(e) => updateField("approximateMonth", e.target.value)}
-                          className="w-full p-3.5 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] text-[#153250] text-sm font-medium focus:outline-none focus:border-[#D4622A]"
+                          className="w-full p-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-[#1A1A1A] text-sm font-medium focus:outline-none focus:border-[#EF6427]"
                         >
                           {[
                             "January",
@@ -261,14 +261,14 @@ Let's discuss my tailor-made route!`;
 
                     {formData.travelTiming === "dates" && (
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                           Estimated Start Date
                         </label>
                         <input
                           type="date"
                           value={formData.startDate}
                           onChange={(e) => updateField("startDate", e.target.value)}
-                          className="w-full p-3.5 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] text-[#153250] text-sm font-medium focus:outline-none focus:border-[#D4622A]"
+                          className="w-full p-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-[#1A1A1A] text-sm font-medium focus:outline-none focus:border-[#EF6427]"
                         />
                       </div>
                     )}
@@ -278,17 +278,17 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 2 */}
                 {currentStep === 2 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Party Size
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         Duration &amp; Travellers
                       </h3>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                         Trip Duration
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
@@ -299,8 +299,8 @@ Let's discuss my tailor-made route!`;
                             onClick={() => updateField("duration", d)}
                             className={`p-3 rounded-xl border text-sm font-medium transition-colors ${
                               formData.duration === d
-                                ? "bg-[#153250] text-[#FDFBF7] border-[#153250]"
-                                : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                ? "bg-[#1A1A1A] text-[#FBFAF8] border-[#1A1A1A]"
+                                : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                             }`}
                           >
                             {d}
@@ -311,7 +311,7 @@ Let's discuss my tailor-made route!`;
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                           Adults
                         </label>
                         <input
@@ -322,11 +322,11 @@ Let's discuss my tailor-made route!`;
                           onChange={(e) =>
                             updateField("adults", parseInt(e.target.value) || 1)
                           }
-                          className="w-full p-3 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] font-semibold text-center text-base text-[#153250]"
+                          className="w-full p-3 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] font-semibold text-center text-base text-[#1A1A1A]"
                         />
                       </div>
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                           Children
                         </label>
                         <input
@@ -337,13 +337,13 @@ Let's discuss my tailor-made route!`;
                           onChange={(e) =>
                             updateField("children", parseInt(e.target.value) || 0)
                           }
-                          className="w-full p-3 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] font-semibold text-center text-base text-[#153250]"
+                          className="w-full p-3 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] font-semibold text-center text-base text-[#1A1A1A]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                         Occasion
                       </label>
                       <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -360,8 +360,8 @@ Let's discuss my tailor-made route!`;
                             onClick={() => updateField("partyType", p.id)}
                             className={`p-2.5 rounded-xl border text-xs font-medium transition-colors ${
                               formData.partyType === p.id
-                                ? "bg-[#D4622A] text-white border-[#D4622A]"
-                                : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                ? "bg-[#EF6427] text-white border-[#EF6427]"
+                                : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                             }`}
                           >
                             {p.label}
@@ -375,11 +375,11 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 3 */}
                 {currentStep === 3 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Accommodations
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         Preferred Style of Stays
                       </h3>
                     </div>
@@ -400,8 +400,8 @@ Let's discuss my tailor-made route!`;
                             onClick={() => toggleArrayItem("travelStyle", s)}
                             className={`p-3.5 rounded-xl border text-left text-sm font-medium transition-colors ${
                               isSelected
-                                ? "bg-[#153250] text-[#FDFBF7] border-[#153250]"
-                                : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                ? "bg-[#1A1A1A] text-[#FBFAF8] border-[#1A1A1A]"
+                                : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                             }`}
                           >
                             {s}
@@ -411,7 +411,7 @@ Let's discuss my tailor-made route!`;
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                         Travel Pace
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -426,8 +426,8 @@ Let's discuss my tailor-made route!`;
                             onClick={() => updateField("pace", p.id)}
                             className={`p-3 rounded-xl border text-xs font-medium text-left sm:text-center transition-colors ${
                               formData.pace === p.id
-                                ? "bg-[#153250] text-[#FDFBF7] border-[#153250]"
-                                : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                ? "bg-[#1A1A1A] text-[#FBFAF8] border-[#1A1A1A]"
+                                : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                             }`}
                           >
                             {p.label}
@@ -441,11 +441,11 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 4 */}
                 {currentStep === 4 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Geography
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         Regions You Are Drawn To
                       </h3>
                     </div>
@@ -460,8 +460,8 @@ Let's discuss my tailor-made route!`;
                             onClick={() => toggleArrayItem("destinations", dest.name)}
                             className={`p-3 rounded-xl border text-left text-xs font-medium transition-colors ${
                               isSelected
-                                ? "bg-[#153250] text-[#D4622A] border-[#153250]"
-                                : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                ? "bg-[#1A1A1A] text-[#EF6427] border-[#1A1A1A]"
+                                : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                             }`}
                           >
                             <span className="block font-semibold">{dest.name}</span>
@@ -478,11 +478,11 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 5 */}
                 {currentStep === 5 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Activities
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         Signature Experiences
                       </h3>
                     </div>
@@ -497,8 +497,8 @@ Let's discuss my tailor-made route!`;
                             onClick={() => toggleArrayItem("experiences", exp.title)}
                             className={`p-3.5 rounded-xl border text-left text-xs font-medium transition-colors ${
                               isSelected
-                                ? "bg-[#153250] text-[#D4622A] border-[#153250]"
-                                : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                ? "bg-[#1A1A1A] text-[#EF6427] border-[#1A1A1A]"
+                                : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                             }`}
                           >
                             <span className="block font-semibold">{exp.title}</span>
@@ -515,11 +515,11 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 6 */}
                 {currentStep === 6 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Comfort &amp; Notes
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         Preferences &amp; Special Requests
                       </h3>
                     </div>
@@ -536,8 +536,8 @@ Let's discuss my tailor-made route!`;
                           onClick={() => updateField("budgetTier", b.id)}
                           className={`p-3.5 rounded-xl border text-left transition-colors ${
                             formData.budgetTier === b.id
-                              ? "bg-[#153250] text-[#FDFBF7] border-[#153250]"
-                              : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                              ? "bg-[#1A1A1A] text-[#FBFAF8] border-[#1A1A1A]"
+                              : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                           }`}
                         >
                           <span className="block text-xs font-semibold">{b.label}</span>
@@ -547,7 +547,7 @@ Let's discuss my tailor-made route!`;
                     </div>
 
                     <div>
-                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-2">
+                      <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-2">
                         Dietary, anniversaries, or notes
                       </label>
                       <textarea
@@ -555,7 +555,7 @@ Let's discuss my tailor-made route!`;
                         value={formData.specialNotes}
                         onChange={(e) => updateField("specialNotes", e.target.value)}
                         placeholder="e.g. Vegetarian diet, celebrating an anniversary, prefer shorter drives..."
-                        className="w-full p-3.5 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] text-sm placeholder-[#4E5A65]/60 focus:outline-none focus:border-[#D4622A]"
+                        className="w-full p-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm placeholder-[#5C5852]/60 focus:outline-none focus:border-[#EF6427]"
                       />
                     </div>
                   </div>
@@ -564,11 +564,11 @@ Let's discuss my tailor-made route!`;
                 {/* STEP 7 */}
                 {currentStep === 7 && (
                   <div className="space-y-5">
-                    <div className="border-b border-[#153250]/10 pb-3">
-                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#D4622A] block mb-1">
+                    <div className="border-b border-[#1A1A1A]/10 pb-3">
+                      <span className="text-[11px] uppercase font-medium tracking-[0.2em] text-[#EF6427] block mb-1">
                         Final Step
                       </span>
-                      <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                      <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                         Where should we send your itinerary?
                       </h3>
                     </div>
@@ -584,7 +584,7 @@ Let's discuss my tailor-made route!`;
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-1.5">
+                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
                           Full Name *
                         </label>
                         <input
@@ -593,13 +593,13 @@ Let's discuss my tailor-made route!`;
                           value={formData.fullName}
                           onChange={(e) => updateField("fullName", e.target.value)}
                           placeholder="Your name"
-                          className="w-full p-3.5 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] text-sm focus:outline-none focus:border-[#D4622A]"
+                          className="w-full p-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm focus:outline-none focus:border-[#EF6427]"
                         />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-1.5">
+                          <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
                             Email Address *
                           </label>
                           <input
@@ -608,12 +608,12 @@ Let's discuss my tailor-made route!`;
                             value={formData.email}
                             onChange={(e) => updateField("email", e.target.value)}
                             placeholder="you@example.com"
-                            className="w-full p-3.5 rounded-xl border border-[#153250]/15 bg-[#FDFBF7] text-sm focus:outline-none focus:border-[#D4622A]"
+                            className="w-full p-3.5 rounded-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm focus:outline-none focus:border-[#EF6427]"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-1.5">
+                          <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
                             WhatsApp / Phone *
                           </label>
                           <div className="flex">
@@ -621,7 +621,7 @@ Let's discuss my tailor-made route!`;
                               type="text"
                               value={formData.countryCode}
                               onChange={(e) => updateField("countryCode", e.target.value)}
-                              className="w-20 p-3.5 rounded-l-xl border-y border-l border-[#153250]/15 bg-[#F5EFE6] text-sm font-medium text-center text-[#153250]"
+                              className="w-20 p-3.5 rounded-l-xl border-y border-l border-[#1A1A1A]/15 bg-[#F4F2EE] text-sm font-medium text-center text-[#1A1A1A]"
                             />
                             <input
                               type="tel"
@@ -629,14 +629,14 @@ Let's discuss my tailor-made route!`;
                               value={formData.whatsappPhone}
                               onChange={(e) => updateField("whatsappPhone", e.target.value)}
                               placeholder="70 215 6828"
-                              className="w-full p-3.5 rounded-r-xl border border-[#153250]/15 bg-[#FDFBF7] text-sm focus:outline-none focus:border-[#D4622A]"
+                              className="w-full p-3.5 rounded-r-xl border border-[#1A1A1A]/15 bg-[#FBFAF8] text-sm focus:outline-none focus:border-[#EF6427]"
                             />
                           </div>
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#4E5A65] mb-1.5">
+                        <label className="block text-[11px] font-semibold uppercase tracking-[0.18em] text-[#5C5852] mb-1.5">
                           Preferred Contact Method
                         </label>
                         <div className="grid grid-cols-3 gap-2.5">
@@ -651,8 +651,8 @@ Let's discuss my tailor-made route!`;
                               onClick={() => updateField("preferredContact", c.id)}
                               className={`p-3 rounded-xl border text-xs font-medium transition-colors ${
                                 formData.preferredContact === c.id
-                                  ? "bg-[#153250] text-[#FDFBF7] border-[#153250]"
-                                  : "bg-[#FDFBF7] text-[#153250] border-[#153250]/12 hover:border-[#153250]"
+                                  ? "bg-[#1A1A1A] text-[#FBFAF8] border-[#1A1A1A]"
+                                  : "bg-[#FBFAF8] text-[#1A1A1A] border-[#1A1A1A]/12 hover:border-[#1A1A1A]"
                               }`}
                             >
                               {c.label}
@@ -671,12 +671,12 @@ Let's discuss my tailor-made route!`;
                 )}
 
                 {/* Navigation Footer */}
-                <div className="pt-4 border-t border-[#153250]/10 flex items-center justify-between gap-3">
+                <div className="pt-4 border-t border-[#1A1A1A]/10 flex items-center justify-between gap-3">
                   {currentStep > 1 ? (
                     <button
                       type="button"
                       onClick={handleBack}
-                      className="px-5 py-3 rounded-full border border-[#153250]/15 text-sm font-medium text-[#153250] hover:bg-[#F5EFE6] transition-colors"
+                      className="px-5 py-3 rounded-full border border-[#1A1A1A]/15 text-sm font-medium text-[#1A1A1A] hover:bg-[#F4F2EE] transition-colors"
                     >
                       ← Back
                     </button>
@@ -689,14 +689,14 @@ Let's discuss my tailor-made route!`;
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="text-xs font-medium text-[#4E5A65] hover:text-[#153250]"
+                        className="text-xs font-medium text-[#5C5852] hover:text-[#1A1A1A]"
                       >
                         Skip
                       </button>
                       <button
                         type="button"
                         onClick={handleNext}
-                        className="px-7 py-3 rounded-full bg-[#153250] hover:bg-[#D4622A] text-[#FDFBF7] text-sm font-medium transition-colors duration-300"
+                        className="px-7 py-3 rounded-full bg-[#1A1A1A] hover:bg-[#EF6427] text-[#FBFAF8] text-sm font-medium transition-colors duration-300"
                       >
                         Continue →
                       </button>
@@ -705,7 +705,7 @@ Let's discuss my tailor-made route!`;
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-7 py-3.5 rounded-full bg-[#153250] hover:bg-[#D4622A] text-[#FDFBF7] font-medium text-sm transition-colors duration-300 disabled:opacity-50"
+                      className="px-7 py-3.5 rounded-full bg-[#1A1A1A] hover:bg-[#EF6427] text-[#FBFAF8] font-medium text-sm transition-colors duration-300 disabled:opacity-50"
                     >
                       {isSubmitting ? "Sending Brief..." : "Send My Trip Brief →"}
                     </button>

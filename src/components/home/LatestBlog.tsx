@@ -15,25 +15,25 @@ import {
 export function LatestBlog() {
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#FDFBF7] text-[#153250]"
+      className="py-16 sm:py-24 lg:py-28 bg-[#FBFAF8] text-[#1A1A1A]"
       aria-labelledby="blog-heading"
     >
       <Container size="wide">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
           <EditorialReveal className="max-w-2xl">
             <div className="flex items-center gap-3 mb-3.5">
-              <span className="w-7 h-[1px] bg-[#D4622A]" />
-              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#4E5A65]">
+              <span className="w-7 h-[1px] bg-[#EF6427]" />
+              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#5C5852]">
                 Field Notes &amp; Journal
               </span>
             </div>
             <h2
               id="blog-heading"
-              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#153250] leading-[1.12] tracking-[-0.02em]"
+              className="font-serif text-[2rem] sm:text-[2.75rem] lg:text-[3.1rem] font-normal text-[#1A1A1A] leading-[1.12] tracking-[-0.02em]"
             >
               <LineRise>Stories from Sri Lanka.</LineRise>
             </h2>
-            <p className="mt-3.5 text-[15px] sm:text-base text-[#4E5A65] max-w-[52ch] leading-[1.7]">
+            <p className="mt-3.5 text-[15px] sm:text-base text-[#5C5852] max-w-[52ch] leading-[1.7]">
               Field notes from our Galle travel designers: where to go, when to travel, and the details we wish every visitor knew before arriving.
             </p>
           </EditorialReveal>
@@ -41,7 +41,7 @@ export function LatestBlog() {
           <EditorialReveal delay={0.1}>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 text-sm font-medium text-[#153250] hover:text-[#D4622A] transition-colors hover-underline"
+              className="inline-flex items-center gap-2 text-sm font-medium text-[#1A1A1A] hover:text-[#EF6427] transition-colors hover-underline"
             >
               <span>All stories</span>
               <span>→</span>
@@ -56,7 +56,7 @@ export function LatestBlog() {
                 <div>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="block relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#153250] mb-4 sm:mb-5"
+                    className="block relative aspect-[16/10] rounded-2xl overflow-hidden bg-[#1A1A1A] mb-4 sm:mb-5"
                   >
                     <Image
                       src={post.heroImage}
@@ -67,28 +67,28 @@ export function LatestBlog() {
                     />
                   </Link>
 
-                  <div className="flex items-center gap-2.5 text-[11px] font-mono uppercase tracking-wider text-[#4E5A65] mb-2">
-                    <span className="text-[#D4622A] font-medium">
+                  <div className="flex items-center gap-2.5 text-[11px] font-mono uppercase tracking-wider text-[#5C5852] mb-2">
+                    <span className="text-[#EF6427] font-medium">
                       {post.category}
                     </span>
                     <span>·</span>
                     <span>{post.readTime}</span>
                   </div>
 
-                  <h3 className="font-serif text-xl sm:text-[1.45rem] font-normal text-[#153250] group-hover:text-[#D4622A] transition-colors duration-300 leading-snug">
+                  <h3 className="font-serif text-xl sm:text-[1.45rem] font-normal text-[#1A1A1A] group-hover:text-[#EF6427] transition-colors duration-300 leading-snug">
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </h3>
 
-                  <p className="mt-2.5 text-[14.5px] text-[#4E5A65] line-clamp-3 leading-[1.68]">
+                  <p className="mt-2.5 text-[14.5px] text-[#5C5852] line-clamp-3 leading-[1.68]">
                     {post.excerpt}
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-[#153250]/10 flex items-center justify-between text-xs text-[#4E5A65]">
+                <div className="mt-5 pt-4 border-t border-[#1A1A1A]/10 flex items-center justify-between text-xs text-[#5C5852]">
                   <span>{post.publishedAt}</span>
                   <Link
                     href={`/blog/${post.slug}`}
-                    className="font-medium text-[#153250] group-hover:text-[#D4622A] transition-colors"
+                    className="font-medium text-[#1A1A1A] group-hover:text-[#EF6427] transition-colors"
                   >
                     Read guide →
                   </Link>

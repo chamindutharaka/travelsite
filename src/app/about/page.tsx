@@ -65,7 +65,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="bg-[#FDFBF7] text-[#153250]">
+    <div className="bg-[#FBFAF8] text-[#1A1A1A]">
       <PageHero
         image="/images/destinations/galle.jpg"
         imageAlt="Galle Fort lighthouse and coral ramparts overlooking the Indian Ocean"
@@ -78,7 +78,7 @@ export default function AboutPage() {
       <section className="py-16 sm:py-24">
         <Container size="wide">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <ImageWipeReveal className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#153250]">
+            <ImageWipeReveal className="lg:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#1A1A1A]">
               <Image
                 src="/images/hero/hero-galle-coast.jpg"
                 alt="Historic Galle Fort Ramparts overlooking the southern coastline"
@@ -88,11 +88,11 @@ export default function AboutPage() {
               />
             </ImageWipeReveal>
 
-            <EditorialReveal delay={0.1} className="lg:col-span-6 space-y-5 text-[#4E5A65] text-[15px] sm:text-base leading-[1.72]">
-              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#D4622A] block">
+            <EditorialReveal delay={0.1} className="lg:col-span-6 space-y-5 text-[#5C5852] text-[15px] sm:text-base leading-[1.72]">
+              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block">
                 Why Our Base in Galle Matters
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#153250] leading-[1.15]">
+              <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#1A1A1A] leading-[1.15]">
                 Grounded on the Southern Coast, Connected Across the Island.
               </h2>
               <p>
@@ -101,7 +101,7 @@ export default function AboutPage() {
               <p>
                 When you travel with Ceylon Holidays, your private chauffeur-guide acts as host, cultural bridge, and guardian on the road—backed every hour by our operations desk in Galle.
               </p>
-              <p className="text-sm font-medium text-[#153250] pt-2 border-t border-[#153250]/10">
+              <p className="text-sm font-medium text-[#1A1A1A] pt-2 border-t border-[#1A1A1A]/10">
                 {company.address}
               </p>
             </EditorialReveal>
@@ -110,13 +110,13 @@ export default function AboutPage() {
       </section>
 
       {/* Guiding Values */}
-      <section className="py-16 sm:py-24 bg-[#F5EFE6] border-y border-[#153250]/10">
+      <section className="py-16 sm:py-24 bg-[#F4F2EE] border-y border-[#1A1A1A]/10">
         <Container size="wide">
           <EditorialReveal className="max-w-2xl mb-12">
-            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#D4622A] block mb-2.5">
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block mb-2.5">
               Ethics &amp; Philosophy
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#153250]">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#1A1A1A]">
               Our Guiding Values
             </h2>
           </EditorialReveal>
@@ -125,15 +125,15 @@ export default function AboutPage() {
             {values.map((v) => (
               <StaggerItem
                 key={v.num}
-                className="pt-6 border-t border-[#153250]/15 space-y-3"
+                className="pt-6 border-t border-[#1A1A1A]/15 space-y-3"
               >
-                <span className="font-mono text-xs tracking-[0.18em] text-[#D4622A] block">
+                <span className="font-mono text-xs tracking-[0.18em] text-[#EF6427] block">
                   {v.num}
                 </span>
-                <h3 className="font-serif text-2xl font-normal text-[#153250]">
+                <h3 className="font-serif text-2xl font-normal text-[#1A1A1A]">
                   {v.title}
                 </h3>
-                <p className="text-[14.5px] text-[#4E5A65] leading-[1.7]">
+                <p className="text-[14.5px] text-[#5C5852] leading-[1.7]">
                   {v.description}
                 </p>
               </StaggerItem>
@@ -146,13 +146,13 @@ export default function AboutPage() {
       <section className="py-16 sm:py-24">
         <Container size="wide">
           <EditorialReveal className="max-w-2xl mb-12">
-            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#D4622A] block mb-2.5">
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block mb-2.5">
               People Behind Your Journey
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#153250]">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#1A1A1A]">
               Meet Our Travel Designers &amp; Guides
             </h2>
-            <p className="text-sm text-[#4E5A65] mt-2">
+            <p className="text-sm text-[#5C5852] mt-2">
               Real people based in Sri Lanka who craft and steward your journey.
             </p>
           </EditorialReveal>
@@ -161,9 +161,9 @@ export default function AboutPage() {
             {teamMembers.map((member, i) => (
               <StaggerItem
                 key={i}
-                className="rounded-2xl bg-white border border-[#153250]/10 p-6 sm:p-7 text-center"
+                className="rounded-2xl bg-white border border-[#1A1A1A]/10 p-6 sm:p-7 text-center"
               >
-                <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden bg-[#153250] mb-4 border border-[#153250]/15">
+                <div className="relative w-24 h-24 mx-auto rounded-full overflow-hidden bg-[#1A1A1A] mb-4 border border-[#1A1A1A]/15">
                   <Image
                     src={member.image}
                     alt={member.name}
@@ -172,13 +172,13 @@ export default function AboutPage() {
                     className="object-cover"
                   />
                 </div>
-                <h3 className="font-serif text-xl font-normal text-[#153250]">
+                <h3 className="font-serif text-xl font-normal text-[#1A1A1A]">
                   {member.name}
                 </h3>
-                <p className="text-[11px] font-medium text-[#D4622A] uppercase tracking-[0.16em] mt-1 mb-3">
+                <p className="text-[11px] font-medium text-[#EF6427] uppercase tracking-[0.16em] mt-1 mb-3">
                   {member.role}
                 </p>
-                <p className="text-[14px] text-[#4E5A65] leading-[1.68]">
+                <p className="text-[14px] text-[#5C5852] leading-[1.68]">
                   {member.bio}
                 </p>
               </StaggerItem>
@@ -190,8 +190,8 @@ export default function AboutPage() {
       {/* Official Accreditation */}
       <section className="pb-16 sm:pb-24">
         <Container size="default">
-          <EditorialReveal className="rounded-2xl bg-[#153250] text-white p-8 sm:p-12 text-center space-y-4">
-            <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#D4622A] block">
+          <EditorialReveal className="rounded-2xl bg-[#1A1A1A] text-white p-8 sm:p-12 text-center space-y-4">
+            <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-[#EF6427] block">
               Accreditation
             </span>
             <h3 className="font-serif text-2xl sm:text-3xl font-normal">
@@ -200,13 +200,13 @@ export default function AboutPage() {
             <p className="text-sm text-white/75 max-w-xl mx-auto leading-[1.7]">
               Ceylon Holidays is an accredited Sri Lankan tour operator registered with the Sri Lanka Tourism Development Authority (SLTDA).
             </p>
-            <div className="inline-block px-5 py-2 rounded-full bg-white/10 border border-white/15 text-xs font-mono text-[#D4622A] tracking-wider">
+            <div className="inline-block px-5 py-2 rounded-full bg-white/10 border border-white/15 text-xs font-mono text-[#EF6427] tracking-wider">
               Registration No: {company.sltdaRegistration}
             </div>
             <div className="pt-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium bg-[#FDFBF7] text-[#153250] hover:bg-[#D4622A] hover:text-white transition-colors"
+                className="inline-flex items-center justify-center px-7 py-3 rounded-full text-sm font-medium bg-[#FBFAF8] text-[#1A1A1A] hover:bg-[#EF6427] hover:text-white transition-colors"
               >
                 Speak With Our Galle Team →
               </Link>

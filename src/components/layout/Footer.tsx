@@ -40,7 +40,7 @@ export function Footer() {
 
   return (
     <footer
-      className="bg-[#0C1F33] text-[#DCE3EA] border-t border-white/10"
+      className="bg-[#141414] text-[#DCDCDC] border-t border-white/10"
       role="contentinfo"
     >
       <div className="py-14 sm:py-20 lg:py-24">
@@ -49,7 +49,7 @@ export function Footer() {
             {/* Brand */}
             <div className="sm:col-span-2 lg:col-span-4 space-y-4">
               <Link href="/" className="inline-block group">
-                <span className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-white group-hover:text-[#E5A952] transition-colors">
+                <span className="font-serif text-2xl sm:text-3xl font-medium tracking-tight text-white group-hover:text-[#EF6427] transition-colors">
                   Ceylon Holidays
                 </span>
                 <span className="block text-[10px] uppercase tracking-[0.24em] text-white/50 mt-1">
@@ -68,7 +68,7 @@ export function Footer() {
 
             {/* Navigate */}
             <div className="lg:col-span-2 space-y-3.5">
-              <h3 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E5A952]">
+              <h3 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#EF6427]">
                 Navigate
               </h3>
               <ul className="space-y-2.5 text-sm text-white/75">
@@ -76,7 +76,7 @@ export function Footer() {
                 <li><Link href="/destinations" className="hover:text-white transition-colors">Destinations</Link></li>
                 <li><Link href="/experiences" className="hover:text-white transition-colors">Experiences</Link></li>
                 <li><Link href="/tours" className="hover:text-white transition-colors">Tours</Link></li>
-                <li><Link href="/plan-your-trip" className="hover:text-[#E5A952] transition-colors">Plan Your Trip</Link></li>
+                <li><Link href="/plan-your-trip" className="hover:text-[#EF6427] transition-colors">Plan Your Trip</Link></li>
                 <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery &amp; Films</Link></li>
                 <li><Link href="/blog" className="hover:text-white transition-colors">Journal</Link></li>
                 <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
@@ -85,7 +85,7 @@ export function Footer() {
 
             {/* Destinations */}
             <div className="lg:col-span-3 space-y-3.5">
-              <h3 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E5A952]">
+              <h3 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#EF6427]">
                 Destinations
               </h3>
               <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm text-white/75">
@@ -102,7 +102,7 @@ export function Footer() {
 
             {/* Contact */}
             <div className="sm:col-span-2 lg:col-span-3 space-y-3.5">
-              <h3 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#E5A952]">
+              <h3 className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-[#EF6427]">
                 Galle Office
               </h3>
               <ul className="space-y-2.5 text-sm text-white/75">
@@ -111,7 +111,7 @@ export function Footer() {
                     href={company.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-[#E5A952] font-medium transition-colors"
+                    className="text-white hover:text-[#EF6427] font-medium transition-colors"
                   >
                     WhatsApp {company.phoneDisplay}
                   </a>
@@ -153,12 +153,12 @@ export function Footer() {
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="Your email address"
                   required
-                  className="flex-1 px-4 py-3 text-sm rounded-full bg-white/5 border border-white/15 text-white placeholder-white/40 focus:outline-none focus:border-[#E5A952] transition-colors"
+                  className="flex-1 px-4 py-3 text-sm rounded-full bg-white/5 border border-white/15 text-white placeholder-white/40 focus:outline-none focus:border-[#EF6427] transition-colors"
                 />
                 <button
                   type="submit"
                   disabled={newsletterStatus === "loading"}
-                  className="px-7 py-3 text-sm font-medium rounded-full bg-[#FDFBF7] text-[#153250] hover:bg-[#E5A952] transition-colors shrink-0 disabled:opacity-50"
+                  className="px-7 py-3 text-sm font-medium rounded-full bg-[#FBFAF8] text-[#1A1A1A] hover:bg-[#EF6427] transition-colors shrink-0 disabled:opacity-50"
                 >
                   Subscribe
                 </button>

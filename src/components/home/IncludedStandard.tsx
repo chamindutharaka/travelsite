@@ -28,13 +28,13 @@ export function IncludedStandard() {
 
   return (
     <section
-      className="py-14 sm:py-20 bg-[#153250] text-[#FDFBF7]"
+      className="py-14 sm:py-20 bg-[#1A1A1A] text-[#FBFAF8]"
       aria-labelledby="included-heading"
     >
       <Container size="wide">
         <div className="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#E5A952] block mb-2">
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-[#EF6427] block mb-2">
               Included as Standard
             </span>
             <h2
@@ -56,7 +56,7 @@ export function IncludedStandard() {
               className="pt-5 border-t border-white/15 space-y-2"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-mono text-xs text-[#E5A952]">{item.index}</span>
+                <span className="font-mono text-xs text-[#EF6427]">{item.index}</span>
                 <h3 className="font-serif text-xl sm:text-[1.35rem] font-normal text-white">
                   {item.title}
                 </h3>

@@ -28,14 +28,14 @@ export function SignatureMoments() {
 
   return (
     <section
-      className="py-16 sm:py-24 lg:py-28 bg-[#0C1F33] text-white overflow-hidden"
+      className="py-16 sm:py-24 lg:py-28 bg-[#141414] text-white overflow-hidden"
       aria-labelledby="signature-heading"
     >
       <Container size="wide">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 sm:mb-14">
           <EditorialReveal className="max-w-2xl">
             <div className="flex items-center gap-3 mb-3.5">
-              <span className="w-7 h-[1px] bg-[#E5A952]" />
+              <span className="w-7 h-[1px] bg-[#EF6427]" />
               <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-white/65">
                 Signature Moments
               </span>
@@ -58,7 +58,7 @@ export function SignatureMoments() {
           >
             <Link
               href="/plan-your-trip"
-              className="text-xs sm:text-sm font-medium text-white/85 hover:text-[#E5A952] transition-colors hover-underline"
+              className="text-xs sm:text-sm font-medium text-white/85 hover:text-[#EF6427] transition-colors hover-underline"
             >
               Build a trip around these →
             </Link>
@@ -68,7 +68,7 @@ export function SignatureMoments() {
                 type="button"
                 onClick={scrollLeft}
                 aria-label="Scroll experiences left"
-                className="w-10 h-10 rounded-full border border-white/20 hover:border-[#E5A952] hover:bg-[#E5A952] hover:text-[#153250] text-white flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-full border border-white/20 hover:border-[#EF6427] hover:bg-[#EF6427] hover:text-[#1A1A1A] text-white flex items-center justify-center transition-colors"
               >
                 <ArrowLeft className="w-4 h-4" />
               </button>
@@ -76,7 +76,7 @@ export function SignatureMoments() {
                 type="button"
                 onClick={scrollRight}
                 aria-label="Scroll experiences right"
-                className="w-10 h-10 rounded-full border border-white/20 hover:border-[#E5A952] hover:bg-[#E5A952] hover:text-[#153250] text-white flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-full border border-white/20 hover:border-[#EF6427] hover:bg-[#EF6427] hover:text-[#1A1A1A] text-white flex items-center justify-center transition-colors"
               >
                 <ArrowRight className="w-4 h-4" />
               </button>
@@ -97,9 +97,9 @@ export function SignatureMoments() {
               <Link
                 key={exp.slug}
                 href={`/experiences/${exp.slug}`}
-                className="group relative w-[82vw] max-w-[330px] sm:w-[340px] shrink-0 snap-start rounded-2xl overflow-hidden bg-[#153250] border border-white/10 hover:border-[#E5A952]/60 transition-colors duration-500 flex flex-col justify-between"
+                className="group relative w-[82vw] max-w-[330px] sm:w-[340px] shrink-0 snap-start rounded-2xl overflow-hidden bg-[#1A1A1A] border border-white/10 hover:border-[#EF6427]/60 transition-colors duration-500 flex flex-col justify-between"
               >
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#0C1F33]">
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#141414]">
                   <Image
                     src={exp.heroImage}
                     alt={exp.title}
@@ -107,12 +107,12 @@ export function SignatureMoments() {
                     sizes="340px"
                     className="object-cover group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0C1F33]/85 via-[#0C1F33]/15 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#141414]/85 via-[#141414]/15 to-transparent" />
                   <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between text-[11px] font-mono">
-                    <span className="px-2.5 py-1 rounded-full bg-[#0C1F33]/75 backdrop-blur-sm text-[#E5A952] font-medium">
+                    <span className="px-2.5 py-1 rounded-full bg-[#141414]/75 backdrop-blur-sm text-[#EF6427] font-medium">
                       {num}
                     </span>
-                    <span className="px-2.5 py-1 rounded-full bg-[#0C1F33]/65 backdrop-blur-sm text-white/90">
+                    <span className="px-2.5 py-1 rounded-full bg-[#141414]/65 backdrop-blur-sm text-white/90">
                       {exp.location}
                     </span>
                   </div>
@@ -123,7 +123,7 @@ export function SignatureMoments() {
                     <span className="text-[11px] uppercase tracking-[0.16em] text-white/50 block mb-2">
                       {exp.duration} · {exp.bestSeason}
                     </span>
-                    <h3 className="font-serif text-xl sm:text-[1.4rem] font-normal text-white group-hover:text-[#E5A952] transition-colors duration-300 leading-snug">
+                    <h3 className="font-serif text-xl sm:text-[1.4rem] font-normal text-white group-hover:text-[#EF6427] transition-colors duration-300 leading-snug">
                       {exp.title}
                     </h3>
                     <p className="mt-2.5 text-[14px] text-white/70 line-clamp-3 leading-[1.68]">
@@ -131,7 +131,7 @@ export function SignatureMoments() {
                     </p>
                   </div>
 
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-medium text-white/80 group-hover:text-[#E5A952] transition-colors">
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-medium text-white/80 group-hover:text-[#EF6427] transition-colors">
                     <span>Read story</span>
                     <span className="group-hover:translate-x-1 transition-transform duration-300">
                       →

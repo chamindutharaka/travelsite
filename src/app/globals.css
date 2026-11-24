@@ -5,16 +5,16 @@
 @layer base {
   :root {
     /* Ceylon Hospitality Palette */
-    --background: #FDFBF7;
-    --surface: #F5EFE6;
+    --background: #FBFAF8;
+    --surface: #F4F2EE;
     --surface-card: #FFFFFF;
-    --foreground: #153250;
-    --muted: #4E5A65;
-    --forest: #153250;
-    --forest-deep: #0C1F33;
-    --brass: #D4622A;
-    --brass-hover: #B84F1D;
-    --border-hairline: rgba(21, 50, 80, 0.11);
+    --foreground: #1A1A1A;
+    --muted: #5C5852;
+    --forest: #1A1A1A;
+    --forest-deep: #141414;
+    --brass: #EF6427;
+    --brass-hover: #D9531A;
+    --border-hairline: rgba(26, 26, 26, 0.11);
     --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-wipe: cubic-bezier(0.65, 0, 0.35, 1);
   }
@@ -47,12 +47,12 @@
   }
 
   ::selection {
-    background-color: #153250;
-    color: #FDFBF7;
+    background-color: #1A1A1A;
+    color: #FBFAF8;
   }
 
   :focus-visible {
-    outline: 2px solid #D4622A;
+    outline: 2px solid #EF6427;
     outline-offset: 2px;
   }
 
